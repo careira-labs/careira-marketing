@@ -1,87 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careira – AI Job Intelligence</title>
-  <link rel="icon" href="/favicon.ico" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-      background-color: #FFFDF7;
-      color: #33374A;
-      text-align: left;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Careira – Work that fits, found faster</title>
+    <link rel="icon" href="/assets/favicon.ico" />
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: #2b2f42; /* matches slide background */
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: white;
+      }
 
-    header {
-      display: flex;
-      align-items: center;
-      padding: 2rem 3rem 1rem;
-    }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+        padding: 4rem 6rem;
+        box-sizing: border-box;
+      }
 
-    header img {
-      height: 48px;
-      width: auto;
-    }
+      .logo {
+        height: 48px;
+        width: auto;
+        margin-bottom: 1.5rem;
+      }
 
-    main {
-      max-width: 640px;
-      margin: 4rem 3rem;
-      line-height: 1.6;
-    }
+      h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin: 0;
+        line-height: 1.2;
+      }
 
-    h1 {
-      font-size: 2.25rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
+      .subhead {
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin-top: 2rem;
+        border-top: 3px solid #ff7a6f;
+        padding-top: 1.2rem;
+        max-width: 700px;
+        line-height: 1.5;
+      }
 
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
+      .email {
+        position: absolute;
+        bottom: 2rem;
+        left: 6rem;
+        color: #ff7a6f;
+        font-weight: 500;
+        text-decoration: none;
+      }
 
-    a {
-      color: #FF7A6F;
-      text-decoration: none;
-      font-weight: 500;
-    }
+      .footer {
+        position: absolute;
+        bottom: 2rem;
+        right: 6rem;
+        color: #ff7a6f;
+        font-weight: 600;
+      }
 
-    a:hover {
-      text-decoration: underline;
-    }
+      @media (max-width: 768px) {
+        .container {
+          padding: 2rem;
+        }
 
-    footer {
-      font-size: 0.9rem;
-      margin: 4rem 3rem 2rem;
-      color: #555;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="/assets/LOGO-Careira-bitone.png" alt="Careira logo" />
-  </header>
+        h1 {
+          font-size: 2.2rem;
+        }
 
-  <main>
-    <h1>AI-powered job intelligence</h1>
-    <p>
-      Careira helps people and companies connect through insight-driven matching, not keyword guessing.
-    </p>
-    <p>
-      <a href="https://app.careira.com">Go to the platform →</a>
-    </p>
-  </main>
+        .subhead {
+          font-size: 1.1rem;
+        }
 
-  <footer>
-    &copy; <span id="year"></span> Careira. All rights reserved.
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
+        .email, .footer {
+          left: 2rem;
+          right: 2rem;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="/assets/LOGO-Careira-bitone.png" alt="Careira" class="logo" />
+      <h1>Work that fits,<br />found faster</h1>
+      <div class="subhead">
+        The AI talent-matching platform that understands people and jobs – and
+        redefines how they connect.
+      </div>
+    </div>
+    <a href="mailto:info@careira.com" class="email">info@careira.com</a>
+    <div class="footer">Dan Mason | Founder</div>
+  </body>
 </html>
-
