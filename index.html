@@ -15,14 +15,20 @@
         color: white;
       }
 
-      .container {
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      flex: 1 1 auto;         /* grow to fill wrapper */
+      padding: clamp(2rem, 6vw, 4rem) clamp(2rem, 8vw, 6rem);
+      box-sizing: border-box;
+    }
+
+      .wrapper {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        height: 100vh;
-        padding: 4rem 6rem;
-        box-sizing: border-box;
+        min-height: 100svh; /* better on mobile than 100vh */
       }
 
       .logo {
@@ -48,15 +54,16 @@
         line-height: 1.5;
       }
 
-      .footer {
-        position: absolute;
-        bottom: 2rem;
-        left: 6rem;
-        right: 6rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    .footer {
+      /* remove position/left/right/bottom */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 6rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      box-sizing: border-box;
+    }
 
       .footer-item {
         color: #ff7a6f;
@@ -81,11 +88,10 @@
         }
 
         .footer {
-          left: 2rem;
-          right: 2rem;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.5rem;
+        padding: 1rem 2rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
         }
 
         .footer-item {
@@ -95,6 +101,7 @@
     </style>
   </head>
   <body>
+  <div class="wrapper">
     <div class="container">
       <img src="/assets/LOGO-Careira-bitone-white.png" alt="Careira" class="logo" />
       <h1>Work that fits,<br />found faster</h1>
@@ -106,6 +113,7 @@
     <div class="footer">
       <span class="footer-item">&copy; 2025 Careira</span>
       <a href="mailto:info@careira.com" class="footer-item email">info@careira.com</a>
+    </div>
     </div>
   </body>
 </html>
