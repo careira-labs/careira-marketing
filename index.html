@@ -17,20 +17,20 @@
         color: white;
       }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      flex: 1 1 auto;         /* grow to fill wrapper */
-      padding: clamp(2rem, 6vw, 4rem) clamp(2rem, 8vw, 6rem);
-      box-sizing: border-box;
-    }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        flex: 1 1 auto;
+        padding: clamp(2rem, 6vw, 4rem) clamp(2rem, 8vw, 6rem);
+        box-sizing: border-box;
+      }
 
       .wrapper {
         display: flex;
         flex-direction: column;
-        min-height: 100svh; /* better on mobile than 100vh */
+        min-height: 100svh;
       }
 
       .logo {
@@ -56,59 +56,86 @@
         line-height: 1.5;
       }
 
-      .waitlist-form {
-        display: flex;
-        gap: 0.75rem;
+      /* Teaser button */
+      .waitlist-teaser {
         margin-top: 2rem;
-        flex-wrap: wrap;
-      }
-
-      .waitlist-form input,
-      .waitlist-form select {
-        padding: 0.85rem 1.2rem;
-        font-size: 1rem;
-        border: none;
-        border-radius: 999px;
-        outline: none;
-        background: white;
-      }
-
-      .waitlist-form input[type="text"] {
-        min-width: 180px;
-      }
-
-      .waitlist-form input[type="email"] {
-        min-width: 240px;
-      }
-
-      .waitlist-form select {
-        min-width: 160px;
-        cursor: pointer;
-        color: #333;
-      }
-
-      .waitlist-form input:focus,
-      .waitlist-form select:focus {
-        box-shadow: 0 0 0 3px rgba(255, 122, 111, 0.4);
-      }
-
-      .waitlist-form button {
         padding: 0.85rem 1.8rem;
         font-size: 1rem;
         font-weight: 600;
         background: #ff7a6f;
         color: white;
         border: none;
-        border-radius: 999px;
+        border-radius: 8px;
         cursor: pointer;
         transition: background 0.2s;
       }
 
-      .waitlist-form button:hover {
+      .waitlist-teaser:hover {
         background: #ff5c4d;
       }
 
-      .waitlist-form button:disabled {
+      /* Form card */
+      .waitlist-card {
+        display: none;
+        margin-top: 2rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem 2rem;
+        max-width: 340px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      }
+
+      .waitlist-card h3 {
+        margin: 0 0 1.25rem;
+        color: #33374A;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      .waitlist-card input,
+      .waitlist-card select {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        outline: none;
+        background: white;
+        box-sizing: border-box;
+        color: #333;
+      }
+
+      .waitlist-card input:focus,
+      .waitlist-card select:focus {
+        border-color: #ff7a6f;
+        box-shadow: 0 0 0 3px rgba(255, 122, 111, 0.2);
+      }
+
+      .waitlist-card select {
+        cursor: pointer;
+      }
+
+      .waitlist-card button {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        background: #ff7a6f;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .waitlist-card button:hover {
+        background: #ff5c4d;
+      }
+
+      .waitlist-card button:disabled {
         background: #888;
         cursor: not-allowed;
       }
@@ -126,16 +153,15 @@
         color: #fca5a5;
       }
 
-    .footer {
-      /* remove position/left/right/bottom */
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 6rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      box-sizing: border-box;
-    }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 6rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        box-sizing: border-box;
+      }
 
       .footer-item {
         color: #ff7a6f;
@@ -160,28 +186,18 @@
         }
 
         .footer {
-        padding: 1rem 2rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
+          padding: 1rem 2rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
         }
 
         .footer-item {
           font-size: 0.9rem;
         }
 
-        .waitlist-form {
-          flex-direction: column;
-        }
-
-        .waitlist-form input,
-        .waitlist-form select {
-          min-width: auto;
-          width: 100%;
-        }
-
-        .waitlist-form button {
-          width: 100%;
+        .waitlist-card {
+          max-width: 100%;
         }
       }
     </style>
@@ -195,94 +211,108 @@
         Launching soon – the AI talent-matching platform that understands people and jobs – and
         redefines how they connect.
       </div>
-      <form class="waitlist-form" id="waitlist-form">
-        <input type="text" name="name" placeholder="Your name" required />
-        <input type="email" name="email" placeholder="Email address" required />
-        <select name="user_type" id="user-type" required>
-          <option value="" disabled selected>I am a...</option>
-          <option value="candidate">Candidate</option>
-          <option value="recruiter">Recruiter</option>
-          <option value="employer">Employer</option>
-        </select>
-        <input type="text" name="company" id="company-field" placeholder="Company name (optional)" style="display:none;" />
-        <button type="submit">Join the waitlist</button>
-      </form>
+
+      <button class="waitlist-teaser" id="waitlist-teaser">Join the waitlist</button>
+
+      <div class="waitlist-card" id="waitlist-card">
+        <h3>Join the waitlist</h3>
+        <form id="waitlist-form">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Email address" required />
+          <select name="user_type" id="user-type" required>
+            <option value="" disabled selected>I am a...</option>
+            <option value="candidate">Candidate</option>
+            <option value="recruiter">Recruiter</option>
+            <option value="employer">Employer</option>
+          </select>
+          <input type="text" name="company" id="company-field" placeholder="Company name (optional)" style="display:none;" />
+          <button type="submit">Join</button>
+        </form>
+      </div>
+
       <div class="waitlist-message" id="waitlist-message"></div>
     </div>
     <div class="footer">
       <span class="footer-item">&copy; 2026 Careira Ltd. Registered in England and Wales with company number 16937993.</span>
       <a href="mailto:info@careira.com" class="footer-item email">info@careira.com</a>
     </div>
-    </div>
-    <script>
-      const API_URL = 'https://api.careira.com';
-      const form = document.getElementById('waitlist-form');
-      const message = document.getElementById('waitlist-message');
-      const params = new URLSearchParams(window.location.search);
+  </div>
+  <script>
+    const API_URL = 'https://api.careira.com';
+    const teaser = document.getElementById('waitlist-teaser');
+    const card = document.getElementById('waitlist-card');
+    const form = document.getElementById('waitlist-form');
+    const message = document.getElementById('waitlist-message');
+    const params = new URLSearchParams(window.location.search);
 
-      // ?reset clears localStorage and shows form (for testing/admin)
-      if (params.has('reset')) {
-        localStorage.removeItem('careira_waitlist');
-        // Clean URL without reload
-        window.history.replaceState({}, '', window.location.pathname);
-      }
+    // ?reset clears localStorage and shows form (for testing/admin)
+    if (params.has('reset')) {
+      localStorage.removeItem('careira_waitlist');
+      window.history.replaceState({}, '', window.location.pathname);
+    }
 
-      // Check if already signed up (skip if reset was just used)
-      if (localStorage.getItem('careira_waitlist') && !params.has('reset')) {
-        form.style.display = 'none';
-        message.textContent = "You're on the waitlist. Thank you for your interest.";
-        message.classList.add('success');
-      }
+    // Check if already signed up
+    if (localStorage.getItem('careira_waitlist') && !params.has('reset')) {
+      teaser.style.display = 'none';
+      message.textContent = "You're on the waitlist. Thank you for your interest.";
+      message.classList.add('success');
+    }
 
-      // Show company field for recruiters/employers only
-      const userTypeSelect = document.getElementById('user-type');
-      const companyField = document.getElementById('company-field');
-      userTypeSelect.addEventListener('change', () => {
-        const showCompany = ['recruiter', 'employer'].includes(userTypeSelect.value);
-        companyField.style.display = showCompany ? 'block' : 'none';
-      });
+    // Show form when teaser clicked
+    teaser.addEventListener('click', () => {
+      teaser.style.display = 'none';
+      card.style.display = 'block';
+    });
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
-        const userType = form.user_type.value;
-        const company = form.company.value.trim() || null;
-        const button = form.querySelector('button');
+    // Show company field for recruiters/employers only
+    const userTypeSelect = document.getElementById('user-type');
+    const companyField = document.getElementById('company-field');
+    userTypeSelect.addEventListener('change', () => {
+      const showCompany = ['recruiter', 'employer'].includes(userTypeSelect.value);
+      companyField.style.display = showCompany ? 'block' : 'none';
+    });
 
-        button.disabled = true;
-        button.textContent = 'Joining...';
-        message.textContent = '';
-        message.className = 'waitlist-message';
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const userType = form.user_type.value;
+      const company = form.company.value.trim() || null;
+      const button = form.querySelector('button');
 
-        try {
-          const payload = { email, first_name: name, user_type: userType };
-          if (company) payload.company = company;
+      button.disabled = true;
+      button.textContent = 'Joining...';
+      message.textContent = '';
+      message.className = 'waitlist-message';
 
-          const res = await fetch(`${API_URL}/waitlist/join`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
+      try {
+        const payload = { email, first_name: name, user_type: userType };
+        if (company) payload.company = company;
 
-          const data = await res.json();
+        const res = await fetch(`${API_URL}/waitlist/join`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-          if (res.ok && data.success) {
-            localStorage.setItem('careira_waitlist', email);
-            message.textContent = "You're on the waitlist. Thank you for your interest.";
-            message.classList.add('success');
-            form.style.display = 'none';
-          } else {
-            throw new Error(data.detail || 'Something went wrong');
-          }
-        } catch (err) {
-          message.textContent = err.message || 'Failed to join. Please try again.';
-          message.classList.add('error');
-        } finally {
-          button.disabled = false;
-          button.textContent = 'Join the waitlist';
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          localStorage.setItem('careira_waitlist', email);
+          card.style.display = 'none';
+          message.textContent = "You're on the waitlist. Thank you for your interest.";
+          message.classList.add('success');
+        } else {
+          throw new Error(data.detail || 'Something went wrong');
         }
-      });
-    </script>
+      } catch (err) {
+        message.textContent = err.message || 'Failed to join. Please try again.';
+        message.classList.add('error');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Join';
+      }
+    });
+  </script>
   </body>
 </html>
