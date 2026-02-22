@@ -72,7 +72,7 @@ export default function RecruitersPage() {
     {
       title: 'Feedback loop built in',
       description:
-        'Dismiss reasons and recruiter preferences continuously improve match quality.',
+        'Recruiter feedback and preferences continuously improve match quality.',
     },
     {
       title: 'Automatic rediscovery',
