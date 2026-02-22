@@ -67,7 +67,7 @@ export default function RecruitersPage() {
     {
       title: 'Explainable shortlists',
       description:
-        'Every candidate ranking includes clear scoring and reasoning — so hiring decisions are defensible.',
+        'Every candidate ranking includes clear scoring and reasoning, so hiring decisions are defensible.',
     },
     {
       title: 'Feedback loop built in',
