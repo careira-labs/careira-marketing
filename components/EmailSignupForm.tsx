@@ -20,7 +20,18 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
   const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
-    if (compact && typeof window !== 'undefined') {
+    if (typeof window === 'undefined') return;
+
+    // ?reset clears waitlist memory (for testing/admin)
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('reset')) {
+      localStorage.removeItem('careira_waitlist');
+      window.history.replaceState({}, '', window.location.pathname);
+    } else if (localStorage.getItem('careira_waitlist')) {
+      setSuccess(true);
+    }
+
+    if (compact) {
       const dismissed = sessionStorage.getItem('sticky_cta_dismissed');
       setIsDismissed(dismissed === 'true');
     }
@@ -68,6 +79,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
       }
 
       const result = await joinWaitlist(payload);
+      localStorage.setItem('careira_waitlist', email);
       setSuccess(true);
     } catch (err: any) {
       setError(err.message || 'Failed to join waitlist. Please try again.');
