@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { joinWaitlist, type WaitlistRequest } from '../lib/api';
+import { validateEmail } from '../lib/validation';
 
 interface EmailSignupFormProps {
   source: 'jobseekers' | 'recruiters';
@@ -9,6 +10,7 @@ interface EmailSignupFormProps {
 
 export default function EmailSignupForm({ source, title, compact = false }: EmailSignupFormProps) {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState<string | null>(null);
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [showExtra, setShowExtra] = useState(false);
@@ -29,15 +31,24 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
     sessionStorage.setItem('sticky_cta_dismissed', 'true');
   };
 
+  function handleEmailBlur() {
+    if (email) {
+      const result = validateEmail(email);
+      if (!result.isValid) {
+        setEmailError(result.error || 'Please enter a valid email address.');
+      }
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setEmailError(null);
 
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setError('Please enter a valid email address');
+    const emailResult = validateEmail(email);
+    if (!emailResult.isValid) {
+      setEmailError(emailResult.error || 'Please enter a valid email address.');
       setLoading(false);
       return;
     }
@@ -117,12 +128,17 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
               type="email"
               placeholder="Your email address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setEmailError(null);
+              }}
               onFocus={() => setShowExtra(true)}
+              onBlur={handleEmailBlur}
               required
               autoComplete="email"
-              className={error ? 'error' : ''}
+              className={emailError ? 'error' : ''}
             />
+            {emailError && <span className="field-error">{emailError}</span>}
 
             {showExtra && (
               <input
@@ -252,6 +268,12 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
 
         .signup-form input[type="email"].error {
           border-color: var(--error);
+        }
+
+        .field-error {
+          color: var(--error);
+          font-size: 0.8125rem;
+          margin-top: -0.5rem;
         }
 
         .signup-form input[type="email"]::placeholder,
