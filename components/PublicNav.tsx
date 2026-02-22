@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -7,8 +8,25 @@ interface PublicNavProps {
 
 export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Close menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [router.pathname]);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   const scrollToForm = () => {
+    setMenuOpen(false);
     const formEl = document.querySelector('#email-signup');
     if (formEl) {
       formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -31,7 +49,8 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
             />
           </Link>
 
-          <div className="nav-links">
+          {/* Desktop nav links */}
+          <div className="nav-links desktop-links">
             <Link
               href="/jobseekers"
               className="nav-link"
@@ -50,16 +69,56 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
               {router.pathname === '/recruiters' ? 'Request early access' : 'Join waitlist'}
             </button>
           </div>
+
+          {/* Hamburger button (mobile only) */}
+          <button
+            className="burger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            <span className={`burger-line ${menuOpen ? 'open' : ''}`} />
+            <span className={`burger-line ${menuOpen ? 'open' : ''}`} />
+            <span className={`burger-line ${menuOpen ? 'open' : ''}`} />
+          </button>
         </div>
+
+        {/* Mobile slide-down menu */}
+        {menuOpen && (
+          <div className="mobile-menu">
+            <Link
+              href="/jobseekers"
+              className="mobile-link"
+              aria-current={router.pathname === '/jobseekers' ? 'page' : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              For jobseekers
+            </Link>
+            <Link
+              href="/recruiters"
+              className="mobile-link"
+              aria-current={router.pathname === '/recruiters' ? 'page' : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              For recruiters
+            </Link>
+            <button onClick={scrollToForm} className="mobile-link mobile-cta">
+              {router.pathname === '/recruiters' ? 'Request early access' : 'Join waitlist'}
+            </button>
+          </div>
+        )}
       </nav>
+
+      {/* Overlay */}
+      {menuOpen && <div className="overlay" onClick={() => setMenuOpen(false)} />}
 
       <style jsx>{`
         .nav {
           position: sticky;
           top: 0;
           z-index: 100;
-          background: ${theme === 'dark' ? 'var(--brand-navy)' : 'var(--surface)'};
-          border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'var(--border)'};
+          background: ${theme === 'dark' ? '#33374A' : '#FFFFFF'};
+          border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : '#E5E7EB'};
         }
 
         .nav-container {
@@ -82,14 +141,15 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           width: auto;
         }
 
-        .nav-links {
+        /* Desktop nav links */
+        .desktop-links {
           display: flex;
           align-items: center;
           gap: 2rem;
         }
 
         .nav-link {
-          color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.9)' : 'var(--text)'};
+          color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.9)' : '#33374A'};
           text-decoration: none;
           font-size: 0.9375rem;
           font-weight: 500;
@@ -102,27 +162,109 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
 
         .nav-link:hover {
           opacity: ${theme === 'dark' ? '1' : '0.7'};
-          color: ${theme === 'dark' ? 'white' : 'var(--brand-coral)'};
+          color: ${theme === 'dark' ? 'white' : '#FF7A6F'};
         }
 
         :global(a.nav-link[aria-current='page']) {
-          color: ${theme === 'dark' ? 'white' : 'var(--brand-coral)'};
+          color: ${theme === 'dark' ? 'white' : '#FF7A6F'};
           opacity: 1;
-          border-bottom: 2px solid var(--brand-coral);
+          border-bottom: 2px solid #FF7A6F;
           padding-bottom: 2px;
         }
 
         .nav-button {
           padding: 0.5rem 1rem;
-          background: var(--brand-coral);
+          background: #FF7A6F;
           color: white;
-          border-radius: var(--radius-sm);
+          border-radius: 8px;
           opacity: 1;
         }
 
         .nav-button:hover {
-          background: var(--brand-coral-hover);
+          background: #FF5C4D;
           opacity: 1;
+        }
+
+        /* Hamburger button - hidden on desktop */
+        .burger {
+          display: none;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 8px;
+          z-index: 101;
+        }
+
+        .burger-line {
+          display: block;
+          width: 22px;
+          height: 2px;
+          background: ${theme === 'dark' ? 'white' : '#33374A'};
+          border-radius: 2px;
+          transition: transform 0.25s, opacity 0.25s;
+        }
+
+        .burger-line.open:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+
+        .burger-line.open:nth-child(2) {
+          opacity: 0;
+        }
+
+        .burger-line.open:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile menu - hidden on desktop */
+        .mobile-menu {
+          display: none;
+          flex-direction: column;
+          padding: 0.5rem 2rem 1.5rem;
+          background: ${theme === 'dark' ? '#33374A' : '#FFFFFF'};
+          border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : '#E5E7EB'};
+        }
+
+        .mobile-link {
+          display: block;
+          padding: 0.875rem 0;
+          color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.9)' : '#33374A'};
+          text-decoration: none;
+          font-size: 1.0625rem;
+          font-weight: 500;
+          border: none;
+          background: none;
+          cursor: pointer;
+          text-align: left;
+          font-family: var(--font);
+          border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : '#F2F4F6'};
+        }
+
+        :global(a.mobile-link[aria-current='page']) {
+          color: #FF7A6F;
+        }
+
+        .mobile-cta {
+          margin-top: 0.75rem;
+          padding: 0.75rem 1.5rem;
+          background: #FF7A6F;
+          color: white;
+          border-radius: 8px;
+          text-align: center;
+          border-bottom: none;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+
+        .overlay {
+          display: none;
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.3);
+          z-index: 99;
         }
 
         @media (max-width: 768px) {
@@ -131,22 +273,22 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
             padding: 0 1rem;
           }
 
-          .nav-links {
-            gap: 1rem;
-          }
-
-          .nav-link {
-            font-size: 0.875rem;
-          }
-
-          .nav-button {
-            padding: 0.4rem 0.8rem;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .nav-link:not(.nav-button) {
+          /* Hide desktop links, show burger */
+          .desktop-links {
             display: none;
+          }
+
+          .burger {
+            display: flex;
+          }
+
+          .mobile-menu {
+            display: flex;
+            padding: 0.5rem 1rem 1.5rem;
+          }
+
+          .overlay {
+            display: block;
           }
         }
       `}</style>
