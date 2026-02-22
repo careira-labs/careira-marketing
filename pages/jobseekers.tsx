@@ -12,10 +12,16 @@ import Footer from '../components/Footer';
 
 export default function JobseekersPage() {
   const [showStickyForm, setShowStickyForm] = useState(false);
+  const [alreadySignedUp, setAlreadySignedUp] = useState(false);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has('reset') && localStorage.getItem('careira_waitlist')) {
+      setAlreadySignedUp(true);
+    }
+
     const handleScroll = () => {
-      const heroHeight = 600; // Approximate hero section height
+      const heroHeight = 600;
       setShowStickyForm(window.scrollY > heroHeight);
     };
 
@@ -111,11 +117,13 @@ export default function JobseekersPage() {
         <FeatureSteps steps={steps} title="Structured matching, step by step" />
 
         {/* CTA after "How it works" */}
-        <section className="mid-cta">
-          <div className="container">
-            <EmailSignupForm source="jobseekers" title="Ready to find work that fits?" hideWhenSignedUp />
-          </div>
-        </section>
+        {!alreadySignedUp && (
+          <section className="mid-cta">
+            <div className="container">
+              <EmailSignupForm source="jobseekers" title="Ready to find work that fits?" />
+            </div>
+          </section>
+        )}
 
         <DifferentiatorGrid
           items={differentiators}
@@ -133,7 +141,7 @@ export default function JobseekersPage() {
         </CTASection>
 
         {/* Mobile sticky CTA */}
-        {showStickyForm && <EmailSignupForm source="jobseekers" compact hideWhenSignedUp />}
+        {showStickyForm && !alreadySignedUp && <EmailSignupForm source="jobseekers" compact />}
       </main>
 
       <Footer />

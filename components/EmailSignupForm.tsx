@@ -6,10 +6,9 @@ interface EmailSignupFormProps {
   source: 'jobseekers' | 'recruiters';
   title?: string;
   compact?: boolean;
-  hideWhenSignedUp?: boolean;
 }
 
-export default function EmailSignupForm({ source, title, compact = false, hideWhenSignedUp = false }: EmailSignupFormProps) {
+export default function EmailSignupForm({ source, title, compact = false }: EmailSignupFormProps) {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState<string | null>(null);
   const [name, setName] = useState('');
@@ -90,10 +89,6 @@ export default function EmailSignupForm({ source, title, compact = false, hideWh
   }
 
   if (compact && isDismissed) {
-    return null;
-  }
-
-  if (success && hideWhenSignedUp) {
     return null;
   }
 
