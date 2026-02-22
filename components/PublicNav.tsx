@@ -267,7 +267,7 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           z-index: 99;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 768px) and (orientation: portrait), (max-width: 480px) {
           .nav-container {
             height: 56px;
             padding: 0 1rem;
@@ -289,6 +289,27 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
 
           .overlay {
             display: block;
+          }
+        }
+
+        /* Landscape phones: tighter spacing for inline nav */
+        @media (max-width: 768px) and (orientation: landscape) {
+          .nav-container {
+            height: 48px;
+            padding: 0 1rem;
+          }
+
+          .desktop-links {
+            gap: 1.25rem;
+          }
+
+          .nav-link {
+            font-size: 0.875rem;
+          }
+
+          .nav-button {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
           }
         }
       `}</style>
