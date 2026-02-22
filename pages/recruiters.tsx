@@ -122,6 +122,7 @@ export default function RecruitersPage() {
             <EmailSignupForm
               source="recruiters"
               title="Ready to hire with clarity?"
+              hideWhenSignedUp
             />
           </div>
         </section>
@@ -142,7 +143,7 @@ export default function RecruitersPage() {
         </CTASection>
 
         {/* Mobile sticky CTA */}
-        {showStickyForm && <EmailSignupForm source="recruiters" compact />}
+        {showStickyForm && <EmailSignupForm source="recruiters" compact hideWhenSignedUp />}
       </main>
 
       <Footer />

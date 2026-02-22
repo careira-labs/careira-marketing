@@ -113,7 +113,7 @@ export default function JobseekersPage() {
         {/* CTA after "How it works" */}
         <section className="mid-cta">
           <div className="container">
-            <EmailSignupForm source="jobseekers" title="Ready to find work that fits?" />
+            <EmailSignupForm source="jobseekers" title="Ready to find work that fits?" hideWhenSignedUp />
           </div>
         </section>
 
@@ -133,7 +133,7 @@ export default function JobseekersPage() {
         </CTASection>
 
         {/* Mobile sticky CTA */}
-        {showStickyForm && <EmailSignupForm source="jobseekers" compact />}
+        {showStickyForm && <EmailSignupForm source="jobseekers" compact hideWhenSignedUp />}
       </main>
 
       <Footer />
