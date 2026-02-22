@@ -9,8 +9,9 @@ interface EmailSignupFormProps {
 
 export default function EmailSignupForm({ source, title, compact = false }: EmailSignupFormProps) {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [company, setCompany] = useState('');
-  const [showCompany, setShowCompany] = useState(false);
+  const [showExtra, setShowExtra] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -47,7 +48,10 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
         user_type: source === 'jobseekers' ? 'candidate' : 'recruiter',
       };
 
-      // Add company if recruiter and company field is filled
+      if (name.trim()) {
+        payload.first_name = name.trim();
+      }
+
       if (source === 'recruiters' && company.trim()) {
         payload.company = company.trim();
       }
@@ -114,20 +118,31 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
               placeholder="Your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onFocus={() => source === 'recruiters' && setShowCompany(true)}
+              onFocus={() => setShowExtra(true)}
               required
               autoComplete="email"
               className={error ? 'error' : ''}
             />
 
-            {source === 'recruiters' && showCompany && (
+            {showExtra && (
+              <input
+                type="text"
+                placeholder="Your name (optional)"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                autoComplete="given-name"
+                className="extra-field"
+              />
+            )}
+
+            {source === 'recruiters' && showExtra && (
               <input
                 type="text"
                 placeholder="Company name (optional)"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 autoComplete="organization"
-                className="company-field"
+                className="extra-field"
               />
             )}
           </div>
@@ -213,7 +228,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
           font-size: 0.9375rem;
         }
 
-        .company-field {
+        .extra-field {
           animation: slideDown 0.2s ease-out;
         }
 

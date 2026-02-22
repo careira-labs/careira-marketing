@@ -154,7 +154,8 @@ export default function HomePage() {
         }
 
         .footer .email:hover {
-          color: white;
+          color: rgba(255, 255, 255, 0.95);
+          text-decoration: underline;
         }
 
         @media (max-width: 768px) {
