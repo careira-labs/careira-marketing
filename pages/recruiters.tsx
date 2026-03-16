@@ -5,6 +5,7 @@ import HeroSection from '../components/HeroSection';
 import ProblemSection from '../components/ProblemSection';
 import FeatureSteps from '../components/FeatureSteps';
 import DifferentiatorGrid from '../components/DifferentiatorGrid';
+import ComparisonSection from '../components/ComparisonSection';
 import TargetAudienceSection from '../components/TargetAudienceSection';
 import CTASection from '../components/CTASection';
 import EmailSignupForm from '../components/EmailSignupForm';
@@ -138,6 +139,37 @@ export default function RecruitersPage() {
           items={differentiators}
           title="What makes Careira different"
           highlightWord="Careira"
+        />
+
+        <ComparisonSection
+          title="Careira vs. the status quo"
+          rows={[
+            {
+              aspect: 'How candidates are evaluated',
+              traditional: 'Manual CV screening and keyword filters',
+              careira: 'Structured scoring across function, domain, and outcomes',
+            },
+            {
+              aspect: 'How shortlists are built',
+              traditional: 'Opaque AI ranking or gut feeling',
+              careira: 'Explainable scoring with clear reasoning per candidate',
+            },
+            {
+              aspect: 'What you see per candidate',
+              traditional: 'A name, a CV, and a guess',
+              careira: 'Alignment score, strengths, risks, and confidence',
+            },
+            {
+              aspect: 'How the system improves',
+              traditional: 'Dismissals vanish — nothing learned',
+              careira: 'Feedback can refine future rankings over time',
+            },
+            {
+              aspect: 'When requirements change',
+              traditional: 'Start the search over from scratch',
+              careira: 'Candidates can be re-evaluated as requirements evolve',
+            },
+          ]}
         />
 
         <TargetAudienceSection

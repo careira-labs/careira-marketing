@@ -5,6 +5,7 @@ import HeroSection from '../components/HeroSection';
 import ProblemSection from '../components/ProblemSection';
 import FeatureSteps from '../components/FeatureSteps';
 import DifferentiatorGrid from '../components/DifferentiatorGrid';
+import ComparisonSection from '../components/ComparisonSection';
 import TargetAudienceSection from '../components/TargetAudienceSection';
 import CTASection from '../components/CTASection';
 import EmailSignupForm from '../components/EmailSignupForm';
@@ -129,6 +130,37 @@ export default function JobseekersPage() {
           items={differentiators}
           title="What makes Careira different"
           highlightWord="Careira"
+        />
+
+        <ComparisonSection
+          title="Careira vs. the status quo"
+          rows={[
+            {
+              aspect: 'How you\'re understood',
+              traditional: 'Reduced to keywords and job titles',
+              careira: 'Modelled as a structured capability profile',
+            },
+            {
+              aspect: 'How matching works',
+              traditional: 'Opaque filters you can\'t see or influence',
+              careira: 'Scored across function, domain, seniority, and more',
+            },
+            {
+              aspect: 'What you\'re told',
+              traditional: '"You\'re not a match" — no explanation',
+              careira: 'Clear reasoning: strengths, gaps, risks, and confidence',
+            },
+            {
+              aspect: 'How you improve',
+              traditional: 'Repeat, guess, hope for different results',
+              careira: 'Feedback refines your profile and future matches',
+            },
+            {
+              aspect: 'Who it\'s built for',
+              traditional: 'Volume applicants and mass job boards',
+              careira: 'Professionals who value career trajectory',
+            },
+          ]}
         />
 
         <TargetAudienceSection

@@ -144,7 +144,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
                 setEmail(e.target.value);
                 setEmailError(null);
               }}
-              onFocus={() => setShowExtra(true)}
+              onFocus={() => { if (!compact) setShowExtra(true); }}
               onBlur={handleEmailBlur}
               required
               autoComplete="email"
@@ -203,16 +203,10 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
           max-width: none;
           background: var(--surface);
           border-top: 1px solid var(--border);
-          padding: 0.75rem 1rem;
-          box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+          padding: 0.5rem 1.5rem;
+          box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
           z-index: 1000;
-          display: none;
-        }
-
-        @media (max-width: 768px) {
-          .signup-form.compact {
-            display: block;
-          }
+          display: block;
         }
 
         .signup-form h3 {
@@ -230,6 +224,9 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
 
         .signup-form.compact .form-content {
           gap: 0.5rem;
+          max-width: 480px;
+          margin: 0 auto;
+          align-items: center;
         }
 
         .input-group {
