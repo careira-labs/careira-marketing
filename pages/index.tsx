@@ -125,7 +125,7 @@ export default function HomePage() {
         {/* CTA */}
         <section className="bottom-cta">
           <div className="cta-container">
-            <h2>Ready to see how it works?</h2>
+            <h2>See it in action</h2>
             <div className="cta-buttons">
               <Link href="/jobseekers">
                 <span className="cta-solid">I'm looking for work</span>
@@ -293,7 +293,7 @@ export default function HomePage() {
         }
 
         .proof-container {
-          max-width: 1000px;
+          max-width: 1100px;
           margin: 0 auto;
           padding: 0 2rem;
         }

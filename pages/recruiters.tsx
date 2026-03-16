@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import PublicNav from '../components/PublicNav';
 import HeroSection from '../components/HeroSection';
@@ -14,6 +14,8 @@ import Footer from '../components/Footer';
 export default function RecruitersPage() {
   const [showStickyForm, setShowStickyForm] = useState(false);
   const [alreadySignedUp, setAlreadySignedUp] = useState(false);
+  const [bottomFormVisible, setBottomFormVisible] = useState(false);
+  const bottomCtaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -27,7 +29,18 @@ export default function RecruitersPage() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Hide sticky form when bottom CTA is visible
+    const observer = new IntersectionObserver(
+      ([entry]) => setBottomFormVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    if (bottomCtaRef.current) observer.observe(bottomCtaRef.current);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const scrollToForm = () => {
@@ -121,6 +134,8 @@ export default function RecruitersPage() {
           ]}
         />
 
+        <div className="section-divider" />
+
         <FeatureSteps steps={steps} title="How Careira works" />
 
         {/* CTA after "How it works" */}
@@ -177,12 +192,16 @@ export default function RecruitersPage() {
           description="High-growth SaaS, operational leadership roles, cross-functional positions, and organisations that value precision over volume."
         />
 
-        <CTASection headline="Hire with clarity">
-          <EmailSignupForm source="recruiters" />
-        </CTASection>
+        <div ref={bottomCtaRef}>
+          <CTASection headline="Hire with clarity">
+            <EmailSignupForm source="recruiters" />
+          </CTASection>
+        </div>
 
-        {/* Mobile sticky CTA */}
-        {showStickyForm && !alreadySignedUp && <EmailSignupForm source="recruiters" compact />}
+        {/* Sticky CTA — hidden when bottom form is visible */}
+        {showStickyForm && !alreadySignedUp && !bottomFormVisible && (
+          <EmailSignupForm source="recruiters" compact />
+        )}
       </main>
 
       <Footer />
@@ -190,6 +209,12 @@ export default function RecruitersPage() {
       <style jsx>{`
         main {
           min-height: 100vh;
+        }
+
+        .section-divider {
+          height: 1px;
+          background: #F2F4F6;
+          margin: 0 2rem;
         }
 
         .mid-cta {
