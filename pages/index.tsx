@@ -1,31 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import PublicNav from '../components/PublicNav';
-import FeatureSteps from '../components/FeatureSteps';
 import Footer from '../components/Footer';
 
 export default function HomePage() {
-  const howItWorksSteps = [
-    {
-      number: 1,
-      title: 'Build a profile',
-      description:
-        'Upload a CV or define a role. Careira translates it into a structured capability model covering function, domain, seniority, and more.',
-    },
-    {
-      number: 2,
-      title: 'Get scored matches',
-      description:
-        'Candidates and roles are evaluated across the same dimensions — consistently and transparently.',
-    },
-    {
-      number: 3,
-      title: 'Understand the reasoning',
-      description:
-        'Every match includes strengths, gaps, risks, and a confidence score — so decisions are informed, not guesswork.',
-    },
-  ];
-
   return (
     <>
       <Head>
@@ -42,6 +20,11 @@ export default function HomePage() {
         {/* Hero */}
         <section className="hero">
           <div className="hero-container">
+            <img
+              src="/assets/LOGO-Careira-bitone-white.png"
+              alt="Careira"
+              className="hero-logo"
+            />
             <h1>
               Work that fits,
               <br />
@@ -75,22 +58,51 @@ export default function HomePage() {
         </section>
 
         {/* How it works */}
-        <FeatureSteps steps={howItWorksSteps} title="How it works" />
+        <section className="how-it-works">
+          <div className="hiw-container">
+            <h2>How it works</h2>
+            <div className="steps">
+              <div className="step">
+                <span className="step-num">1.</span>
+                <div>
+                  <h3>Build a profile</h3>
+                  <p>Upload a CV or define a role. Careira translates it into a structured capability model covering function, domain, seniority, and more.</p>
+                </div>
+              </div>
+              <div className="step">
+                <span className="step-num">2.</span>
+                <div>
+                  <h3>Get scored matches</h3>
+                  <p>Candidates and roles are evaluated across the same dimensions — consistently and transparently.</p>
+                </div>
+              </div>
+              <div className="step">
+                <span className="step-num">3.</span>
+                <div>
+                  <h3>Understand the reasoning</h3>
+                  <p>Every match includes strengths, gaps, risks, and a confidence score — so decisions are informed, not guesswork.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        {/* Proof section */}
+        {/* Why it works */}
         <section className="proof">
           <div className="proof-container">
             <h2>Why it works</h2>
             <div className="proof-grid">
               <div className="proof-card">
+                <div className="proof-accent"></div>
                 <h3>Structured profiles, not parsed CVs</h3>
                 <p>
                   CVs are translated into capability models with defined dimensions — not just extracted
-                  keywords. This means matching is based on what someone can actually do, not how their
-                  CV happens to be worded.
+                  keywords. Matching is based on what someone can actually do, not how their CV
+                  happens to be worded.
                 </p>
               </div>
               <div className="proof-card">
+                <div className="proof-accent"></div>
                 <h3>Scoring you can read and challenge</h3>
                 <p>
                   Every match score breaks down into component dimensions with individual ratings.
@@ -99,6 +111,7 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="proof-card">
+                <div className="proof-accent"></div>
                 <h3>Feedback that improves results</h3>
                 <p>
                   Structured feedback — not just thumbs up or down — feeds back into the matching
@@ -131,13 +144,19 @@ export default function HomePage() {
         /* Hero */
         .hero {
           background: #33374A;
-          padding: 6rem 0 5rem;
+          padding: 5rem 0 4rem;
         }
 
         .hero-container {
           max-width: 800px;
           margin: 0 auto;
           padding: 0 2rem;
+        }
+
+        .hero-logo {
+          height: 56px;
+          width: auto;
+          margin-bottom: 2rem;
         }
 
         h1 {
@@ -151,7 +170,7 @@ export default function HomePage() {
         .hero-sub {
           font-size: 1.25rem;
           font-weight: 400;
-          margin: 2rem 0 0;
+          margin: 1.75rem 0 0;
           border-top: 3px solid #FF7A6F;
           padding-top: 1.25rem;
           max-width: 640px;
@@ -160,7 +179,7 @@ export default function HomePage() {
         }
 
         .hero-cta {
-          margin-top: 2.5rem;
+          margin-top: 2rem;
           display: flex;
           gap: 1rem;
           flex-wrap: wrap;
@@ -188,7 +207,7 @@ export default function HomePage() {
         /* Value prop */
         .value-prop {
           background: #F2F4F6;
-          padding: 5rem 0;
+          padding: 3.5rem 0;
         }
 
         .vp-container {
@@ -202,7 +221,7 @@ export default function HomePage() {
           font-size: 1.75rem;
           font-weight: 600;
           color: #33374A;
-          margin: 0 0 1.5rem;
+          margin: 0 0 1.25rem;
         }
 
         .value-prop p {
@@ -212,10 +231,65 @@ export default function HomePage() {
           margin: 0;
         }
 
-        /* Proof section */
-        .proof {
+        /* How it works */
+        .how-it-works {
           background: #FFFFFF;
-          padding: 4rem 0;
+          padding: 3.5rem 0;
+        }
+
+        .hiw-container {
+          max-width: 720px;
+          margin: 0 auto;
+          padding: 0 2rem;
+        }
+
+        .how-it-works h2 {
+          text-align: center;
+          font-size: 1.75rem;
+          font-weight: 600;
+          color: #33374A;
+          margin: 0 0 2rem;
+        }
+
+        .steps {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .step {
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .step-num {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #FF7A6F;
+          line-height: 1.3;
+          flex-shrink: 0;
+          min-width: 1.75rem;
+        }
+
+        .step h3 {
+          font-size: 1.0625rem;
+          font-weight: 600;
+          color: #33374A;
+          margin: 0 0 0.375rem;
+        }
+
+        .step p {
+          font-size: 0.9375rem;
+          line-height: 1.6;
+          color: #667085;
+          margin: 0;
+        }
+
+        /* Proof / Why it works */
+        .proof {
+          background: #F2F4F6;
+          padding: 3.5rem 0;
         }
 
         .proof-container {
@@ -229,19 +303,31 @@ export default function HomePage() {
           font-size: 1.75rem;
           font-weight: 600;
           color: #33374A;
-          margin: 0 0 2.5rem;
+          margin: 0 0 2rem;
         }
 
         .proof-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
+          gap: 1.5rem;
         }
 
         .proof-card {
-          padding: 1.5rem;
-          border: 1px solid #E5E7EB;
+          background: #FFFFFF;
+          padding: 1.75rem 1.5rem;
           border-radius: 12px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .proof-accent {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: #FF7A6F;
         }
 
         .proof-card h3 {
@@ -260,8 +346,8 @@ export default function HomePage() {
 
         /* Bottom CTA */
         .bottom-cta {
-          background: #F2F4F6;
-          padding: 4rem 0;
+          background: #FFFFFF;
+          padding: 3.5rem 0;
         }
 
         .cta-container {
@@ -275,7 +361,7 @@ export default function HomePage() {
           font-size: 1.75rem;
           font-weight: 600;
           color: #33374A;
-          margin: 0 0 2rem;
+          margin: 0 0 1.5rem;
         }
 
         .cta-buttons {
@@ -306,11 +392,15 @@ export default function HomePage() {
         /* Responsive */
         @media (max-width: 768px) {
           .hero {
-            padding: 4rem 0 3rem;
+            padding: 3rem 0 2.5rem;
           }
 
           .hero-container {
             padding: 0 1rem;
+          }
+
+          .hero-logo {
+            height: 44px;
           }
 
           h1 {
@@ -322,7 +412,7 @@ export default function HomePage() {
           }
 
           .value-prop {
-            padding: 3rem 0;
+            padding: 2.5rem 0;
           }
 
           .vp-container {
@@ -333,8 +423,20 @@ export default function HomePage() {
             font-size: 1.5rem;
           }
 
+          .how-it-works {
+            padding: 2.5rem 0;
+          }
+
+          .hiw-container {
+            padding: 0 1rem;
+          }
+
+          .how-it-works h2 {
+            font-size: 1.5rem;
+          }
+
           .proof {
-            padding: 3rem 0;
+            padding: 2.5rem 0;
           }
 
           .proof-container {
@@ -347,11 +449,11 @@ export default function HomePage() {
 
           .proof-grid {
             grid-template-columns: 1fr;
-            gap: 1.25rem;
+            gap: 1rem;
           }
 
           .bottom-cta {
-            padding: 3rem 0;
+            padding: 2.5rem 0;
           }
 
           .cta-container {
