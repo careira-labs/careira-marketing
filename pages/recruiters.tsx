@@ -10,8 +10,10 @@ import TargetAudienceSection from '../components/TargetAudienceSection';
 import CTASection from '../components/CTASection';
 import EmailSignupForm from '../components/EmailSignupForm';
 import Footer from '../components/Footer';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 export default function RecruitersPage() {
+  useScrollReveal();
   const [showStickyForm, setShowStickyForm] = useState(false);
   const [alreadySignedUp, setAlreadySignedUp] = useState(false);
   const [bottomFormVisible, setBottomFormVisible] = useState(false);
@@ -123,20 +125,24 @@ export default function RecruitersPage() {
           screenshotAlt="Recruiter dashboard showing candidate matches and scoring"
         />
 
-        <ProblemSection
-          title="Recruiting tools optimise workflow, not understanding"
-          problems={[
-            'Manual CV screening',
-            'Keyword filtering misses context',
-            'Opaque AI ranking',
-            "Dismissals don't improve future matches",
-            'Shortlists that feel arbitrary',
-          ]}
-        />
+        <div className="reveal">
+          <ProblemSection
+            title="Recruiting tools optimise workflow, not understanding"
+            problems={[
+              'Manual CV screening',
+              'Keyword filtering misses context',
+              'Opaque AI ranking',
+              "Dismissals don't improve future matches",
+              'Shortlists that feel arbitrary',
+            ]}
+          />
+        </div>
 
         <div className="section-divider" />
 
-        <FeatureSteps steps={steps} title="How Careira works" />
+        <div className="reveal">
+          <FeatureSteps steps={steps} title="How Careira works" />
+        </div>
 
         {/* CTA after "How it works" */}
         {!alreadySignedUp && (
@@ -150,47 +156,53 @@ export default function RecruitersPage() {
           </section>
         )}
 
-        <DifferentiatorGrid
-          items={differentiators}
-          title="What makes Careira different"
-          highlightWord="Careira"
-        />
+        <div className="reveal">
+          <DifferentiatorGrid
+            items={differentiators}
+            title="What makes Careira different"
+            highlightWord="Careira"
+          />
+        </div>
 
-        <ComparisonSection
-          title="Careira vs. the status quo"
-          rows={[
-            {
-              aspect: 'How candidates are evaluated',
-              traditional: 'Manual CV screening and keyword filters',
-              careira: 'Structured scoring across function, domain, and outcomes',
-            },
-            {
-              aspect: 'How shortlists are built',
-              traditional: 'Opaque AI ranking or gut feeling',
-              careira: 'Explainable scoring with clear reasoning per candidate',
-            },
-            {
-              aspect: 'What you see per candidate',
-              traditional: 'A name, a CV, and a guess',
-              careira: 'Alignment score, strengths, risks, and confidence',
-            },
-            {
-              aspect: 'How the system improves',
-              traditional: 'Dismissals vanish — nothing learned',
-              careira: 'Feedback can refine future rankings over time',
-            },
-            {
-              aspect: 'When requirements change',
-              traditional: 'Start the search over from scratch',
-              careira: 'Candidates can be re-evaluated as requirements evolve',
-            },
-          ]}
-        />
+        <div className="reveal">
+          <ComparisonSection
+            title="Careira vs. the status quo"
+            rows={[
+              {
+                aspect: 'How candidates are evaluated',
+                traditional: 'Manual CV screening and keyword filters',
+                careira: 'Structured scoring across function, domain, and outcomes',
+              },
+              {
+                aspect: 'How shortlists are built',
+                traditional: 'Opaque AI ranking or gut feeling',
+                careira: 'Explainable scoring with clear reasoning per candidate',
+              },
+              {
+                aspect: 'What you see per candidate',
+                traditional: 'A name, a CV, and a guess',
+                careira: 'Alignment score, strengths, risks, and confidence',
+              },
+              {
+                aspect: 'How the system improves',
+                traditional: 'Dismissals vanish — nothing learned',
+                careira: 'Feedback can refine future rankings over time',
+              },
+              {
+                aspect: 'When requirements change',
+                traditional: 'Start the search over from scratch',
+                careira: 'Candidates can be re-evaluated as requirements evolve',
+              },
+            ]}
+          />
+        </div>
 
-        <TargetAudienceSection
-          title="Built for teams hiring into complexity"
-          description="High-growth SaaS, operational leadership roles, cross-functional positions, and organisations that value precision over volume."
-        />
+        <div className="reveal">
+          <TargetAudienceSection
+            title="Built for teams hiring into complexity"
+            description="High-growth SaaS, operational leadership roles, cross-functional positions, and organisations that value precision over volume."
+          />
+        </div>
 
         <div ref={bottomCtaRef}>
           <CTASection headline="Hire with clarity">

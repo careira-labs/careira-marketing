@@ -2,8 +2,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 export default function HomePage() {
+  useScrollReveal();
+
   return (
     <>
       <Head>
@@ -45,7 +48,7 @@ export default function HomePage() {
         </section>
 
         {/* Value prop */}
-        <section className="value-prop">
+        <section className="value-prop reveal">
           <div className="vp-container">
             <h2>A different approach to talent matching</h2>
             <p>
@@ -58,7 +61,7 @@ export default function HomePage() {
         </section>
 
         {/* How it works */}
-        <section className="how-it-works">
+        <section className="how-it-works reveal">
           <div className="hiw-container">
             <h2>How it works</h2>
             <div className="steps">
@@ -73,14 +76,14 @@ export default function HomePage() {
                 <span className="step-num">2.</span>
                 <div>
                   <h3>Get scored matches</h3>
-                  <p>Candidates and roles are evaluated across the same dimensions — consistently and transparently.</p>
+                  <p>Candidates and roles are evaluated across the same dimensions - consistently and transparently.</p>
                 </div>
               </div>
               <div className="step">
                 <span className="step-num">3.</span>
                 <div>
                   <h3>Understand the reasoning</h3>
-                  <p>Every match includes strengths, gaps, risks, and a confidence score — so decisions are informed, not guesswork.</p>
+                  <p>Every match includes strengths, gaps, risks, and a confidence score, so decisions are informed, not guesswork.</p>
                 </div>
               </div>
             </div>
@@ -88,15 +91,15 @@ export default function HomePage() {
         </section>
 
         {/* Why it works */}
-        <section className="proof">
+        <section className="proof reveal">
           <div className="proof-container">
             <h2>Why it works</h2>
             <div className="proof-grid">
               <div className="proof-card">
                 <div className="proof-accent"></div>
-                <h3>Structured profiles, not parsed CVs</h3>
+                <h3>Structured profiles, not parsed text</h3>
                 <p>
-                  CVs are translated into capability models with defined dimensions — not just extracted
+                  CVs are translated into Career Profiles with defined dimensions - not just extracted
                   keywords. Matching is based on what someone can actually do, not how their CV
                   happens to be worded.
                 </p>
@@ -105,7 +108,7 @@ export default function HomePage() {
                 <div className="proof-accent"></div>
                 <h3>Scoring you can read and challenge</h3>
                 <p>
-                  Every match score breaks down into component dimensions with individual ratings.
+                  Every match score breaks down into component categories with individual ratings.
                   You can see exactly where fit is strong, where gaps exist, and how confident the
                   assessment is.
                 </p>
@@ -114,7 +117,7 @@ export default function HomePage() {
                 <div className="proof-accent"></div>
                 <h3>Feedback that improves results</h3>
                 <p>
-                  Structured feedback — not just thumbs up or down — feeds back into the matching
+                  Structured feedback (not just thumbs up or down) feeds back into the matching
                   model. Over time, the system learns what matters for each role and each candidate.
                 </p>
               </div>

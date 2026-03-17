@@ -10,8 +10,10 @@ import TargetAudienceSection from '../components/TargetAudienceSection';
 import CTASection from '../components/CTASection';
 import EmailSignupForm from '../components/EmailSignupForm';
 import Footer from '../components/Footer';
+import { useScrollReveal } from '../lib/useScrollReveal';
 
 export default function JobseekersPage() {
+  useScrollReveal();
   const [showStickyForm, setShowStickyForm] = useState(false);
   const [alreadySignedUp, setAlreadySignedUp] = useState(false);
   const [bottomFormVisible, setBottomFormVisible] = useState(false);
@@ -118,19 +120,23 @@ export default function JobseekersPage() {
           screenshotAlt="Careira dashboard showing job matches and career profile"
         />
 
-        <ProblemSection
-          title="Job search shouldn't feel like guesswork"
-          problems={[
-            'Reduced to keywords',
-            'Filtered by opaque rules',
-            'Endless irrelevant listings',
-            'No explanation for why something "matches"',
-          ]}
-        />
+        <div className="reveal">
+          <ProblemSection
+            title="Job search shouldn't feel like guesswork"
+            problems={[
+              'Reduced to keywords',
+              'Filtered by opaque rules',
+              'Endless irrelevant listings',
+              'No explanation for why something "matches"',
+            ]}
+          />
+        </div>
 
         <div className="section-divider" />
 
-        <FeatureSteps steps={steps} title="Structured matching, step by step" />
+        <div className="reveal">
+          <FeatureSteps steps={steps} title="Structured matching, step by step" />
+        </div>
 
         {/* CTA after "How it works" */}
         {!alreadySignedUp && (
@@ -141,47 +147,53 @@ export default function JobseekersPage() {
           </section>
         )}
 
-        <DifferentiatorGrid
-          items={differentiators}
-          title="What makes Careira different"
-          highlightWord="Careira"
-        />
+        <div className="reveal">
+          <DifferentiatorGrid
+            items={differentiators}
+            title="What makes Careira different"
+            highlightWord="Careira"
+          />
+        </div>
 
-        <ComparisonSection
-          title="Careira vs. the status quo"
-          rows={[
-            {
-              aspect: 'How you\'re understood',
-              traditional: 'Reduced to keywords and job titles',
-              careira: 'Modelled as a structured capability profile',
-            },
-            {
-              aspect: 'How matching works',
-              traditional: 'Opaque filters you can\'t see or influence',
-              careira: 'Scored across function, domain, seniority, and more',
-            },
-            {
-              aspect: 'What you\'re told',
-              traditional: '"You\'re not a match" — no explanation',
-              careira: 'Clear reasoning: strengths, gaps, risks, and confidence',
-            },
-            {
-              aspect: 'How you improve',
-              traditional: 'Repeat, guess, hope for different results',
-              careira: 'Feedback refines your profile and future matches',
-            },
-            {
-              aspect: 'Who it\'s built for',
-              traditional: 'Volume applicants and mass job boards',
-              careira: 'Professionals who value career trajectory',
-            },
-          ]}
-        />
+        <div className="reveal">
+          <ComparisonSection
+            title="Careira vs. the status quo"
+            rows={[
+              {
+                aspect: 'How you\'re understood',
+                traditional: 'Reduced to keywords and job titles',
+                careira: 'Modelled as a structured capability profile',
+              },
+              {
+                aspect: 'How matching works',
+                traditional: 'Opaque filters you can\'t see or influence',
+                careira: 'Scored across function, domain, seniority, and more',
+              },
+              {
+                aspect: 'What you\'re told',
+                traditional: '"You\'re not a match" — no explanation',
+                careira: 'Clear reasoning: strengths, gaps, risks, and confidence',
+              },
+              {
+                aspect: 'How you improve',
+                traditional: 'Repeat, guess, hope for different results',
+                careira: 'Feedback refines your profile and future matches',
+              },
+              {
+                aspect: 'Who it\'s built for',
+                traditional: 'Volume applicants and mass job boards',
+                careira: 'Professionals who value career trajectory',
+              },
+            ]}
+          />
+        </div>
 
-        <TargetAudienceSection
-          title="Built for serious professionals"
-          description="Growth-focused professionals, experienced operators, and people who value career trajectory over just another job listing."
-        />
+        <div className="reveal">
+          <TargetAudienceSection
+            title="Built for serious professionals"
+            description="Growth-focused professionals, experienced operators, and people who value career trajectory over just another job listing."
+          />
+        </div>
 
         <div ref={bottomCtaRef}>
           <CTASection headline="Find work that fits">
