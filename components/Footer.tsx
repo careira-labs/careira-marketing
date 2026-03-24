@@ -5,9 +5,14 @@ export default function Footer() {
         <span className="footer-item">
           © 2026 Careira Ltd. Registered in England and Wales with company number 16937993.
         </span>
-        <a href="mailto:info@careira.com" className="footer-item email">
-          info@careira.com
-        </a>
+        <div className="footer-links">
+          <a href="/privacy" className="footer-item link">
+            Privacy Policy
+          </a>
+          <a href="mailto:info@careira.com" className="footer-item link">
+            info@careira.com
+          </a>
+        </div>
       </footer>
 
       <style jsx>{`
@@ -28,12 +33,18 @@ export default function Footer() {
           margin: 0;
         }
 
-        .email {
+        .footer-links {
+          display: flex;
+          gap: 1.5rem;
+          align-items: center;
+        }
+
+        .link {
           color: rgba(255, 255, 255, 0.8);
           text-decoration: none;
         }
 
-        .email:hover {
+        .link:hover {
           color: rgba(255, 255, 255, 0.95);
           text-decoration: underline;
         }
