@@ -159,19 +159,6 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           padding-bottom: 2px;
         }
 
-        .nav-button {
-          padding: 0.5rem 1rem;
-          background: #FF7A6F;
-          color: white;
-          border-radius: 8px;
-          opacity: 1;
-        }
-
-        .nav-button:hover {
-          background: #FF5C4D;
-          opacity: 1;
-        }
-
         /* Hamburger button - hidden on desktop */
         .burger {
           display: none;
@@ -234,18 +221,6 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           color: #FF7A6F;
         }
 
-        .mobile-cta {
-          margin-top: 0.75rem;
-          padding: 0.75rem 1.5rem;
-          background: #FF7A6F;
-          color: white;
-          border-radius: 8px;
-          text-align: center;
-          border-bottom: none;
-          font-size: 1rem;
-          font-weight: 600;
-        }
-
         .overlay {
           display: none;
           position: fixed;
@@ -294,10 +269,7 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
             font-size: 0.875rem;
           }
 
-          .nav-button {
-            padding: 0.375rem 0.75rem;
-            font-size: 0.875rem;
-          }
+
         }
       `}</style>
     </>
