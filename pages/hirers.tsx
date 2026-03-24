@@ -12,7 +12,7 @@ import EmailSignupForm from '../components/EmailSignupForm';
 import Footer from '../components/Footer';
 import { useScrollReveal } from '../lib/useScrollReveal';
 
-export default function RecruitersPage() {
+export default function HirersPage() {
   useScrollReveal();
   const [showStickyForm, setShowStickyForm] = useState(false);
   const [alreadySignedUp, setAlreadySignedUp] = useState(false);
@@ -100,7 +100,7 @@ export default function RecruitersPage() {
   return (
     <>
       <Head>
-        <title>For Recruiters – Careira</title>
+        <title>For Hirers – Careira</title>
         <meta
           name="description"
           content="Hire with intelligence, not guesswork. Careira delivers decision-grade shortlists with explainable scoring and transparent candidate matches."
@@ -149,7 +149,7 @@ export default function RecruitersPage() {
           <section className="mid-cta">
             <div className="container">
               <EmailSignupForm
-                source="recruiters"
+                source="hirers"
                 title="Ready to hire with clarity?"
               />
             </div>
@@ -206,13 +206,13 @@ export default function RecruitersPage() {
 
         <div ref={bottomCtaRef}>
           <CTASection headline="Hire with clarity">
-            <EmailSignupForm source="recruiters" />
+            <EmailSignupForm source="hirers" />
           </CTASection>
         </div>
 
         {/* Sticky CTA — hidden when bottom form is visible */}
         {showStickyForm && !alreadySignedUp && !bottomFormVisible && (
-          <EmailSignupForm source="recruiters" compact />
+          <EmailSignupForm source="hirers" compact />
         )}
       </main>
 

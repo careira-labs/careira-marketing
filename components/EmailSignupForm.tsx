@@ -3,7 +3,7 @@ import { joinWaitlist, type WaitlistRequest } from '../lib/api';
 import { validateEmail } from '../lib/validation';
 
 interface EmailSignupFormProps {
-  source: 'jobseekers' | 'recruiters';
+  source: 'jobseekers' | 'hirers';
   title?: string;
   compact?: boolean;
 }
@@ -74,7 +74,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
         payload.first_name = name.trim();
       }
 
-      if (source === 'recruiters' && company.trim()) {
+      if (source === 'hirers' && company.trim()) {
         payload.company = company.trim();
       }
 
@@ -163,7 +163,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
               />
             )}
 
-            {source === 'recruiters' && showExtra && (
+            {source === 'hirers' && showExtra && (
               <input
                 type="text"
                 placeholder="Company name (optional)"
@@ -176,7 +176,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
           </div>
 
           <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? 'Joining...' : source === 'recruiters' ? 'Request early access' : 'Join waitlist'}
+            {loading ? 'Joining...' : source === 'hirers' ? 'Request early access' : 'Join waitlist'}
           </button>
         </div>
 

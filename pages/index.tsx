@@ -40,7 +40,7 @@ export default function HomePage() {
               <Link href="/jobseekers">
                 <span className="cta-button">I'm looking for work</span>
               </Link>
-              <Link href="/recruiters">
+              <Link href="/hirers">
                 <span className="cta-button">I'm hiring</span>
               </Link>
             </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
               <Link href="/jobseekers">
                 <span className="cta-solid">I'm looking for work</span>
               </Link>
-              <Link href="/recruiters">
+              <Link href="/hirers">
                 <span className="cta-solid">I'm hiring</span>
               </Link>
             </div>

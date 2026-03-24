@@ -25,13 +25,6 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  const scrollToForm = () => {
-    setMenuOpen(false);
-    const formEl = document.querySelector('#email-signup');
-    if (formEl) {
-      formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
 
   return (
     <>
@@ -59,15 +52,12 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
               For jobseekers
             </Link>
             <Link
-              href="/recruiters"
+              href="/hirers"
               className="nav-link"
-              aria-current={router.pathname === '/recruiters' ? 'page' : undefined}
+              aria-current={router.pathname === '/hirers' ? 'page' : undefined}
             >
-              For recruiters
+              For hirers
             </Link>
-            <button onClick={scrollToForm} className="nav-link nav-button">
-              {router.pathname === '/recruiters' ? 'Request early access' : 'Join waitlist'}
-            </button>
           </div>
 
           {/* Hamburger button (mobile only) */}
@@ -95,16 +85,13 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
               For jobseekers
             </Link>
             <Link
-              href="/recruiters"
+              href="/hirers"
               className="mobile-link"
-              aria-current={router.pathname === '/recruiters' ? 'page' : undefined}
+              aria-current={router.pathname === '/hirers' ? 'page' : undefined}
               onClick={() => setMenuOpen(false)}
             >
-              For recruiters
+              For hirers
             </Link>
-            <button onClick={scrollToForm} className="mobile-link mobile-cta">
-              {router.pathname === '/recruiters' ? 'Request early access' : 'Join waitlist'}
-            </button>
           </div>
         )}
       </nav>
