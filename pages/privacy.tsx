@@ -276,7 +276,7 @@ export default function PrivacyPage() {
               <strong>Email:</strong> <a href="mailto:privacy@careira.com">privacy@careira.com</a>
             </p>
             <p>
-              <strong>Address:</strong> Careira Ltd, 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom
+              <strong>Address:</strong> Careira Ltd, 167-169 Great Portland Street, 5th Floor, London W1W 5PF, United Kingdom
             </p>
           </section>
 
