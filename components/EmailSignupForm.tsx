@@ -171,7 +171,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
   if (compact) {
     return (
       <>
-        <form onSubmit={handleSubmit} className="signup-form compact" id="email-signup">
+        <form onSubmit={handleSubmit} className="signup-form compact" id="email-signup" data-lpignore="true" data-1p-ignore data-form-type="other">
           <div className="form-content">
             <div className="input-group">
               <input
@@ -185,6 +185,8 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
                 onBlur={handleEmailBlur}
                 required
                 autoComplete="email"
+                data-lpignore="true"
+                data-1p-ignore
                 className={emailError ? 'error' : ''}
               />
               {emailError && <span className="field-error">{emailError}</span>}
@@ -304,7 +306,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
   // Full form (non-compact)
   return (
     <>
-      <form onSubmit={handleSubmit} className="signup-form" id="email-signup">
+      <form onSubmit={handleSubmit} className="signup-form" id="email-signup" data-lpignore="true" data-1p-ignore data-form-type="other">
         {title && <h3>{title}</h3>}
 
         <div className="form-fields">
@@ -320,6 +322,8 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
             onBlur={handleEmailBlur}
             required
             autoComplete="email"
+            data-lpignore="true"
+            data-1p-ignore
             className={emailError ? 'error' : ''}
           />
           {emailError && <span className="field-error">{emailError}</span>}
@@ -334,6 +338,8 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
                     value={name}
                     onChange={(e) => { setName(e.target.value); setNameError(null); }}
                     autoComplete="given-name"
+                    data-lpignore="true"
+                    data-1p-ignore
                     className={nameError ? 'error' : ''}
                   />
                   {nameError && <span className="field-error">{nameError}</span>}

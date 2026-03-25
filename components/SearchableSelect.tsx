@@ -106,6 +106,8 @@ export default function SearchableSelect({
           type="text"
           className={`ss-input${hasError ? ' error' : ''}`}
           placeholder={placeholder}
+          data-lpignore="true"
+          data-1p-ignore
           value={open ? query : selectedLabel}
           onChange={(e) => {
             setQuery(e.target.value);

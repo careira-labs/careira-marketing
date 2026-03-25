@@ -226,21 +226,21 @@ export const COUNTRIES: SelectOption[] = [
 // ── Sectors ─────────────────────────────────────────────────────────────────
 
 export const SECTORS: SelectOption[] = [
-  { value: 'Technology', label: 'Technology' },
+  { value: 'Education', label: 'Education' },
+  { value: 'Energy & Utilities', label: 'Energy & Utilities' },
   { value: 'Financial Services', label: 'Financial Services' },
   { value: 'Healthcare & Life Sciences', label: 'Healthcare & Life Sciences' },
-  { value: 'Professional Services', label: 'Professional Services' },
+  { value: 'Hospitality & Leisure', label: 'Hospitality & Leisure' },
   { value: 'Legal', label: 'Legal' },
   { value: 'Manufacturing & Engineering', label: 'Manufacturing & Engineering' },
-  { value: 'Energy & Utilities', label: 'Energy & Utilities' },
-  { value: 'Retail & Consumer', label: 'Retail & Consumer' },
   { value: 'Media & Entertainment', label: 'Media & Entertainment' },
-  { value: 'Education', label: 'Education' },
-  { value: 'Real Estate & Construction', label: 'Real Estate & Construction' },
-  { value: 'Transport & Logistics', label: 'Transport & Logistics' },
-  { value: 'Public Sector', label: 'Public Sector' },
-  { value: 'Hospitality & Leisure', label: 'Hospitality & Leisure' },
   { value: 'Non-Profit', label: 'Non-Profit' },
+  { value: 'Professional Services', label: 'Professional Services' },
+  { value: 'Public Sector', label: 'Public Sector' },
+  { value: 'Real Estate & Construction', label: 'Real Estate & Construction' },
+  { value: 'Retail & Consumer', label: 'Retail & Consumer' },
+  { value: 'Technology', label: 'Technology' },
+  { value: 'Transport & Logistics', label: 'Transport & Logistics' },
   { value: 'Other', label: 'Other' },
 ];
 
