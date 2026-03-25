@@ -10,6 +10,9 @@ export interface WaitlistRequest {
   first_name?: string;
   user_type?: 'candidate' | 'recruiter' | 'employer';
   company?: string;
+  country_code?: string;
+  sector?: string;
+  intent?: string;
 }
 
 export interface WaitlistResponse {
