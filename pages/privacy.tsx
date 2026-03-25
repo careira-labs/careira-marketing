@@ -271,7 +271,7 @@ export default function PrivacyPage() {
 
           <section>
             <h2>How to contact us</h2>
-            <p>If you have questions about this Privacy Policy or how we handle your data, please contact our Data Protection Officer:</p>
+            <p>If you have questions about this Privacy Policy or how we handle your data, please contact us about data protection:</p>
             <p>
               <strong>Email:</strong> <a href="mailto:privacy@careira.com">privacy@careira.com</a>
             </p>
