@@ -168,7 +168,7 @@ export default function TermsPage() {
           <section>
             <h2>12. Termination</h2>
             <p>
-              You may delete your account at any time through your account settings or by contacting us. Upon deletion, we will remove your personal data in accordance with our <a href="/privacy">Privacy Policy</a>.
+              You may delete your account at any time by contacting us. Upon deletion, we will remove your personal data in accordance with our <a href="/privacy">Privacy Policy</a>.
             </p>
             <p>
               We may suspend or terminate your account if you violate these Terms, if your account has been inactive for an extended period, or if we discontinue the Service. We will provide reasonable notice where possible.
@@ -189,10 +189,7 @@ export default function TermsPage() {
             <h2>14. Contact us</h2>
             <p>If you have questions about these Terms, please contact us:</p>
             <p>
-              <strong>Email:</strong> <a href="mailto:hello@careira.com">hello@careira.com</a>
-            </p>
-            <p>
-              <strong>Address:</strong> Careira Ltd, 167-169 Great Portland Street, 5th Floor, London W1W 5PF, United Kingdom
+              <strong>Email:</strong> <a href="mailto:info@careira.com">info@careira.com</a>
             </p>
           </section>
         </div>

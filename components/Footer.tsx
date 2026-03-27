@@ -9,6 +9,9 @@ export default function Footer() {
           <a href="/privacy" className="footer-item link">
             Privacy Policy
           </a>
+          <a href="/terms" className="footer-item link">
+            Terms of Service
+          </a>
           <a href="mailto:info@careira.com" className="footer-item link">
             info@careira.com
           </a>
