@@ -11,6 +11,7 @@ export default function TermsPage() {
           name="description"
           content="Terms of Service for using the Careira platform."
         />
+        <link rel="canonical" href="https://www.careira.com/terms" />
       </Head>
 
       <PublicNav theme="light" />

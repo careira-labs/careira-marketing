@@ -193,7 +193,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
             </div>
 
             <button type="submit" className="btn btn-primary" disabled={loading}>
-              {loading ? 'Joining...' : source === 'hirers' ? 'Request early access' : 'Join waitlist'}
+              {loading ? 'Joining...' : source === 'hirers' ? 'Request access' : 'Get started'}
             </button>
           </div>
 
@@ -397,7 +397,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
           )}
 
           <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? 'Joining...' : source === 'hirers' ? 'Request early access' : 'Join waitlist'}
+            {loading ? 'Joining...' : source === 'hirers' ? 'Request access' : 'Get started'}
           </button>
         </div>
 
@@ -408,6 +408,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
         .signup-form {
           width: 100%;
           max-width: 540px;
+          margin: 0 auto;
         }
 
         .signup-form h3 {

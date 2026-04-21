@@ -27,7 +27,7 @@ export default function Footer() {
           flex-wrap: wrap;
           gap: 1rem;
           font-size: 0.85rem;
-          background: #33374a;
+          background: #2A2D3D;
           color: rgba(255, 255, 255, 0.6);
           border-top: none;
         }

@@ -11,6 +11,7 @@ export default function PrivacyPage() {
           name="description"
           content="How Careira collects, uses, and protects your personal information."
         />
+        <link rel="canonical" href="https://www.careira.com/privacy" />
       </Head>
 
       <PublicNav theme="light" />
@@ -152,7 +153,7 @@ export default function PrivacyPage() {
               <li>Generates match scores and explanations for each recommendation</li>
             </ul>
             <p>
-              No decisions are fully automated. Job recommendations are presented to you for your own evaluation — you decide which opportunities to pursue. Similarly, recruiters receive candidate shortlists as decision-support tools, not as final hiring decisions.
+              No decisions are fully automated. Job recommendations are presented to you for your own evaluation – you decide which opportunities to pursue. Similarly, recruiters receive candidate shortlists as decision-support tools, not as final hiring decisions.
             </p>
             <p>
               You have the right to request human review of any AI-generated recommendation, or to ask us to explain how a particular match score was calculated. Contact us at the details below.
@@ -240,9 +241,9 @@ export default function PrivacyPage() {
             <p>You have control over how we use your personal information. Under data protection law, you have the right to:</p>
             <ul>
               <li><strong>Access</strong> the personal information we hold about you</li>
-              <li><strong>Rectification</strong> — request correction of inaccurate data</li>
-              <li><strong>Erasure</strong> — request deletion of your data (&ldquo;the right to be forgotten&rdquo;)</li>
-              <li><strong>Data portability</strong> — request a copy of your data in a portable, machine-readable format</li>
+              <li><strong>Rectification</strong> – request correction of inaccurate data</li>
+              <li><strong>Erasure</strong> – request deletion of your data (&ldquo;the right to be forgotten&rdquo;)</li>
+              <li><strong>Data portability</strong> – request a copy of your data in a portable, machine-readable format</li>
               <li><strong>Restrict or object</strong> to certain processing, including marketing</li>
               <li><strong>Withdraw your consent</strong> at any time, where processing is based on consent</li>
               <li><strong>Human review</strong> of automated decisions, including AI-generated job match recommendations</li>

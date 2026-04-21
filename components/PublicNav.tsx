@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -6,13 +6,36 @@ interface PublicNavProps {
   theme?: 'dark' | 'light';
 }
 
+const SEGMENT_PAGES = ['/starting-out', '/starting-again', '/stepping-up'];
+const JOBSEEKER_PATHS = ['/jobseekers', ...SEGMENT_PAGES];
+
+const SEGMENTS = [
+  { href: '/starting-out', label: 'Starting out', subtitle: 'Early career & graduates' },
+  { href: '/starting-again', label: 'Starting again', subtitle: 'Returning to the market' },
+  { href: '/stepping-up', label: 'Stepping up', subtitle: 'Experienced professionals' },
+];
+
 export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+
+  const isJobseekerActive = JOBSEEKER_PATHS.includes(router.pathname);
+
+  // Track scroll for backdrop blur
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
+    setDropdownOpen(false);
   }, [router.pathname]);
 
   // Prevent body scroll when menu is open
@@ -25,10 +48,41 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    if (!dropdownOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      if (
+        triggerRef.current && !triggerRef.current.contains(e.target as Node) &&
+        dropdownRef.current && !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [dropdownOpen]);
+
+  // Keyboard handling for dropdown
+  const handleTriggerKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setDropdownOpen((prev) => !prev);
+    } else if (e.key === 'Escape') {
+      setDropdownOpen(false);
+    }
+  }, []);
+
+  const handleDropdownKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setDropdownOpen(false);
+      triggerRef.current?.querySelector<HTMLElement>('.nav-link')?.focus();
+    }
+  }, []);
 
   return (
     <>
-      <nav className="nav">
+      <nav className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
         <div className="nav-container">
           <Link href="/" className="logo-link">
             <img
@@ -44,17 +98,47 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
 
           {/* Desktop nav links */}
           <div className="nav-links desktop-links">
-            <Link
-              href="/jobseekers"
-              className="nav-link"
-              aria-current={router.pathname === '/jobseekers' ? 'page' : undefined}
+            <div
+              className="dropdown-trigger"
+              ref={triggerRef}
+              onMouseEnter={() => setDropdownOpen(true)}
+              onMouseLeave={() => setDropdownOpen(false)}
             >
-              For jobseekers
-            </Link>
+              <Link
+                href="/jobseekers"
+                className={`nav-link ${isJobseekerActive ? 'active' : ''}`}
+                aria-haspopup="true"
+                aria-expanded={dropdownOpen}
+                onKeyDown={handleTriggerKeyDown}
+              >
+                For jobseekers
+              </Link>
+
+              {dropdownOpen && (
+                <div
+                  className="dropdown"
+                  ref={dropdownRef}
+                  role="menu"
+                  onKeyDown={handleDropdownKeyDown}
+                >
+                  {SEGMENTS.map((seg) => (
+                    <Link
+                      key={seg.href}
+                      href={seg.href}
+                      className="dropdown-item"
+                      role="menuitem"
+                    >
+                      <span className="dropdown-label">{seg.label}</span>
+                      <span className="dropdown-subtitle">{seg.subtitle}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
               href="/hirers"
-              className="nav-link"
-              aria-current={router.pathname === '/hirers' ? 'page' : undefined}
+              className={`nav-link ${router.pathname === '/hirers' ? 'active' : ''}`}
             >
               For hirers
             </Link>
@@ -78,16 +162,25 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           <div className="mobile-menu">
             <Link
               href="/jobseekers"
-              className="mobile-link"
-              aria-current={router.pathname === '/jobseekers' ? 'page' : undefined}
+              className={`mobile-link ${router.pathname === '/jobseekers' ? 'mobile-active' : ''}`}
               onClick={() => setMenuOpen(false)}
             >
               For jobseekers
             </Link>
+            {SEGMENTS.map((seg) => (
+              <Link
+                key={seg.href}
+                href={seg.href}
+                className={`mobile-sub-link ${router.pathname === seg.href ? 'mobile-active' : ''}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="mobile-sub-label">{seg.label}</span>
+                <span className="mobile-sub-subtitle">{seg.subtitle}</span>
+              </Link>
+            ))}
             <Link
               href="/hirers"
-              className="mobile-link"
-              aria-current={router.pathname === '/hirers' ? 'page' : undefined}
+              className={`mobile-link ${router.pathname === '/hirers' ? 'mobile-active' : ''}`}
               onClick={() => setMenuOpen(false)}
             >
               For hirers
@@ -106,6 +199,13 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           z-index: 100;
           background: ${theme === 'dark' ? '#33374A' : '#FFFFFF'};
           border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : '#E5E7EB'};
+          transition: background 0.2s, backdrop-filter 0.2s;
+        }
+
+        .nav-scrolled {
+          background: ${theme === 'dark' ? 'rgba(51, 55, 74, 0.95)' : 'rgba(255, 255, 255, 0.95)'};
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
         }
 
         .nav-container {
@@ -135,28 +235,80 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           gap: 2rem;
         }
 
-        .nav-link {
+        :global(.nav-link) {
           color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.9)' : '#33374A'};
           text-decoration: none;
           font-size: 0.9375rem;
           font-weight: 500;
-          transition: opacity 0.15s;
+          transition: opacity 0.15s, color 0.15s;
           background: none;
           border: none;
           cursor: pointer;
           font-family: var(--font);
+          padding: 0;
         }
 
-        .nav-link:hover {
-          opacity: ${theme === 'dark' ? '1' : '0.7'};
+        :global(.nav-link:hover) {
           color: ${theme === 'dark' ? 'white' : '#FF7A6F'};
         }
 
-        :global(a.nav-link[aria-current='page']) {
+        :global(.nav-link.active) {
           color: ${theme === 'dark' ? 'white' : '#FF7A6F'};
-          opacity: 1;
           border-bottom: 2px solid #FF7A6F;
           padding-bottom: 2px;
+        }
+
+        /* Dropdown */
+        .dropdown-trigger {
+          position: relative;
+        }
+
+        :global(.dropdown) {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          margin-top: 12px;
+          background: #FFFFFF;
+          border-radius: 12px;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+          padding: 0.5rem;
+          min-width: 260px;
+          z-index: 101;
+        }
+
+        :global(.dropdown::before) {
+          content: '';
+          position: absolute;
+          top: -12px;
+          left: 0;
+          right: 0;
+          height: 12px;
+        }
+
+        :global(a.dropdown-item) {
+          display: flex;
+          flex-direction: column;
+          padding: 0.75rem 1rem;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: background 0.12s;
+        }
+
+        :global(a.dropdown-item:hover) {
+          background: #F2F4F6;
+        }
+
+        :global(.dropdown-label) {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: #33374A;
+        }
+
+        :global(.dropdown-subtitle) {
+          font-size: 0.75rem;
+          color: #667085;
+          margin-top: 0.125rem;
         }
 
         /* Hamburger button - hidden on desktop */
@@ -193,7 +345,7 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           transform: translateY(-7px) rotate(-45deg);
         }
 
-        /* Mobile menu - hidden on desktop */
+        /* Mobile menu */
         .mobile-menu {
           display: none;
           flex-direction: column;
@@ -202,23 +354,43 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : '#E5E7EB'};
         }
 
-        .mobile-link {
+        :global(a.mobile-link) {
           display: block;
           padding: 0.875rem 0;
           color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.9)' : '#33374A'};
           text-decoration: none;
           font-size: 1.0625rem;
           font-weight: 500;
-          border: none;
-          background: none;
-          cursor: pointer;
-          text-align: left;
           font-family: var(--font);
           border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : '#F2F4F6'};
         }
 
-        :global(a.mobile-link[aria-current='page']) {
+        :global(a.mobile-link.mobile-active) {
           color: #FF7A6F;
+        }
+
+        :global(a.mobile-sub-link) {
+          display: flex;
+          flex-direction: column;
+          padding: 0.625rem 0 0.625rem 1.25rem;
+          text-decoration: none;
+          border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : '#F2F4F6'};
+        }
+
+        :global(a.mobile-sub-link.mobile-active) .mobile-sub-label {
+          color: #FF7A6F;
+        }
+
+        :global(.mobile-sub-label) {
+          font-size: 0.9375rem;
+          font-weight: 500;
+          color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.8)' : '#4C526A'};
+        }
+
+        :global(.mobile-sub-subtitle) {
+          font-size: 0.75rem;
+          color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : '#667085'};
+          margin-top: 0.125rem;
         }
 
         .overlay {
@@ -235,7 +407,6 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
             padding: 0 1rem;
           }
 
-          /* Hide desktop links, show burger */
           .desktop-links {
             display: none;
           }
@@ -254,7 +425,7 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           }
         }
 
-        /* Landscape phones: tighter spacing for inline nav */
+        /* Landscape phones */
         @media (max-width: 768px) and (orientation: landscape) {
           .nav-container {
             height: 48px;
@@ -265,11 +436,9 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
             gap: 1.25rem;
           }
 
-          .nav-link {
+          :global(.nav-link) {
             font-size: 0.875rem;
           }
-
-
         }
       `}</style>
     </>
