@@ -11,7 +11,7 @@ import PreferenceConflicts from '../components/proof/PreferenceConflicts';
 import ScoreBreakdown from '../components/proof/ScoreBreakdown';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { useStickySignup } from '../hooks/useStickySignup';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const AUDIENCE_CARDS = [
   {
@@ -88,21 +88,33 @@ export default function HomePage() {
 
   const [proofSlide, setProofSlide] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [carouselVisible, setCarouselVisible] = useState(false);
+  const carouselRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setCarouselVisible(true); },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const goToSlide = useCallback((i: number) => {
     setProofSlide(i);
     setPaused(true);
-    // Resume auto-advance after 10s of inactivity
     setTimeout(() => setPaused(false), 10000);
   }, []);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || !carouselVisible) return;
     const timer = setInterval(() => {
       setProofSlide((prev) => (prev + 1) % 4);
     }, 5000);
     return () => clearInterval(timer);
-  }, [paused]);
+  }, [paused, carouselVisible]);
 
   return (
     <>
@@ -212,7 +224,7 @@ export default function HomePage() {
         </section>
 
         {/* 4. Product Proof (dark) — carousel */}
-        <section className="proof-carousel reveal">
+        <section className="proof-carousel reveal" ref={carouselRef}>
           <div className="proof-carousel-container">
             <h2 className="proof-headline">Not just smarter matching &ndash; better judgment</h2>
             <p className="proof-subheadline">
