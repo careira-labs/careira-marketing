@@ -47,7 +47,7 @@ const OUTCOME_ITEMS = [
   },
   {
     title: 'Feedback that improves results',
-    description: 'Structured signals refine future matches, not just thumbs up or down.',
+    description: 'Not just thumbs up or down – your structured feedback refines future matches.',
   },
 ];
 
@@ -94,11 +94,11 @@ export default function JobseekersPage() {
             <h2>Job search should not feel like guesswork</h2>
             <ul className="problem-list">
               <li>Roles that look right on the surface but lead nowhere</li>
-              <li>Applications that disappear without feedback or signal</li>
+              <li>Applications that disappear without feedback or explanation</li>
               <li>No way to know what actually fits – or why something doesn&apos;t</li>
             </ul>
             <p className="problem-close">
-              Most platforms generate noise. Careira is built to reduce it – less guesswork, more signal, better decisions.
+              Most platforms generate noise. Careira is built to reduce it – less guesswork, more clarity, better decisions.
             </p>
           </div>
         </section>
@@ -122,7 +122,7 @@ export default function JobseekersPage() {
               {
                 number: '03',
                 title: 'Refine with feedback',
-                description: 'Your responses improve future matches. The system learns from your signal, not just your clicks.',
+                description: 'Your responses improve future matches. The system learns from your choices, not just your clicks.',
               },
             ]}
           />
@@ -130,7 +130,7 @@ export default function JobseekersPage() {
 
         {/* Product Proof */}
         <div className="reveal">
-          <ProductProofSection headline="See what Careira sees">
+          <ProductProofSection headline="See what Careira sees" subheadline="Understand at a glance where you're a great fit for a role, and where there might be things to consider.">
             <WhyThisFits
               role="Financial Analyst"
               candidate="James Okafor"
@@ -163,7 +163,7 @@ export default function JobseekersPage() {
 
         {/* Outcomes */}
         <div className="reveal">
-          <OutcomesSection headline="What changes when you can see clearly" items={OUTCOME_ITEMS} />
+          <OutcomesSection headline="Jobseeking changes when you can see clearly" items={OUTCOME_ITEMS} />
         </div>
 
         {/* Audience routing */}
@@ -217,7 +217,6 @@ export default function JobseekersPage() {
           line-height: 1.65;
           color: rgba(255, 255, 255, 0.8);
           margin: 0 0 2rem;
-          max-width: 560px;
         }
 
         .cta-button {

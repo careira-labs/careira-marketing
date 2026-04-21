@@ -20,7 +20,7 @@ export default function SteppingUpPage() {
             <ul className="problem-list">
               <li>Roles look similar on the surface but differ in ways that matter</li>
               <li>A wrong move at this level costs years, not months</li>
-              <li>No tools give you signal about what actually fits</li>
+              <li>Job boards don&apos;t help you understand what actually fits</li>
             </ul>
             <p className="problem-close">
               Careira evaluates fit across the dimensions that matter at senior level – and shows you where the strengths, gaps, and risks actually are.
@@ -38,13 +38,13 @@ export default function SteppingUpPage() {
           },
           {
             number: '02',
-            title: 'Evaluate fit at depth',
+            title: 'Assess roles properly',
             description: 'Each role is scored across dimensions that matter at your level – scope, autonomy, domain complexity, team structure.',
           },
           {
             number: '03',
             title: 'Be more selective',
-            description: 'Focus only on roles with genuine fit. Strengths, gaps, and risks are surfaced before you invest time.',
+            description: 'Focus only on roles with genuine fit. Strengths, gaps and risks are surfaced before you invest time.',
           },
         ],
       }}
@@ -84,6 +84,7 @@ export default function SteppingUpPage() {
       }
       heroCtaText="Evaluate your options"
       proofHeadline="What senior-level fit evaluation looks like"
+      proofSubheadline="Careira gives you the full picture – where you look like a great match, what might be missing from your profile, and any potential red flags."
       ctaHeadline="Your next move should be your strongest"
       ctaBody="See which roles genuinely match your level, scope, and ambition – before you invest time."
       variant="stepping-up"

@@ -193,7 +193,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
             </div>
 
             <button type="submit" className="btn btn-primary" disabled={loading}>
-              {loading ? 'Joining...' : source === 'hirers' ? 'Request access' : 'Get started'}
+              {loading ? 'Joining...' : source === 'hirers' ? 'Request access' : 'Request early access'}
             </button>
           </div>
 
@@ -397,7 +397,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
           )}
 
           <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? 'Joining...' : source === 'hirers' ? 'Request access' : 'Get started'}
+            {loading ? 'Joining...' : source === 'hirers' ? 'Request access' : 'Request early access'}
           </button>
         </div>
 
@@ -407,7 +407,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
       <style jsx>{`
         .signup-form {
           width: 100%;
-          max-width: 540px;
+          max-width: 400px;
           margin: 0 auto;
         }
 
@@ -430,7 +430,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
           padding: 0.875rem 1rem;
           border: 1px solid var(--border);
           border-radius: var(--radius-sm);
-          font-size: 1rem;
+          font-size: 0.8rem;
           transition: border-color 0.15s, box-shadow 0.15s;
           background: var(--surface);
           color: var(--text);
@@ -486,7 +486,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
           padding: 0.875rem 1rem;
           border: 1px solid var(--border);
           border-radius: var(--radius-sm);
-          font-size: 1rem;
+          font-size: 0.8rem;
           transition: border-color 0.15s, box-shadow 0.15s;
           background: var(--surface);
           color: var(--text);
@@ -520,7 +520,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
         }
 
         .signup-form .btn {
-          width: 100%;
+          width: auto;
           white-space: nowrap;
         }
 

@@ -346,7 +346,6 @@ export default function HomePage() {
           font-size: 1.125rem;
           font-weight: 400;
           margin: 1.25rem 0 0;
-          max-width: 520px;
           line-height: 1.65;
           color: rgba(255, 255, 255, 0.72);
         }

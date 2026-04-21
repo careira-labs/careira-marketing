@@ -10,20 +10,23 @@ export default function StartingOutPage() {
         slug: 'starting-out',
       }}
       hero={{
-        headline: 'You have more to offer than a keyword scan will ever see',
+        headline: 'You have more to offer than keywords',
         subheadline: 'Careira turns your skills, education, and potential into a real profile – then shows you roles that actually fit, with reasoning you can understand.',
       }}
       problem={{
-        headline: 'The job market wasn\'t built for you yet',
+        headline: 'Starting a career shouldn\'t feel like guesswork',
         body: (
           <>
             <ul className="problem-list">
-              <li>Applying everywhere, hearing nothing, wondering what you&apos;re doing wrong</li>
-              <li>No way to tell which roles are worth your time &ndash; or why you keep getting filtered out</li>
-              <li>Everyone says &ldquo;get experience&rdquo; but nobody shows you where yours actually counts</li>
+              <li>Roles that look right but lead nowhere</li>
+              <li>Applications disappear without any sense of why</li>
+              <li>No clear way to tell what&apos;s actually worth pursuing</li>
             </ul>
+            <p>
+              Everyone tells you to &ldquo;get experience&rdquo; &ndash; but no one shows you where yours actually counts.
+            </p>
             <p className="problem-close">
-              Careira changes that. It reads what you&apos;ve done, maps it to real roles, and shows you exactly where you stand &ndash; no guessing.
+              Careira changes that. It reads what you&apos;ve done, maps it to real roles, and shows you where you stand &ndash; clearly, and before you waste your time.
             </p>
           </>
         ),
@@ -33,7 +36,7 @@ export default function StartingOutPage() {
         steps: [
           {
             number: '01',
-            title: 'Upload your CV',
+            title: 'Tell us your story',
             description: 'Even with limited experience, Careira builds a structured profile from your skills, education, and early career signals.',
           },
           {

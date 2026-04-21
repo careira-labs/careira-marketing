@@ -40,10 +40,10 @@ export default function HirersPage() {
         <title>For Hirers – Careira</title>
         <meta
           name="description"
-          content="Build shortlists you can defend. Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit, and present candidates with confidence."
+          content="Build shortlists you can defend. Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit, and shortlist candidates with confidence."
         />
         <meta property="og:title" content="For Hirers – Careira" />
-        <meta property="og:description" content="Build shortlists you can defend. Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit, and present candidates with confidence." />
+        <meta property="og:description" content="Build shortlists you can defend. Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit, and shortlist candidates with confidence." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.careira.com/hirers" />
         <link rel="canonical" href="https://www.careira.com/hirers" />
@@ -58,7 +58,7 @@ export default function HirersPage() {
             <h1>Build shortlists you can defend</h1>
             <p className="hero-sub">
               Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit,
-              and present candidates with confidence.
+              and shortlist candidates with confidence.
             </p>
             <button className="cta-button" onClick={scrollToForm}>
               See stronger candidates
@@ -95,13 +95,13 @@ export default function HirersPage() {
               },
               {
                 number: '02',
-                title: 'Receive scored candidates',
+                title: 'Review scored candidates',
                 description: 'Each candidate is evaluated against the role. You see fit scores, reasoning, and risk factors – not just keyword overlap.',
               },
               {
                 number: '03',
                 title: 'Learn from outcomes',
-                description: 'Rejections and feedback feed back into the model. The system gets sharper, not just bigger.',
+                description: 'Rejections and feedback improve future matches. The system gets better with use.',
               },
             ]}
           />
@@ -109,7 +109,7 @@ export default function HirersPage() {
 
         {/* Product Proof */}
         <div className="reveal">
-          <ProductProofSection headline="See what your shortlist looks like">
+          <ProductProofSection headline="Clarity behind every candidate" subheadline={'No more keyword sorting or "gut feel". Every candidate comes with structured reasoning you can stand behind.'}>
             <RecruiterShortlist />
             <WhyThisFits
               role="Product Designer"
@@ -141,7 +141,7 @@ export default function HirersPage() {
               <li>Fewer weak shortlists – candidates are scored before you see them</li>
               <li>Less manual explanation – every candidate comes with reasoning you can present</li>
               <li>Less wasted recruiter time – focus on candidates who clear fit thresholds</li>
-              <li>Present candidates with confidence – structured fit breakdowns, not gut feel</li>
+              <li>Shortlist candidates with confidence – structured fit breakdowns, not gut feel</li>
             </ul>
           </div>
         </section>
@@ -189,7 +189,6 @@ export default function HirersPage() {
           line-height: 1.65;
           color: rgba(255, 255, 255, 0.8);
           margin: 0 0 2rem;
-          max-width: 560px;
         }
 
         .cta-button {
@@ -294,11 +293,6 @@ export default function HirersPage() {
           padding: 0.75rem 0;
           padding-left: 1.25rem;
           position: relative;
-          border-bottom: 1px solid #E5E7EB;
-        }
-
-        .commercial-list li:last-child {
-          border-bottom: none;
         }
 
         .commercial-list li::before {

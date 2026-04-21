@@ -28,6 +28,7 @@ interface SegmentPageLayoutProps {
   outcomes: { headline: string; items: OutcomeItem[] };
   proofArtifact: ReactNode;
   proofHeadline?: string;
+  proofSubheadline?: string;
   ctaHeadline: string;
   ctaBody?: string;
   heroCtaText?: string;
@@ -42,9 +43,10 @@ export default function SegmentPageLayout({
   outcomes,
   proofArtifact,
   proofHeadline,
+  proofSubheadline,
   ctaHeadline,
   ctaBody,
-  heroCtaText = 'Get started',
+  heroCtaText = 'Request early access',
   variant,
 }: SegmentPageLayoutProps) {
   useScrollReveal();
@@ -96,7 +98,7 @@ export default function SegmentPageLayout({
 
         {/* Product Proof */}
         <div className="reveal">
-          <ProductProofSection headline={proofHeadline || 'See how it works'}>
+          <ProductProofSection headline={proofHeadline || 'See how it works'} subheadline={proofSubheadline}>
             {proofArtifact}
           </ProductProofSection>
         </div>
@@ -180,7 +182,6 @@ export default function SegmentPageLayout({
           line-height: 1.65;
           color: rgba(255, 255, 255, 0.8);
           margin: 0 0 2rem;
-          max-width: 560px;
         }
 
         .cta-button {
@@ -290,20 +291,6 @@ export default function SegmentPageLayout({
           color: rgba(255, 255, 255, 0.7);
           margin: 0 0 2rem;
           line-height: 1.6;
-        }
-
-        .cta-container :global(.signup-form) {
-          max-width: 400px;
-        }
-
-        .cta-container :global(.signup-form input[type="email"]),
-        .cta-container :global(.signup-form input[type="text"]),
-        .cta-container :global(.signup-form .form-select) {
-          font-size: 0.8rem;
-        }
-
-        .cta-container :global(.signup-form .btn) {
-          width: auto;
         }
 
         /* Responsive */

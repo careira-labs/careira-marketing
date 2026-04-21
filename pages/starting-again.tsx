@@ -84,6 +84,7 @@ export default function StartingAgainPage() {
       }
       heroCtaText="See where you fit"
       proofHeadline="How Careira surfaces real-world tensions"
+      proofSubheadline="Careira helps you find roles that fit – but also flags the reasons they might not. That clarity can help you strengthen an application or rule out a role before it wastes your time."
       ctaHeadline="Your experience deserves better than keyword filters"
       ctaBody="Upload your CV. See where your experience still carries weight – and where the real constraints are."
       variant="starting-again"
