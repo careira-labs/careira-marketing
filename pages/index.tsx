@@ -96,7 +96,7 @@ export default function HomePage() {
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setCarouselVisible(true); },
-      { threshold: 0.2 }
+      { threshold: 0.5 }
     );
     observer.observe(el);
     return () => observer.disconnect();
