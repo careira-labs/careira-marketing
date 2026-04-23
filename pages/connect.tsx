@@ -84,12 +84,12 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
   return (
     <>
       <Head>
-        <title>Connect with {person.name} \u2013 Careira</title>
+        <title>Connect with {person.name} – Careira</title>
         <meta
           name="description"
           content={`Get in touch with ${person.name}, ${person.role} at Careira.`}
         />
-        <meta property="og:title" content={`Connect with ${person.name} \u2013 Careira`} />
+        <meta property="og:title" content={`Connect with ${person.name} – Careira`} />
         <meta
           property="og:description"
           content={`Get in touch with ${person.name}, ${person.role} at Careira.`}
@@ -225,7 +225,7 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
                 {submitError && <div className="submit-error">{submitError}</div>}
 
                 <button type="submit" disabled={submitting} className="submit-btn">
-                  {submitting ? 'Sending\u2026' : 'Send message'}
+                  {submitting ? 'Sending…' : 'Send message'}
                 </button>
               </form>
             )}
