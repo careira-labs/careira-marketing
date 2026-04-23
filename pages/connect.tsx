@@ -269,6 +269,7 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
         }
 
         .avatar-img {
+          width: 20%;
           border-radius: 50%;
           margin-bottom: 1rem;
         }
