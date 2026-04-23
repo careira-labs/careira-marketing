@@ -43,7 +43,8 @@ export const CONNECT_PEOPLE: Record<string, ConnectPerson> = {
     initials: 'GS',
     image: '/assets/connect/gary-stacey.png',
     bio: [
-      "I\u2019ve worked across financial services, advisory, and technology, helping organisations open up new opportunities, build partnerships, and turn ideas into something commercially real. At Careira, I\u2019m focused on how we bring the platform to market \u2013 where it fits, who it\u2019s for, and how it connects with the people it\u2019s built for.",
+      "I\u2019ve worked across financial services, advisory, and technology, helping organisations open up new opportunities, build partnerships, and turn ideas into something commercially real.",
+      "At Careira, I\u2019m focused on how we bring the platform to market \u2013 where it fits, who it\u2019s for, and how it connects with the people it\u2019s built for.",
       { subheader: 'A few things about me' },
       {
         bullets: [

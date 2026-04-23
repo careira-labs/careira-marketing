@@ -243,7 +243,7 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
         }
 
         .container {
-          max-width: 640px;
+          max-width: 800px;
           margin: 0 auto;
           padding: 0 2rem;
         }
@@ -269,10 +269,7 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
         }
 
         .avatar-img {
-          width: 80px;
-          height: 80px;
           border-radius: 50%;
-          object-fit: cover;
           margin-bottom: 1rem;
         }
 
@@ -332,7 +329,7 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
           font-size: 1.0625rem;
           font-weight: 600;
           color: #33374A;
-          margin: 1.25rem 0 0.5rem;
+          margin: 1.25rem 0 1.25rem;
         }
 
         /* Form card */
@@ -414,8 +411,7 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
         }
 
         .submit-btn {
-          width: 100%;
-          padding: 0.875rem;
+          padding: 0.875rem 2rem;
           font-size: 1rem;
           font-weight: 600;
           font-family: var(--font);
