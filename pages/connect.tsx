@@ -119,6 +119,9 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
               if (typeof item === 'string') {
                 return <p key={i}>{item}</p>;
               }
+              if ('subheader' in item) {
+                return <h3 key={i} className="bio-subheader">{item.subheader}</h3>;
+              }
               return (
                 <ul key={i}>
                   {item.bullets.map((b, j) => (
@@ -323,6 +326,13 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
           height: 6px;
           border-radius: 50%;
           background: #FF7A6F;
+        }
+
+        .bio-subheader {
+          font-size: 1.0625rem;
+          font-weight: 600;
+          color: #33374A;
+          margin: 1.25rem 0 0.5rem;
         }
 
         /* Form card */
