@@ -826,6 +826,7 @@ export default function HomePage() {
           .hero-grid {
             grid-template-columns: 1fr;
             padding: 0 1.5rem;
+            gap: 2rem;
           }
 
           h1 {
