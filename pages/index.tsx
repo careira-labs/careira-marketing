@@ -825,6 +825,7 @@ export default function HomePage() {
 
           .hero-grid {
             grid-template-columns: 1fr;
+            padding: 0 1.5rem;
           }
 
           h1 {
@@ -923,7 +924,11 @@ export default function HomePage() {
           }
 
           .proof-stage {
-            height: 580px;
+            height: auto;
+          }
+
+          .proof-slide.active {
+            position: relative;
           }
 
           .proof-dots {
@@ -949,14 +954,14 @@ export default function HomePage() {
 
         @media (max-width: 640px) {
           .hero-cta {
-            flex-direction: column;
-            width: 100%;
+            gap: 0.5rem;
           }
 
           .cta-primary,
           .cta-secondary {
-            width: 100%;
-            text-align: center;
+            padding: 0.625rem 1.125rem;
+            font-size: 0.9375rem;
+            white-space: nowrap;
           }
 
           .cta-routes {
