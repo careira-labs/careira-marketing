@@ -772,8 +772,8 @@ function FormView({
           color: #667085;
           font-weight: 400;
         }
-        .field input,
-        .field select {
+        .field :global(input),
+        .field :global(select) {
           width: 100%;
           padding: 0.75rem;
           font-size: 0.9375rem;
@@ -786,12 +786,12 @@ function FormView({
           transition: border-color 0.15s, box-shadow 0.15s;
           box-sizing: border-box;
         }
-        .field input:focus,
-        .field select:focus {
+        .field :global(input:focus),
+        .field :global(select:focus) {
           border-color: #FF7A6F;
           box-shadow: 0 0 0 3px rgba(255, 122, 111, 0.15);
         }
-        .field select {
+        .field :global(select) {
           appearance: none;
           background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23667085' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
@@ -815,7 +815,7 @@ function FormView({
           gap: 0.5rem;
           margin-top: 0.25rem;
         }
-        .toggle-btn {
+        :global(.toggle-btn) {
           flex: 1;
           padding: 0.625rem;
           font-size: 0.9375rem;
@@ -828,10 +828,10 @@ function FormView({
           cursor: pointer;
           transition: background 0.15s, border-color 0.15s, color 0.15s;
         }
-        .toggle-btn:hover {
+        :global(.toggle-btn:hover) {
           border-color: #D0D5DD;
         }
-        .toggle-btn.active {
+        :global(.toggle-btn.active) {
           background: #FF7A6F;
           border-color: #FF7A6F;
           color: white;
@@ -857,7 +857,7 @@ function FormView({
           background: #FEF2F2;
           border-radius: 8px;
         }
-        .submit-btn {
+        :global(.submit-btn) {
           width: 100%;
           padding: 0.875rem 2rem;
           font-size: 1rem;
@@ -870,10 +870,10 @@ function FormView({
           cursor: pointer;
           transition: background 0.15s;
         }
-        .submit-btn:hover:not(:disabled) {
+        :global(.submit-btn:hover:not(:disabled)) {
           background: #FF5C4D;
         }
-        .submit-btn:disabled {
+        :global(.submit-btn:disabled) {
           opacity: 0.7;
           cursor: not-allowed;
         }
