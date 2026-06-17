@@ -238,7 +238,7 @@ function SuccessView() {
         <div className="success-card">
           <div className="success-icon">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <circle cx="16" cy="16" r="16" fill="#FF7A6F" />
+              <circle cx="16" cy="16" r="16" fill="#2E7D32" />
               <path
                 d="M10 16l4 4 8-8"
                 stroke="white"
