@@ -812,7 +812,7 @@ function FormView({
         }
         .toggle-group {
           display: flex;
-          gap: 0.5rem;
+          gap: 0.75rem;
           margin-top: 0.25rem;
         }
         .consent {
@@ -852,8 +852,7 @@ function FormView({
 
       <style jsx global>{`
         .form-card .toggle-btn {
-          flex: 1;
-          padding: 0.625rem;
+          padding: 0.625rem 1.5rem;
           font-size: 0.9375rem;
           font-weight: 500;
           font-family: var(--font);
@@ -873,7 +872,6 @@ function FormView({
           color: white;
         }
         .form-card .submit-btn {
-          width: 100%;
           padding: 0.875rem 2rem;
           font-size: 1rem;
           font-weight: 600;
