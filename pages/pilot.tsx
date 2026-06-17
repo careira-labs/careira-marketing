@@ -815,27 +815,6 @@ function FormView({
           gap: 0.5rem;
           margin-top: 0.25rem;
         }
-        :global(.toggle-btn) {
-          flex: 1;
-          padding: 0.625rem;
-          font-size: 0.9375rem;
-          font-weight: 500;
-          font-family: var(--font);
-          border: 1px solid #E5E7EB;
-          border-radius: 8px;
-          background: #FFFFFF;
-          color: #33374A;
-          cursor: pointer;
-          transition: background 0.15s, border-color 0.15s, color 0.15s;
-        }
-        :global(.toggle-btn:hover) {
-          border-color: #D0D5DD;
-        }
-        :global(.toggle-btn.active) {
-          background: #FF7A6F;
-          border-color: #FF7A6F;
-          color: white;
-        }
         .consent {
           font-size: 0.8125rem;
           line-height: 1.5;
@@ -857,7 +836,43 @@ function FormView({
           background: #FEF2F2;
           border-radius: 8px;
         }
-        :global(.submit-btn) {
+
+        @media (max-width: 768px) {
+          .form-section {
+            padding: 2rem 1rem 3.5rem;
+          }
+          .form-card {
+            padding: 1.5rem;
+          }
+          .form-card h2 {
+            font-size: 1.25rem;
+          }
+        }
+      `}</style>
+
+      <style jsx global>{`
+        .form-card .toggle-btn {
+          flex: 1;
+          padding: 0.625rem;
+          font-size: 0.9375rem;
+          font-weight: 500;
+          font-family: var(--font);
+          border: 1px solid #E5E7EB;
+          border-radius: 8px;
+          background: #FFFFFF;
+          color: #33374A;
+          cursor: pointer;
+          transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .form-card .toggle-btn:hover {
+          border-color: #D0D5DD;
+        }
+        .form-card .toggle-btn.active {
+          background: #FF7A6F;
+          border-color: #FF7A6F;
+          color: white;
+        }
+        .form-card .submit-btn {
           width: 100%;
           padding: 0.875rem 2rem;
           font-size: 1rem;
@@ -870,24 +885,12 @@ function FormView({
           cursor: pointer;
           transition: background 0.15s;
         }
-        :global(.submit-btn:hover:not(:disabled)) {
+        .form-card .submit-btn:hover:not(:disabled) {
           background: #FF5C4D;
         }
-        :global(.submit-btn:disabled) {
+        .form-card .submit-btn:disabled {
           opacity: 0.7;
           cursor: not-allowed;
-        }
-
-        @media (max-width: 768px) {
-          .form-section {
-            padding: 2rem 1rem 3.5rem;
-          }
-          .form-card {
-            padding: 1.5rem;
-          }
-          .form-card h2 {
-            font-size: 1.25rem;
-          }
         }
       `}</style>
     </>
