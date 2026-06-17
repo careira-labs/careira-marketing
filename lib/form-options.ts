@@ -258,3 +258,52 @@ export const RECRUITER_INTENTS: SelectOption[] = [
   { value: 'Building a talent pipeline', label: 'Building a talent pipeline' },
   { value: 'Exploring the platform', label: 'Exploring the platform' },
 ];
+
+
+// ── Pilot application options ──
+
+export const SEARCH_DURATIONS: SelectOption[] = [
+  { value: '<1 month', label: 'Less than 1 month' },
+  { value: '1-3 months', label: '1\u20133 months' },
+  { value: '3-6 months', label: '3\u20136 months' },
+  { value: '6-12 months', label: '6\u201312 months' },
+  { value: '12+ months', label: '12+ months' },
+];
+
+export const JOBSEEKER_SITUATIONS: SelectOption[] = [
+  { value: 'Starting out', label: 'Starting out in my career' },
+  { value: 'Returning to work', label: 'Returning to work' },
+  { value: 'Stepping up', label: 'Moving up / stepping up' },
+  { value: 'Career change', label: 'Career change' },
+  { value: 'Other', label: 'Other' },
+];
+
+export const RECRUITER_SPECIALIZATIONS: SelectOption[] = [
+  { value: 'Finance', label: 'Finance' },
+  { value: 'Cyber/InfoSec', label: 'Cyber / Information Security' },
+  { value: 'Both', label: 'Both Finance and Cyber' },
+  { value: 'Other', label: 'Other' },
+];
+
+export const EXPERIENCE_YEARS: SelectOption[] = [
+  { value: '<3 years', label: 'Less than 3 years' },
+  { value: '3-5 years', label: '3\u20135 years' },
+  { value: '6-10 years', label: '6\u201310 years' },
+  { value: '10-15 years', label: '10\u201315 years' },
+  { value: '15+ years', label: '15+ years' },
+];
+
+export const TEAM_SIZES: SelectOption[] = [
+  { value: 'Solo', label: 'Solo' },
+  { value: '2-10', label: '2\u201310 people' },
+  { value: '11-25', label: '11\u201325 people' },
+  { value: '26-50', label: '26\u201350 people' },
+  { value: '50+', label: '50+ people' },
+];
+
+export const RECRUITER_ROLES: SelectOption[] = [
+  { value: 'Solo specialist', label: 'Solo specialist recruiter' },
+  { value: 'Boutique founder', label: 'Boutique agency founder / MD' },
+  { value: 'Team lead', label: 'Team lead / billing manager' },
+  { value: 'Other', label: 'Other' },
+];

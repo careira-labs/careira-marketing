@@ -40,3 +40,54 @@ export async function joinWaitlist(data: WaitlistRequest): Promise<WaitlistRespo
 
   return res.json();
 }
+
+
+// ── Pilot application ──
+
+export interface PilotJobseekerRequest {
+  email: string;
+  full_name: string;
+  country_code: string;
+  linkedin_url?: string;
+  job_title?: string;
+  search_duration: string;
+  situation: string;
+  feedback_ok: boolean;
+  website?: string;
+}
+
+export interface PilotRecruiterRequest {
+  email: string;
+  full_name: string;
+  company_name: string;
+  linkedin_url?: string;
+  specialization: string;
+  experience_years: string;
+  team_size: string;
+  role_description: string;
+  has_live_roles: boolean;
+  website?: string;
+}
+
+export interface PilotResponse {
+  success: boolean;
+  message: string;
+}
+
+export async function applyForPilot(
+  type: 'jobseeker' | 'recruiter',
+  data: PilotJobseekerRequest | PilotRecruiterRequest,
+): Promise<PilotResponse> {
+  const res = await fetch(`${API_BASE}/pilot/apply/${type}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({ detail: 'Failed to submit application' }));
+    throw new Error(error.detail || 'Failed to submit application');
+  }
+
+  return res.json();
+}
