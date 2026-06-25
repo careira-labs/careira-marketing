@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 /**
  * Attaches IntersectionObserver to all `.reveal` elements within a container.
- * Adds `.visible` class when 15% of the element enters viewport.
+ * Adds `.visible` class when 5% of the element enters viewport.
  * Call once in a page component's useEffect.
  */
 export function useScrollReveal() {
@@ -19,7 +19,7 @@ export function useScrollReveal() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
 
     elements.forEach((el) => observer.observe(el));
