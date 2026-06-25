@@ -81,21 +81,19 @@ export default function HowItWorksSection({ headline, steps, background = '#FFFF
 
         :global(.reveal) .step {
           opacity: 0;
-          transform: translateY(16px);
-          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+          transition: opacity 0.35s ease-out;
         }
 
         :global(.visible) .step {
           opacity: 1;
-          transform: translateY(0);
         }
 
         :global(.visible) .step:nth-child(2) {
-          transition-delay: 0.2s;
+          transition-delay: 0.1s;
         }
 
         :global(.visible) .step:nth-child(3) {
-          transition-delay: 0.4s;
+          transition-delay: 0.2s;
         }
 
         h3 {
