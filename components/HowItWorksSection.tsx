@@ -81,7 +81,7 @@ export default function HowItWorksSection({ headline, steps, background = '#FFFF
 
         :global(.reveal) .step {
           opacity: 0;
-          transition: opacity 0.35s ease-out;
+          transition: opacity 0.5s ease-out;
         }
 
         :global(.visible) .step {
@@ -89,11 +89,11 @@ export default function HowItWorksSection({ headline, steps, background = '#FFFF
         }
 
         :global(.visible) .step:nth-child(2) {
-          transition-delay: 0.1s;
+          transition-delay: 0.15s;
         }
 
         :global(.visible) .step:nth-child(3) {
-          transition-delay: 0.2s;
+          transition-delay: 0.3s;
         }
 
         h3 {

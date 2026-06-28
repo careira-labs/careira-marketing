@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { joinWaitlist, type WaitlistRequest } from '../lib/api';
 import { validateEmail } from '../lib/validation';
 import SearchableSelect from './SearchableSelect';
@@ -29,6 +29,22 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
   const [isDismissed, setIsDismissed] = useState(false);
 
   const intentOptions = source === 'jobseekers' ? CANDIDATE_INTENTS : RECRUITER_INTENTS;
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Chrome on Windows locks the viewport to focused inputs. When a password
+  // manager (e.g. LastPass) auto-focuses an input, the user can't scroll away.
+  // Release focus on any wheel event so the viewport is freed.
+  useEffect(() => {
+    if (compact) return;
+    const handleWheel = () => {
+      const active = document.activeElement;
+      if (active instanceof HTMLElement && formRef.current?.contains(active)) {
+        active.blur();
+      }
+    };
+    window.addEventListener('wheel', handleWheel, { passive: true });
+    return () => window.removeEventListener('wheel', handleWheel);
+  }, [compact]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -306,7 +322,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
   // Full form (non-compact)
   return (
     <>
-      <form onSubmit={handleSubmit} className="signup-form" id="email-signup" data-lpignore="true" data-1p-ignore data-form-type="other">
+      <form ref={formRef} onSubmit={handleSubmit} className="signup-form" id="email-signup" data-lpignore="true" data-1p-ignore data-form-type="other">
         {title && <h3>{title}</h3>}
 
         <div className="form-fields">
