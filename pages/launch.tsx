@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useEffect, useRef } from 'react';
 import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
-import WhyThisFits from '../components/proof/WhyThisFits';
+import ScoreBreakdown from '../components/proof/ScoreBreakdown';
 
 const EVENT_ID = '1992593899994';
 const EVENT_URL = `https://www.eventbrite.com/e/${EVENT_ID}`;
@@ -174,7 +174,22 @@ export default function LaunchPage() {
             </div>
 
             <div className="hero-visual" aria-hidden="true">
-              <WhyThisFits />
+              <ScoreBreakdown
+                role="Customer Success Manager"
+                company="Orbital"
+                location="London"
+                workStyle="Remote"
+                matchLabel="Exceptional Fit"
+                overallScore={80}
+                dimensions={[
+                  { label: 'Domain fit', score: 30 },
+                  { label: 'Skills match', score: 95 },
+                  { label: 'Role Outcomes', score: 90 },
+                  { label: 'Core function', score: 100 },
+                  { label: 'Location fit', score: 70 },
+                  { label: 'Seniority level', score: 63 },
+                ]}
+              />
             </div>
           </div>
         </section>
@@ -335,7 +350,7 @@ export default function LaunchPage() {
           justify-content: flex-end;
         }
         .hero-visual :global(.artifact) {
-          max-width: 440px;
+          max-width: 480px;
         }
         .eyebrow {
           display: inline-block;
@@ -620,7 +635,7 @@ export default function LaunchPage() {
             justify-content: center;
           }
           .hero-visual :global(.artifact) {
-            max-width: 460px;
+            max-width: 500px;
           }
         }
 
