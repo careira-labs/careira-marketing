@@ -47,12 +47,12 @@ declare global {
 }
 
 const EXPECT = [
-  'A founder-led introduction to the Careira mission, product and market opportunity',
-  'A live product demo showing how Careira works for candidates and recruiters',
-  'Early findings from pilot activity with jobseekers, recruiters and partner organisations',
-  'Guest perspectives on hiring, recruitment, careers and the role of AI',
-  'A clear view of what Careira is learning from the market',
-  'Practical ways for recruiters, HR teams, advisors and investors to get involved',
+  'A founder-led introduction to the mission and market',
+  'A live product demo for candidates and recruiters',
+  'Early findings from pilot activity',
+  'Guest perspectives on hiring and AI',
+  'What Careira is learning from the market',
+  'Practical ways to get involved',
 ];
 
 const ATTEND = [
@@ -204,7 +204,7 @@ export default function LaunchPage() {
         </section>
 
         {/* ── Intro ── */}
-        <section className="section section-white">
+        <section className="section section-white intro-section">
           <div className="intro-grid">
             <div className="intro-copy">
               <p>
@@ -221,8 +221,9 @@ export default function LaunchPage() {
               <ScoreBreakdown
                 role="Customer Success Manager"
                 company="Onfund"
-                location="London"
+                location=""
                 workStyle="Remote"
+                salary="$90&ndash;120k"
                 matchLabel="Exceptional Fit"
                 overallScore={80}
                 dimensions={[
@@ -340,7 +341,7 @@ export default function LaunchPage() {
               <div className="host">
                 <img src="/assets/connect/gary-stacey.png" alt="Gary Stacey" className="host-photo" />
                 <span className="host-name">Gary Stacey</span>
-                <span className="host-role">Head of Growth</span>
+                <span className="host-role">Co-Founder</span>
               </div>
             </div>
           </div>
@@ -349,19 +350,17 @@ export default function LaunchPage() {
         {/* ── Final CTA ── */}
         <section className="cta">
           <div className="cta-inner">
+            <span className="cta-eyebrow">The launch event</span>
             <h2>Be part of the Careira launch</h2>
             <p>
               Careira is bringing more clarity, relevance and intelligence to one of the most
-              important markets in the world: hiring. Join us for a focused virtual launch event
-              covering the product, pilot findings, market learning and the next stage of the
-              business.
+              important markets in the world: hiring. Join us for the product, pilot findings,
+              market learning and the next stage of the business.
             </p>
             <div className="cta-meta">
-              <span>Thursday 17 September</span>
-              <span className="cta-meta-dot" aria-hidden="true">&middot;</span>
-              <span>6&ndash;7pm UK &middot; 1&ndash;2pm Eastern</span>
-              <span className="cta-meta-dot" aria-hidden="true">&middot;</span>
-              <span>Online</span>
+              <span className="cta-pill">Thursday 17 September</span>
+              <span className="cta-pill">6&ndash;7pm UK &middot; 1&ndash;2pm Eastern</span>
+              <span className="cta-pill">Online</span>
             </div>
             <button
               id="eb-reserve-final"
@@ -405,25 +404,25 @@ export default function LaunchPage() {
         }
         .eyebrow {
           display: inline-block;
-          font-size: 0.8125rem;
+          font-size: 0.875rem;
           font-weight: 600;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.09em;
           text-transform: uppercase;
           color: #FF7A6F;
           margin-bottom: 1rem;
         }
         h1 {
-          font-size: 2.5rem;
+          font-size: 3.125rem;
           font-weight: 700;
           color: #FFFFFF;
-          margin: 0 0 0.5rem;
-          line-height: 1.15;
+          margin: 0 0 0.625rem;
+          line-height: 1.12;
         }
         .hero-tagline {
-          font-size: 1.25rem;
+          font-size: 1.4375rem;
           font-weight: 500;
           color: rgba(255, 255, 255, 0.85);
-          margin: 0 0 1.75rem;
+          margin: 0 0 1.875rem;
         }
         .event-meta {
           display: flex;
@@ -436,7 +435,7 @@ export default function LaunchPage() {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          font-size: 0.9375rem;
+          font-size: 1.0625rem;
           font-weight: 500;
           color: rgba(255, 255, 255, 0.9);
         }
@@ -445,27 +444,31 @@ export default function LaunchPage() {
           flex-shrink: 0;
         }
         .hero-sub {
-          font-size: 1.0625rem;
+          font-size: 1.1875rem;
           line-height: 1.6;
-          color: rgba(255, 255, 255, 0.8);
-          max-width: 620px;
+          color: rgba(255, 255, 255, 0.82);
+          max-width: 660px;
           margin: 0 auto 2rem;
         }
 
         /* ── Intro (copy + product card) ── */
+        .intro-section {
+          padding-top: 3.25rem;
+          padding-bottom: 3.25rem;
+        }
         .intro-grid {
-          max-width: 1080px;
+          max-width: 980px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 1fr 0.92fr;
-          gap: 4rem;
+          grid-template-columns: 0.78fr 1fr;
+          gap: 3rem;
           align-items: center;
         }
         .intro-copy p {
           font-size: 1.3125rem;
-          line-height: 1.6;
+          line-height: 1.55;
           color: #33374A;
-          margin: 0 0 1.25rem;
+          margin: 0 0 1.125rem;
         }
         .intro-copy p:last-child {
           margin-bottom: 0;
@@ -475,7 +478,7 @@ export default function LaunchPage() {
           justify-content: flex-end;
         }
         .intro-visual :global(.artifact) {
-          max-width: 480px;
+          max-width: 430px;
           border: 1px solid #EEF0F3;
         }
 
@@ -545,9 +548,9 @@ export default function LaunchPage() {
         }
         .tick-list li {
           font-size: 0.9375rem;
-          line-height: 1.55;
+          line-height: 1.5;
           color: #4C526A;
-          padding: 0.5rem 0 0.5rem 1.75rem;
+          padding: 0.5rem 0 0.5rem 2.1rem;
           position: relative;
         }
         .tick-list li::before {
@@ -555,20 +558,20 @@ export default function LaunchPage() {
           position: absolute;
           left: 0;
           top: 0.3rem;
-          width: 16px;
-          height: 16px;
+          width: 20px;
+          height: 20px;
           border-radius: 50%;
-          background: rgba(255, 122, 111, 0.15);
+          background: #FFE9E6;
         }
         .tick-list li::after {
           content: '';
           position: absolute;
-          left: 5.5px;
-          top: 0.5rem;
-          width: 4px;
-          height: 7px;
+          left: 7px;
+          top: 0.52rem;
+          width: 4.5px;
+          height: 8px;
           border: solid #FF7A6F;
-          border-width: 0 1.5px 1.5px 0;
+          border-width: 0 2px 2px 0;
           transform: rotate(45deg);
         }
 
@@ -616,25 +619,43 @@ export default function LaunchPage() {
 
         /* ── Final CTA ── */
         .cta {
-          background: #33374A;
-          padding: 5rem 2rem;
+          position: relative;
+          overflow: hidden;
+          background:
+            radial-gradient(120% 90% at 50% -10%, rgba(255, 122, 111, 0.22), rgba(255, 122, 111, 0) 55%),
+            #2E3142;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          padding: 5.5rem 2rem;
         }
         .cta-inner {
-          max-width: 640px;
+          position: relative;
+          z-index: 1;
+          max-width: 660px;
           margin: 0 auto;
           text-align: center;
         }
+        .cta-eyebrow {
+          display: inline-block;
+          font-size: 0.875rem;
+          font-weight: 600;
+          letter-spacing: 0.09em;
+          text-transform: uppercase;
+          color: #FF7A6F;
+          margin-bottom: 1rem;
+        }
         .cta h2 {
-          font-size: 2rem;
+          font-size: 2.625rem;
           font-weight: 700;
           color: #FFFFFF;
           margin: 0 0 1rem;
+          line-height: 1.15;
         }
         .cta p {
-          font-size: 1.0625rem;
+          font-size: 1.125rem;
           line-height: 1.65;
           color: rgba(255, 255, 255, 0.8);
-          margin: 0 0 2rem;
+          max-width: 560px;
+          margin: 0 auto 2rem;
         }
 
         /* ── Reserve button ── */
@@ -725,8 +746,8 @@ export default function LaunchPage() {
           align-items: center;
         }
         .host-photo {
-          width: 96px;
-          height: 96px;
+          width: 115px;
+          height: 115px;
           border-radius: 50%;
           object-fit: cover;
           border: 3px solid #FFFFFF;
@@ -750,14 +771,21 @@ export default function LaunchPage() {
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
-          gap: 0.5rem;
-          font-size: 0.9375rem;
-          font-weight: 500;
-          color: rgba(255, 255, 255, 0.85);
-          margin: -0.5rem 0 2rem;
+          gap: 0.625rem;
+          margin: 0 0 2.25rem;
         }
-        .cta-meta-dot {
-          color: rgba(255, 255, 255, 0.4);
+        .cta-pill {
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.92);
+          background: rgba(255, 255, 255, 0.07);
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          border-radius: 999px;
+          padding: 0.4375rem 0.9375rem;
+        }
+        .cta .reserve-btn {
+          padding: 1.0625rem 2.75rem;
+          font-size: 1.125rem;
         }
 
         /* ── Disclaimer ── */
@@ -805,10 +833,10 @@ export default function LaunchPage() {
             padding: 3.5rem 1.5rem 3rem;
           }
           h1 {
-            font-size: 1.875rem;
+            font-size: 2.25rem;
           }
           .hero-tagline {
-            font-size: 1.0625rem;
+            font-size: 1.1875rem;
           }
           .event-meta {
             gap: 0.5rem 1.25rem;
@@ -836,10 +864,10 @@ export default function LaunchPage() {
             gap: 1rem;
           }
           .cta {
-            padding: 3.5rem 1.5rem;
+            padding: 4rem 1.5rem;
           }
           .cta h2 {
-            font-size: 1.625rem;
+            font-size: 1.875rem;
           }
           .cta-meta {
             font-size: 0.875rem;
@@ -848,8 +876,8 @@ export default function LaunchPage() {
             gap: 2rem;
           }
           .host-photo {
-            width: 80px;
-            height: 80px;
+            width: 96px;
+            height: 96px;
           }
         }
       `}</style>

@@ -39,7 +39,7 @@ export const CONNECT_PEOPLE: Record<string, ConnectPerson> = {
   garystacey: {
     key: 'garystacey',
     name: 'Gary Stacey',
-    role: 'Head of Growth',
+    role: 'Co-Founder',
     initials: 'GS',
     image: '/assets/connect/gary-stacey.png',
     bio: [

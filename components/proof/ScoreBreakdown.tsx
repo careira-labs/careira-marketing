@@ -8,6 +8,7 @@ interface ScoreBreakdownProps {
   company?: string;
   location?: string;
   workStyle?: string;
+  salary?: string;
   matchLabel?: string;
   overallScore?: number;
   dimensions?: DimensionScore[];
@@ -39,10 +40,12 @@ export default function ScoreBreakdown({
   company = 'Ashworth Group',
   location = 'Manchester',
   workStyle = 'Hybrid',
+  salary,
   matchLabel = 'Strong Alignment',
   overallScore = 79,
   dimensions = DEFAULT_DIMENSIONS,
 }: ScoreBreakdownProps) {
+  const metaParts = [company, location, workStyle, salary].filter(Boolean);
   return (
     <div className="artifact">
       <div className="match-badge">
@@ -50,7 +53,7 @@ export default function ScoreBreakdown({
         <div className="match-underline" />
       </div>
       <h3 className="role-title">{role}</h3>
-      <p className="role-meta">{company} &bull; {location} &bull; {workStyle}</p>
+      <p className="role-meta">{metaParts.join(' • ')}</p>
 
       <div className="score-card">
         <div className="overall-row">
