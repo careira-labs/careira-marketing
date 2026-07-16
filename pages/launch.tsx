@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useEffect, useRef } from 'react';
 import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
+import WhyThisFits from '../components/proof/WhyThisFits';
 
 const EVENT_ID = '1992593899994';
 const EVENT_URL = `https://www.eventbrite.com/e/${EVENT_ID}`;
@@ -128,6 +129,7 @@ export default function LaunchPage() {
         {/* ── Hero ── */}
         <section className="hero">
           <div className="hero-inner">
+            <div className="hero-copy">
             <span className="eyebrow">Virtual launch event</span>
             <h1>Careira Launch Event</h1>
             <p className="hero-tagline">Bringing context back into hiring</p>
@@ -169,6 +171,11 @@ export default function LaunchPage() {
             >
               Reserve your place
             </button>
+            </div>
+
+            <div className="hero-visual" aria-hidden="true">
+              <WhyThisFits />
+            </div>
           </div>
         </section>
 
@@ -312,12 +319,23 @@ export default function LaunchPage() {
         /* ── Hero ── */
         .hero {
           background: #33374A;
-          padding: 5rem 2rem 4rem;
+          padding: 5rem 2rem 4.5rem;
         }
         .hero-inner {
-          max-width: 720px;
+          max-width: 1120px;
           margin: 0 auto;
-          text-align: center;
+          display: grid;
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 3.5rem;
+          align-items: center;
+          text-align: left;
+        }
+        .hero-visual {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .hero-visual :global(.artifact) {
+          max-width: 440px;
         }
         .eyebrow {
           display: inline-block;
@@ -344,7 +362,7 @@ export default function LaunchPage() {
         .event-meta {
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
+          justify-content: flex-start;
           gap: 0.75rem 1.5rem;
           margin-bottom: 1.75rem;
         }
@@ -364,8 +382,8 @@ export default function LaunchPage() {
           font-size: 1.0625rem;
           line-height: 1.6;
           color: rgba(255, 255, 255, 0.8);
-          max-width: 620px;
-          margin: 0 auto 2rem;
+          max-width: 540px;
+          margin: 0 0 2rem;
         }
 
         /* ── Sections ── */
@@ -584,6 +602,28 @@ export default function LaunchPage() {
         }
 
         /* ── Responsive ── */
+        @media (max-width: 900px) {
+          .hero-inner {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            max-width: 560px;
+            text-align: center;
+          }
+          .event-meta {
+            justify-content: center;
+          }
+          .hero-sub {
+            max-width: 540px;
+            margin: 0 auto 2rem;
+          }
+          .hero-visual {
+            justify-content: center;
+          }
+          .hero-visual :global(.artifact) {
+            max-width: 460px;
+          }
+        }
+
         @media (max-width: 768px) {
           .hero {
             padding: 3.5rem 1.5rem 3rem;
