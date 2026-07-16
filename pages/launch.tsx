@@ -129,7 +129,6 @@ export default function LaunchPage() {
         {/* ── Hero ── */}
         <section className="hero">
           <div className="hero-inner">
-            <div className="hero-copy">
             <span className="eyebrow">Virtual launch event</span>
             <h1>Careira Launch Event</h1>
             <p className="hero-tagline">Bringing context back into hiring</p>
@@ -171,12 +170,27 @@ export default function LaunchPage() {
             >
               Reserve your place
             </button>
-            </div>
+          </div>
+        </section>
 
-            <div className="hero-visual" aria-hidden="true">
+        {/* ── Intro ── */}
+        <section className="section section-white">
+          <div className="intro-grid">
+            <div className="intro-copy">
+              <p>
+                Careira is building a clearer way for jobseekers, recruiters and hiring teams to
+                make better decisions about people and roles.
+              </p>
+              <p>
+                This event is Careira&rsquo;s public launch as a live platform. It brings together
+                the product, the problem, and the wider opportunity to improve how hiring decisions
+                are made.
+              </p>
+            </div>
+            <div className="intro-visual" aria-hidden="true">
               <ScoreBreakdown
                 role="Customer Success Manager"
-                company="Orbital"
+                company="Onfund"
                 location="London"
                 workStyle="Remote"
                 matchLabel="Exceptional Fit"
@@ -191,21 +205,6 @@ export default function LaunchPage() {
                 ]}
               />
             </div>
-          </div>
-        </section>
-
-        {/* ── Intro ── */}
-        <section className="section section-white">
-          <div className="prose">
-            <p>
-              Careira is building a clearer way for jobseekers, recruiters and hiring teams to
-              make better decisions about people and roles.
-            </p>
-            <p>
-              This event is Careira&rsquo;s public launch as a live platform. It brings together
-              the product, the problem, and the wider opportunity to improve how hiring decisions
-              are made.
-            </p>
           </div>
         </section>
 
@@ -337,20 +336,9 @@ export default function LaunchPage() {
           padding: 5rem 2rem 4.5rem;
         }
         .hero-inner {
-          max-width: 1120px;
+          max-width: 720px;
           margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1.05fr 0.95fr;
-          gap: 3.5rem;
-          align-items: center;
-          text-align: left;
-        }
-        .hero-visual {
-          display: flex;
-          justify-content: flex-end;
-        }
-        .hero-visual :global(.artifact) {
-          max-width: 480px;
+          text-align: center;
         }
         .eyebrow {
           display: inline-block;
@@ -377,7 +365,7 @@ export default function LaunchPage() {
         .event-meta {
           display: flex;
           flex-wrap: wrap;
-          justify-content: flex-start;
+          justify-content: center;
           gap: 0.75rem 1.5rem;
           margin-bottom: 1.75rem;
         }
@@ -397,8 +385,35 @@ export default function LaunchPage() {
           font-size: 1.0625rem;
           line-height: 1.6;
           color: rgba(255, 255, 255, 0.8);
-          max-width: 540px;
-          margin: 0 0 2rem;
+          max-width: 620px;
+          margin: 0 auto 2rem;
+        }
+
+        /* ── Intro (copy + product card) ── */
+        .intro-grid {
+          max-width: 1080px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr 0.92fr;
+          gap: 4rem;
+          align-items: center;
+        }
+        .intro-copy p {
+          font-size: 1.3125rem;
+          line-height: 1.6;
+          color: #33374A;
+          margin: 0 0 1.25rem;
+        }
+        .intro-copy p:last-child {
+          margin-bottom: 0;
+        }
+        .intro-visual {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .intro-visual :global(.artifact) {
+          max-width: 480px;
+          border: 1px solid #EEF0F3;
         }
 
         /* ── Sections ── */
@@ -618,23 +633,18 @@ export default function LaunchPage() {
 
         /* ── Responsive ── */
         @media (max-width: 900px) {
-          .hero-inner {
+          .intro-grid {
             grid-template-columns: 1fr;
             gap: 2.5rem;
             max-width: 560px;
+          }
+          .intro-copy {
             text-align: center;
           }
-          .event-meta {
+          .intro-visual {
             justify-content: center;
           }
-          .hero-sub {
-            max-width: 540px;
-            margin: 0 auto 2rem;
-          }
-          .hero-visual {
-            justify-content: center;
-          }
-          .hero-visual :global(.artifact) {
+          .intro-visual :global(.artifact) {
             max-width: 500px;
           }
         }
@@ -654,6 +664,9 @@ export default function LaunchPage() {
           }
           .section {
             padding: 3rem 1.5rem;
+          }
+          .intro-copy p {
+            font-size: 1.1875rem;
           }
           .prose h2 {
             font-size: 1.5rem;
