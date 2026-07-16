@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
 
@@ -67,6 +67,8 @@ const AGENDA = [
 ];
 
 export default function LaunchPage() {
+  const widgetReady = useRef(false);
+
   useEffect(() => {
     function initWidgets() {
       if (!window.EBWidgets) return;
@@ -79,6 +81,7 @@ export default function LaunchPage() {
           modalTriggerElementId: id,
         });
       });
+      widgetReady.current = true;
     }
 
     const existing = document.getElementById('eb-widgets-script');
@@ -94,6 +97,13 @@ export default function LaunchPage() {
     script.onload = initWidgets;
     document.body.appendChild(script);
   }, []);
+
+  // The Eventbrite widget binds its own click handler to open the modal.
+  // This only fires as a fallback if the widget script never loaded.
+  function handleReserveFallback() {
+    if (widgetReady.current) return;
+    window.open(EVENT_URL, '_blank', 'noopener,noreferrer');
+  }
 
   return (
     <>
@@ -151,15 +161,14 @@ export default function LaunchPage() {
               move hiring beyond keyword matching, static profiles and guesswork.
             </p>
 
-            <a
+            <button
               id="eb-reserve-hero"
+              type="button"
               className="reserve-btn"
-              href={EVENT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={handleReserveFallback}
             >
               Reserve your place
-            </a>
+            </button>
           </div>
         </section>
 
@@ -271,15 +280,14 @@ export default function LaunchPage() {
               covering the product, pilot findings, market learning and the next stage of the
               business.
             </p>
-            <a
+            <button
               id="eb-reserve-final"
+              type="button"
               className="reserve-btn"
-              href={EVENT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={handleReserveFallback}
             >
               Register now to attend
-            </a>
+            </button>
           </div>
         </section>
 
