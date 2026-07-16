@@ -216,6 +216,10 @@ export default function LaunchPage() {
                 the product, the problem, and the wider opportunity to improve how hiring decisions
                 are made.
               </p>
+              <p>
+                Join us to see the product in action, hear early pilot findings, and understand
+                where Careira goes next.
+              </p>
             </div>
             <div className="intro-visual" aria-hidden="true">
               <ScoreBreakdown
@@ -243,7 +247,9 @@ export default function LaunchPage() {
         <section className="section section-canvas">
           <div className="problem-head">
             <h2 className="statement">
-              Hiring doesn&rsquo;t lack information. It lacks a clear view of relevance.
+              Hiring doesn&rsquo;t lack information.
+              <br />
+              It lacks a clear view of relevance.
             </h2>
           </div>
           <div className="problem-grid">
@@ -462,7 +468,7 @@ export default function LaunchPage() {
           display: grid;
           grid-template-columns: 0.78fr 1fr;
           gap: 3rem;
-          align-items: center;
+          align-items: start;
         }
         .intro-copy p {
           font-size: 1.3125rem;
@@ -497,9 +503,9 @@ export default function LaunchPage() {
           margin: 0 auto;
         }
         .prose p {
-          font-size: 1.0625rem;
-          line-height: 1.7;
-          color: #4C526A;
+          font-size: 1.25rem;
+          line-height: 1.6;
+          color: #33374A;
           margin: 0 0 1.25rem;
         }
         .prose p:last-child {
@@ -846,6 +852,9 @@ export default function LaunchPage() {
           }
           .intro-copy p {
             font-size: 1.1875rem;
+          }
+          .prose p {
+            font-size: 1.125rem;
           }
           .prose h2 {
             font-size: 1.5rem;
