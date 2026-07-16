@@ -16,13 +16,13 @@ interface ScoreBreakdownProps {
 const getBarColor = (score: number): string => {
   if (score >= 75) return '#16A34A';
   if (score >= 50) return '#F59E0B';
-  return '#B42318';
+  return '#667085';
 };
 
 const getScoreColor = (score: number): string => {
   if (score >= 75) return '#16A34A';
   if (score >= 50) return '#F59E0B';
-  return '#B42318';
+  return '#667085';
 };
 
 const DEFAULT_DIMENSIONS: DimensionScore[] = [

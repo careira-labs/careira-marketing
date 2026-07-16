@@ -8,6 +8,30 @@ const EVENT_ID = '1992593899994';
 const EVENT_URL = `https://www.eventbrite.com/e/${EVENT_ID}`;
 const RESERVE_TRIGGERS = ['eb-reserve-hero', 'eb-reserve-final'];
 
+const EVENT_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'Careira Launch Event',
+  description:
+    'A founder-led introduction to Careira’s AI-native hiring platform, with a live product demo, early pilot findings and guest perspectives on the future of hiring.',
+  startDate: '2026-09-17T18:00:00+01:00',
+  endDate: '2026-09-17T19:00:00+01:00',
+  eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  location: {
+    '@type': 'VirtualLocation',
+    url: 'https://www.careira.com/launch',
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'Careira',
+    url: 'https://www.careira.com',
+  },
+  performer: { '@type': 'Person', name: 'Dan Mason' },
+  image: 'https://www.careira.com/assets/LOGO-Careira-bitone.png',
+  url: 'https://www.careira.com/launch',
+};
+
 declare global {
   interface Window {
     EBWidgets?: {
@@ -120,7 +144,12 @@ export default function LaunchPage() {
           content="A founder-led introduction to Careira&rsquo;s AI-native hiring platform. Thursday 17 September, 6–7pm UK time. Online."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.careira.com/launch" />
         <link rel="canonical" href="https://www.careira.com/launch" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(EVENT_JSONLD) }}
+        />
       </Head>
 
       <PublicNav theme="dark" />
@@ -170,6 +199,7 @@ export default function LaunchPage() {
             >
               Reserve your place
             </button>
+            <p className="reserve-note">Reserve in under a minute &middot; Secured through Eventbrite</p>
           </div>
         </section>
 
@@ -210,22 +240,27 @@ export default function LaunchPage() {
 
         {/* ── Problem ── */}
         <section className="section section-canvas">
-          <div className="prose">
+          <div className="problem-head">
             <h2 className="statement">
               Hiring doesn&rsquo;t lack information. It lacks a clear view of relevance.
             </h2>
-            <ul className="plain-list">
-              <li>
-                Jobseekers struggle to show the full picture of who they are and what they could do.
-              </li>
-              <li>
-                Recruiters are buried in profiles, applications, messages and disconnected tools.
-              </li>
-              <li>
-                Hiring teams are still left asking the same core question: who is genuinely worth
-                speaking to, and why?
-              </li>
-            </ul>
+          </div>
+          <div className="problem-grid">
+            <div className="problem-card">
+              <span className="problem-label">Jobseekers</span>
+              <p>struggle to show the full picture of who they are and what they could do.</p>
+            </div>
+            <div className="problem-card">
+              <span className="problem-label">Recruiters</span>
+              <p>are buried in profiles, applications, messages and disconnected tools.</p>
+            </div>
+            <div className="problem-card">
+              <span className="problem-label">Hiring teams</span>
+              <p>
+                are still left asking the same core question: who is genuinely worth speaking to,
+                and why?
+              </p>
+            </div>
           </div>
         </section>
 
@@ -291,6 +326,26 @@ export default function LaunchPage() {
           </div>
         </section>
 
+        {/* ── Hosts ── */}
+        <section className="section section-canvas">
+          <div className="hosts">
+            <h2 className="section-heading">Your hosts</h2>
+            <p className="hosts-sub">A founder-led session, hosted live.</p>
+            <div className="hosts-grid">
+              <div className="host">
+                <img src="/assets/connect/dan-mason.png" alt="Dan Mason" className="host-photo" />
+                <span className="host-name">Dan Mason</span>
+                <span className="host-role">Founder</span>
+              </div>
+              <div className="host">
+                <img src="/assets/connect/gary-stacey.png" alt="Gary Stacey" className="host-photo" />
+                <span className="host-name">Gary Stacey</span>
+                <span className="host-role">Head of Growth</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ── Final CTA ── */}
         <section className="cta">
           <div className="cta-inner">
@@ -301,6 +356,13 @@ export default function LaunchPage() {
               covering the product, pilot findings, market learning and the next stage of the
               business.
             </p>
+            <div className="cta-meta">
+              <span>Thursday 17 September</span>
+              <span className="cta-meta-dot" aria-hidden="true">&middot;</span>
+              <span>6&ndash;7pm UK &middot; 1&ndash;2pm Eastern</span>
+              <span className="cta-meta-dot" aria-hidden="true">&middot;</span>
+              <span>Online</span>
+            </div>
             <button
               id="eb-reserve-final"
               type="button"
@@ -309,6 +371,7 @@ export default function LaunchPage() {
             >
               Register now to attend
             </button>
+            <p className="reserve-note reserve-note-dark">Reserve in under a minute &middot; Secured through Eventbrite</p>
           </div>
         </section>
 
@@ -455,33 +518,6 @@ export default function LaunchPage() {
           margin-bottom: 0 !important;
         }
 
-        .plain-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-        .plain-list li {
-          font-size: 1.0625rem;
-          line-height: 1.6;
-          color: #4C526A;
-          padding: 0.75rem 0 0.75rem 1.75rem;
-          position: relative;
-          border-top: 1px solid #E5E7EB;
-        }
-        .plain-list li:first-child {
-          border-top: none;
-        }
-        .plain-list li::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 1.35rem;
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: #FF7A6F;
-        }
-
         /* ── Two column cards ── */
         .two-col {
           max-width: 900px;
@@ -518,14 +554,22 @@ export default function LaunchPage() {
           content: '';
           position: absolute;
           left: 0;
-          top: 0.6rem;
-          width: 14px;
-          height: 14px;
+          top: 0.3rem;
+          width: 16px;
+          height: 16px;
           border-radius: 50%;
           background: rgba(255, 122, 111, 0.15);
-          background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2 2 4-4' stroke='%23FF7A6F' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: center;
+        }
+        .tick-list li::after {
+          content: '';
+          position: absolute;
+          left: 5.5px;
+          top: 0.5rem;
+          width: 4px;
+          height: 7px;
+          border: solid #FF7A6F;
+          border-width: 0 1.5px 1.5px 0;
+          transform: rotate(45deg);
         }
 
         /* ── Agenda ── */
@@ -606,12 +650,114 @@ export default function LaunchPage() {
           border-radius: 10px;
           cursor: pointer;
           text-decoration: none;
-          transition: background 0.15s, transform 0.15s;
+          transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+          box-shadow: 0 8px 20px rgba(255, 122, 111, 0.28);
         }
         .reserve-btn:hover {
           background: #FF5C4D;
           transform: translateY(-1px);
+          box-shadow: 0 10px 26px rgba(255, 122, 111, 0.36);
           opacity: 1;
+        }
+        .reserve-note {
+          font-size: 0.8125rem;
+          color: rgba(255, 255, 255, 0.55);
+          margin: 0.875rem 0 0;
+        }
+        .reserve-note-dark {
+          color: rgba(255, 255, 255, 0.55);
+        }
+
+        /* ── Problem persona cards ── */
+        .problem-head {
+          max-width: 760px;
+          margin: 0 auto 2.5rem;
+          text-align: center;
+        }
+        .problem-grid {
+          max-width: 960px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+        .problem-card {
+          background: #FFFFFF;
+          border-radius: 12px;
+          padding: 1.75rem;
+          border-top: 3px solid #FF7A6F;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.03);
+        }
+        .problem-label {
+          display: block;
+          font-size: 1.0625rem;
+          font-weight: 700;
+          color: #33374A;
+          margin-bottom: 0.5rem;
+        }
+        .problem-card p {
+          font-size: 0.9375rem;
+          line-height: 1.6;
+          color: #4C526A;
+          margin: 0;
+        }
+
+        /* ── Hosts ── */
+        .hosts {
+          max-width: 720px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .hosts-sub {
+          font-size: 1.0625rem;
+          color: #4C526A;
+          margin: 0.5rem 0 2.25rem;
+        }
+        .hosts-grid {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 2.5rem;
+        }
+        .host {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .host-photo {
+          width: 96px;
+          height: 96px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 3px solid #FFFFFF;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+          margin-bottom: 0.875rem;
+        }
+        .host-name {
+          font-size: 1rem;
+          font-weight: 700;
+          color: #33374A;
+        }
+        .host-role {
+          font-size: 0.875rem;
+          color: #667085;
+          margin-top: 0.125rem;
+        }
+
+        /* ── CTA meta ── */
+        .cta-meta {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.9375rem;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.85);
+          margin: -0.5rem 0 2rem;
+        }
+        .cta-meta-dot {
+          color: rgba(255, 255, 255, 0.4);
         }
 
         /* ── Disclaimer ── */
@@ -646,6 +792,11 @@ export default function LaunchPage() {
           }
           .intro-visual :global(.artifact) {
             max-width: 500px;
+          }
+          .problem-grid {
+            grid-template-columns: 1fr;
+            max-width: 480px;
+            gap: 1rem;
           }
         }
 
@@ -689,6 +840,16 @@ export default function LaunchPage() {
           }
           .cta h2 {
             font-size: 1.625rem;
+          }
+          .cta-meta {
+            font-size: 0.875rem;
+          }
+          .hosts-grid {
+            gap: 2rem;
+          }
+          .host-photo {
+            width: 80px;
+            height: 80px;
           }
         }
       `}</style>
