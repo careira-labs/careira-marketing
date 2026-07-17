@@ -752,11 +752,10 @@ export default function LaunchPage() {
           align-items: center;
         }
         .host-photo {
-          width: 115px;
-          height: 115px;
+          width: 150px;
+          height: 150px;
           border-radius: 50%;
           object-fit: cover;
-          border: 3px solid #FFFFFF;
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
           margin-bottom: 0.875rem;
         }
