@@ -249,9 +249,9 @@ export default function PrivacyPage() {
               <li><strong>Data portability</strong> – request a copy of your data in a portable, machine-readable format</li>
               <li><strong>Restrict or object</strong> to certain processing, including marketing</li>
               <li><strong>Withdraw your consent</strong> at any time, where processing is based on consent</li>
-              <li><strong>Human review</strong> of automated decisions, including AI-generated job match recommendations</li>
+              <li><strong>Human review</strong> of any AI-assisted job match recommendation, and an explanation of how a match score was reached</li>
             </ul>
-            <p>You can manage most of your preferences directly in your Careira account. If you wish to exercise any of your rights, please contact us using the details below.</p>
+            <p>You can update some account settings directly in your Careira account. To exercise any of these rights, including access, portability, erasure, or a request for human review or an explanation, contact us using the details below. We will respond within one month.</p>
           </section>
 
           <section>
