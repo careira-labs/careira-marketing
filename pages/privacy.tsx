@@ -153,6 +153,9 @@ export default function PrivacyPage() {
               <li>Generates match scores and explanations for each recommendation</li>
             </ul>
             <p>
+              Data we send to our AI providers is processed under strict data-processing agreements, is not used to train their models, and is not retained by them for longer than necessary to provide the service.
+            </p>
+            <p>
               No decisions are fully automated. Job recommendations are presented to you for your own evaluation – you decide which opportunities to pursue. Similarly, recruiters receive candidate shortlists as decision-support tools, not as final hiring decisions.
             </p>
             <p>

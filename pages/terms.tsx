@@ -61,6 +61,9 @@ export default function TermsPage() {
             <p>
               You must be at least 18 years old to create an account. We reserve the right to suspend or terminate accounts that violate these Terms.
             </p>
+            <p>
+              The Service is not offered to, or directed at, individuals resident in the European Economic Area (EEA). By creating an account, you confirm that you are not resident in the EEA.
+            </p>
           </section>
 
           <section>
@@ -78,6 +81,9 @@ export default function TermsPage() {
             </ul>
             <p>
               You are responsible for ensuring that Your Content is accurate and does not infringe on the rights of any third party. Do not upload content that is fraudulent, misleading, defamatory, or unlawful.
+            </p>
+            <p>
+              Please do not include special category personal data (such as information about your health, racial or ethnic origin, religious or philosophical beliefs, political opinions, trade union membership, or sex life or sexual orientation) in Your Content. We do not ask for this information and do not use it to match you. If you choose to include it, you explicitly consent to us processing it as part of Your Content for the purposes described above.
             </p>
           </section>
 
@@ -128,6 +134,18 @@ export default function TermsPage() {
               <li>Comply with all applicable employment and anti-discrimination laws</li>
               <li>Treat candidate data in accordance with applicable data protection laws</li>
             </ul>
+            <p>
+              Where you add, upload, or import candidate personal data that you have sourced yourself (rather than a candidate who registered with Careira directly), the following applies:
+            </p>
+            <ul>
+              <li>You are the <strong>data controller</strong> for that candidate personal data, and Careira acts as a <strong>data processor</strong> processing it on your behalf and on your documented instructions, solely to provide the Service.</li>
+              <li>You confirm that you have a lawful basis to process and to share that candidate data with Careira, and that you will provide each such candidate with the privacy information required by data protection law, including where the data was obtained from a source other than the candidate.</li>
+              <li>You are responsible for responding to that candidate&rsquo;s data protection rights requests; Careira will provide reasonable assistance, including deleting or returning the candidate&rsquo;s data on your instruction.</li>
+              <li>You will not upload special category personal data unless you have a lawful condition to do so.</li>
+            </ul>
+            <p>
+              Careira will process candidate personal data that you provide only to provide the Service on your instructions, and will not use it for its own independent purposes. This data processing arrangement forms part of these Terms.
+            </p>
           </section>
 
           <section>
