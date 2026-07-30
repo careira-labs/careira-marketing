@@ -98,17 +98,17 @@ export default function PrivacyPage() {
                   <tr>
                     <td>Create and manage your Careira account</td>
                     <td>Contract</td>
-                    <td>Until you delete your account</td>
+                    <td>Until you delete your account, or 3 years after your account becomes inactive, whichever is sooner</td>
                   </tr>
                   <tr>
                     <td>Provide AI-powered job-matching recommendations</td>
                     <td>Legitimate interest</td>
-                    <td>Until you delete your account</td>
+                    <td>Until you delete your account, or 3 years after your account becomes inactive, whichever is sooner</td>
                   </tr>
                   <tr>
                     <td>Parse your CV and build your career profile</td>
                     <td>Legitimate interest</td>
-                    <td>Until you delete your account or CV</td>
+                    <td>Until you delete your account or CV, or 3 years after your account becomes inactive, whichever is sooner</td>
                   </tr>
                   <tr>
                     <td>Enable recruiters/employers to view your profile (if you choose to make it visible)</td>
