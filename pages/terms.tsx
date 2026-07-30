@@ -59,7 +59,7 @@ export default function TermsPage() {
               <li>Accept responsibility for all activity that occurs under your account</li>
             </ul>
             <p>
-              You must be at least 18 years old to create an account. We reserve the right to suspend or terminate accounts that violate these Terms.
+              You must be at least 16 years old to create an account. We reserve the right to suspend or terminate accounts that violate these Terms.
             </p>
             <p>
               The Service is not offered to, or directed at, individuals resident in the European Economic Area (EEA). By creating an account, you confirm that you are not resident in the EEA.
