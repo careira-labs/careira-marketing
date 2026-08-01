@@ -227,6 +227,11 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
                 <button type="submit" disabled={submitting} className="submit-btn">
                   {submitting ? 'Sending…' : 'Send message'}
                 </button>
+
+                <p className="form-privacy">
+                  We use the details you provide only to respond to your enquiry. See our{' '}
+                  <a href="https://www.careira.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+                </p>
               </form>
             )}
           </div>
@@ -431,6 +436,22 @@ export default function ConnectPage({ personKey }: ConnectPageProps) {
         .submit-btn:disabled {
           opacity: 0.7;
           cursor: not-allowed;
+        }
+
+        .form-privacy {
+          margin: 1rem 0 0;
+          font-size: 0.8125rem;
+          color: #64748b;
+          line-height: 1.5;
+        }
+
+        .form-privacy a {
+          color: #64748b;
+          text-decoration: underline;
+        }
+
+        .form-privacy a:hover {
+          color: #33374A;
         }
 
         /* Success state */
