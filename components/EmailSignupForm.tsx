@@ -80,6 +80,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setShowExtra(true);
     setLoading(true);
     setError(null);
     setEmailError(null);
@@ -97,23 +98,21 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
       hasErrors = true;
     }
 
-    if (!compact) {
-      if (!name.trim()) {
-        setNameError('Name is required.');
-        hasErrors = true;
-      }
-      if (!country) {
-        setCountryError('Country is required.');
-        hasErrors = true;
-      }
-      if (!intent) {
-        setIntentError('Please select an option.');
-        hasErrors = true;
-      }
-      if (source === 'hirers' && !company.trim()) {
-        setCompanyError('Company name is required.');
-        hasErrors = true;
-      }
+    if (!name.trim()) {
+      setNameError('Name is required.');
+      hasErrors = true;
+    }
+    if (!country) {
+      setCountryError('Country is required.');
+      hasErrors = true;
+    }
+    if (!intent) {
+      setIntentError('Please select an option.');
+      hasErrors = true;
+    }
+    if (source === 'hirers' && !company.trim()) {
+      setCompanyError('Company name is required.');
+      hasErrors = true;
     }
 
     if (hasErrors) {
@@ -188,6 +187,64 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
     return (
       <>
         <form onSubmit={handleSubmit} className="signup-form compact" id="email-signup" data-lpignore="true" data-1p-ignore data-form-type="other">
+          {showExtra && (
+            <div className="extra-fields">
+              <div className="field-row">
+                <div className="field">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={name}
+                    onChange={(e) => { setName(e.target.value); setNameError(null); }}
+                    autoComplete="given-name"
+                    data-lpignore="true"
+                    data-1p-ignore
+                    className={nameError ? 'error' : ''}
+                  />
+                  {nameError && <span className="field-error">{nameError}</span>}
+                </div>
+                <div className="field">
+                  <SearchableSelect
+                    options={COUNTRIES}
+                    value={country}
+                    onChange={(v) => { setCountry(v); setCountryError(null); }}
+                    placeholder="Country"
+                    hasError={!!countryError}
+                  />
+                  {countryError && <span className="field-error">{countryError}</span>}
+                </div>
+              </div>
+
+              <div className="field">
+                <select
+                  value={intent}
+                  onChange={(e) => { setIntent(e.target.value); setIntentError(null); }}
+                  className={`form-select${intentError ? ' error' : ''}${!intent ? ' placeholder' : ''}`}
+                >
+                  <option value="" disabled>How can Careira help you?</option>
+                  {intentOptions.map((o) => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+                {intentError && <span className="field-error">{intentError}</span>}
+              </div>
+
+              {source === 'hirers' && (
+                <div className="field">
+                  <input
+                    type="text"
+                    placeholder="Company name"
+                    value={company}
+                    onChange={(e) => { setCompany(e.target.value); setCompanyError(null); }}
+                    autoComplete="organization"
+                    className={companyError ? 'error' : ''}
+                  />
+                  {companyError && <span className="field-error">{companyError}</span>}
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="form-content">
             <div className="input-group">
               <input
@@ -198,6 +255,7 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
                   setEmail(e.target.value);
                   setEmailError(null);
                 }}
+                onFocus={() => setShowExtra(true)}
                 onBlur={handleEmailBlur}
                 required
                 autoComplete="email"
@@ -250,7 +308,9 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
             gap: 0.5rem;
           }
 
-          .signup-form.compact input[type="email"] {
+          .signup-form.compact input[type="email"],
+          .signup-form.compact input[type="text"],
+          .signup-form.compact .form-select {
             width: 100%;
             padding: 0.625rem 0.875rem;
             border: 1px solid var(--border);
@@ -261,17 +321,65 @@ export default function EmailSignupForm({ source, title, compact = false }: Emai
             color: var(--text);
           }
 
-          .signup-form.compact input[type="email"]:focus {
+          .signup-form.compact input[type="email"]:focus,
+          .signup-form.compact input[type="text"]:focus,
+          .signup-form.compact .form-select:focus {
             outline: none;
             border-color: var(--brand-coral);
             box-shadow: 0 0 0 3px var(--focus-ring);
           }
 
-          .signup-form.compact input[type="email"].error {
+          .signup-form.compact input[type="email"].error,
+          .signup-form.compact input[type="text"].error,
+          .signup-form.compact .form-select.error {
             border-color: var(--error);
           }
 
-          .signup-form.compact input[type="email"]::placeholder {
+          .signup-form.compact input[type="email"]::placeholder,
+          .signup-form.compact input[type="text"]::placeholder {
+            color: var(--text-muted);
+          }
+
+          .signup-form.compact .extra-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-width: 480px;
+            margin: 0 auto 0.5rem auto;
+            animation: slideDown 0.2s ease-out;
+          }
+
+          @keyframes slideDown {
+            from {
+              opacity: 0;
+              transform: translateY(8px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .signup-form.compact .field-row {
+            display: flex;
+            gap: 0.5rem;
+          }
+
+          .signup-form.compact .field {
+            flex: 1;
+            min-width: 0;
+          }
+
+          .signup-form.compact .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%23667085' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.875rem center;
+            padding-right: 2.25rem;
+          }
+
+          .signup-form.compact .form-select.placeholder {
             color: var(--text-muted);
           }
 

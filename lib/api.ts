@@ -35,10 +35,20 @@ export async function joinWaitlist(data: WaitlistRequest): Promise<WaitlistRespo
 
   if (!res.ok) {
     const error = await res.json().catch(() => ({ detail: 'Failed to join waitlist' }));
-    throw new Error(error.detail || 'Failed to join waitlist');
+    throw new Error(detailToMessage(error.detail, 'Failed to join waitlist'));
   }
 
   return res.json();
+}
+
+/** FastAPI `detail` can be a string or a list of validation-error objects. */
+function detailToMessage(detail: unknown, fallback: string): string {
+  if (typeof detail === 'string') return detail;
+  if (Array.isArray(detail)) {
+    const msgs = detail.map((d: any) => d?.msg).filter(Boolean);
+    if (msgs.length) return msgs.join(' ');
+  }
+  return fallback;
 }
 
 
@@ -86,7 +96,7 @@ export async function applyForPilot(
 
   if (!res.ok) {
     const error = await res.json().catch(() => ({ detail: 'Failed to submit application' }));
-    throw new Error(error.detail || 'Failed to submit application');
+    throw new Error(detailToMessage(error.detail, 'Failed to submit application'));
   }
 
   return res.json();
