@@ -170,6 +170,18 @@ textarea::placeholder {
   color: var(--text-muted);
 }
 
+/* iOS Safari zooms the page when a focused form control is under 16px.
+   Root font-size is 15px, so rem-based sizes all fall below the threshold. */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
 label {
   display: block;
   font-size: 0.875rem;

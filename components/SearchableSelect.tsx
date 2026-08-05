@@ -190,6 +190,13 @@ export default function SearchableSelect({
           color: var(--text-muted);
         }
 
+        /* iOS zooms the page when a focused input is under 16px */
+        @media (max-width: 768px) {
+          .ss-input {
+            font-size: 16px;
+          }
+        }
+
         .ss-chevron {
           position: absolute;
           right: 0.875rem;
