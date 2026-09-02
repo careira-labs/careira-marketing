@@ -223,7 +223,7 @@ export default function TermsPage() {
         }
 
         .container {
-          max-width: 780px;
+          max-width: 960px;
           margin: 0 auto;
           padding: 0 2rem;
           color: #33374A;
