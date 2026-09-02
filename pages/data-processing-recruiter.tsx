@@ -122,7 +122,7 @@ export default function DataProcessingRecruiterPage() {
           <section>
             <h2>7. International transfers</h2>
             <p>
-              Where candidate personal data is transferred outside the United Kingdom, Careira will ensure that an appropriate transfer mechanism or other safeguard required by applicable data protection law is in place.
+              Where processing under this DPA involves an international transfer of personal data that is subject to transfer restrictions under applicable data protection law, Careira will ensure that an appropriate lawful transfer mechanism or safeguard is in place. Where UK data protection law applies, this may include UK adequacy regulations, the UK International Data Transfer Agreement, the UK Addendum to the European Commission&rsquo;s Standard Contractual Clauses, or another transfer mechanism permitted by applicable law. Careira&rsquo;s core hosting, storage and AI service providers are located in the USA. Further information about the location of processing and the safeguards used is set out in Careira&rsquo;s <a href="/privacy">Privacy Policy</a>.
             </p>
           </section>
 
