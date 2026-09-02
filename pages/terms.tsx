@@ -19,7 +19,7 @@ export default function TermsPage() {
       <main>
         <div className="container">
           <h1>Terms of Service</h1>
-          <p className="updated">Last Updated: 26th March 2026</p>
+          <p className="updated">Last Updated: 15th August 2026</p>
 
           <section>
             <h2>1. About these terms</h2>
@@ -85,6 +85,9 @@ export default function TermsPage() {
             <p>
               Please do not include special category personal data (such as information about your health, racial or ethnic origin, religious or philosophical beliefs, political opinions, trade union membership, or sex life or sexual orientation) in Your Content. We do not ask for this information and do not use it to match you. If you choose to include it, you explicitly consent to us processing it as part of Your Content for the purposes described above.
             </p>
+            <p>
+              Where a recruiter or employer uploads personal data relating to independently sourced candidates, Section 8 and the <a href="/data-processing-recruiter">Recruiter Data Processing Addendum</a> apply to that data.
+            </p>
           </section>
 
           <section>
@@ -138,7 +141,7 @@ export default function TermsPage() {
               Where you add, upload, or import candidate personal data that you have sourced yourself (rather than a candidate who registered with Careira directly), the following applies:
             </p>
             <ul>
-              <li>You are the <strong>data controller</strong> for that candidate personal data, and Careira acts as a <strong>data processor</strong> processing it on your behalf and on your documented instructions, solely to provide the Service.</li>
+              <li>Where applicable under data protection law, you are the <strong>data controller</strong> for that candidate personal data, and Careira acts as a <strong>data processor</strong> processing it on your behalf and on your documented instructions, solely to provide the Service.</li>
               <li>You confirm that you have a lawful basis to process and to share that candidate data with Careira, and that you will provide each such candidate with the privacy information required by data protection law, including where the data was obtained from a source other than the candidate.</li>
               <li>You are responsible for responding to that candidate&rsquo;s data protection rights requests; Careira will provide reasonable assistance, including deleting or returning the candidate&rsquo;s data on your instruction.</li>
               <li>You will not upload special category personal data unless you have a lawful condition to do so.</li>

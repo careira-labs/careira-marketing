@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <main>
         <div className="container">
           <h1>Privacy Policy</h1>
-          <p className="updated">Last Updated: 24th March 2026</p>
+          <p className="updated">Last Updated: 15th August 2026</p>
 
           <section>
             <h2>When this Privacy Policy applies</h2>
@@ -246,7 +246,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2>Data transfers outside the UK or EEA</h2>
+            <h2>International data processing and transfers</h2>
             <p>
               Your information is processed by services located in the United States (see sub-processor list above). Where personal data is transferred internationally, we use an appropriate transfer mechanism recognised under applicable data protection law, such as an adequacy arrangement, the UK International Data Transfer Agreement or UK Addendum, or other applicable contractual safeguards.
             </p>
