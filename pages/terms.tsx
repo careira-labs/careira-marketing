@@ -144,7 +144,7 @@ export default function TermsPage() {
               <li>You will not upload special category personal data unless you have a lawful condition to do so.</li>
             </ul>
             <p>
-              Careira will process candidate personal data that you provide only to provide the Service on your instructions, and will not use it for its own independent purposes. This data processing arrangement forms part of these Terms.
+              Careira will process candidate personal data that you provide only to provide the Service on your instructions, and will not use it for its own independent purposes. Where Careira processes candidate personal data on your behalf as described above, the <a href="/data-processing-recruiter">Careira Recruiter Data Processing Addendum</a> forms part of these Terms and applies to that processing.
             </p>
           </section>
 
