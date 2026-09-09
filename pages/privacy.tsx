@@ -40,7 +40,7 @@ export default function PrivacyPage() {
               Careira Ltd is the <strong>data controller</strong> for personal information we collect about people who use or interact directly with Careira. Where a recruiter or employer provides Careira with personal data about candidates it has sourced independently, that recruiter or employer is normally the data controller and Careira processes the candidate data on its behalf as a <strong>data processor</strong>.
             </p>
             <p>
-              That processing is governed by our <a href="/data-processing-recruiter">Recruiter Data Processing Addendum</a>, and the recruiter&rsquo;s or employer&rsquo;s own privacy notice will explain the lawful basis on which it uses candidate data.
+              That processing is governed by our <a href="/data-processing-recruiter">Data Processing Addendum</a>, and the recruiter&rsquo;s or employer&rsquo;s own privacy notice will explain the lawful basis on which it uses candidate data.
             </p>
             <p>This policy explains:</p>
             <ul>
@@ -241,7 +241,7 @@ export default function PrivacyPage() {
               </table>
             </div>
             <p>
-              Where we process candidate information on behalf of a recruiter or employer, our use of sub-processors is also governed by our <a href="/data-processing-recruiter">Recruiter Data Processing Addendum</a>.
+              Where we process candidate information on behalf of a recruiter or employer, our use of sub-processors is also governed by our <a href="/data-processing-recruiter">Data Processing Addendum</a>.
             </p>
           </section>
 

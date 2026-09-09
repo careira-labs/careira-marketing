@@ -6,7 +6,7 @@ export default function DataProcessingRecruiterPage() {
   return (
     <>
       <Head>
-        <title>Recruiter Data Processing Addendum – Careira</title>
+        <title>Data Processing Addendum – Careira</title>
         <meta
           name="description"
           content="Data Processing Addendum for recruiters and employers using the Careira platform."
@@ -18,7 +18,7 @@ export default function DataProcessingRecruiterPage() {
 
       <main>
         <div className="container">
-          <h1>Careira Recruiter Data Processing Addendum</h1>
+          <h1>Careira Data Processing Addendum</h1>
           <p className="updated">Last updated: 15 August 2026</p>
 
           <section>

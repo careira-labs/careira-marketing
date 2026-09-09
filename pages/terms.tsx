@@ -86,7 +86,7 @@ export default function TermsPage() {
               Please do not include special category personal data (such as information about your health, racial or ethnic origin, religious or philosophical beliefs, political opinions, trade union membership, or sex life or sexual orientation) in Your Content. We do not ask for this information and do not use it to match you. If you choose to include it, you explicitly consent to us processing it as part of Your Content for the purposes described above.
             </p>
             <p>
-              Where a recruiter or employer uploads personal data relating to independently sourced candidates, Section 8 and the <a href="/data-processing-recruiter">Recruiter Data Processing Addendum</a> apply to that data.
+              Where a recruiter or employer uploads personal data relating to independently sourced candidates, Section 8 and the <a href="/data-processing-recruiter">Data Processing Addendum</a> apply to that data.
             </p>
           </section>
 
@@ -147,7 +147,7 @@ export default function TermsPage() {
               <li>You will not upload special category personal data unless you have a lawful condition to do so.</li>
             </ul>
             <p>
-              Careira will process candidate personal data that you provide only to provide the Service on your instructions, and will not use it for its own independent purposes. Where Careira processes candidate personal data on your behalf as described above, the <a href="/data-processing-recruiter">Careira Recruiter Data Processing Addendum</a> forms part of these Terms and applies to that processing.
+              Careira will process candidate personal data that you provide only to provide the Service on your instructions, and will not use it for its own independent purposes. Where Careira processes candidate personal data on your behalf as described above, the <a href="/data-processing-recruiter">Careira Data Processing Addendum</a> forms part of these Terms and applies to that processing.
             </p>
           </section>
 
