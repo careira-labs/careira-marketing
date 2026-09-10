@@ -19,11 +19,11 @@ export default function DataProcessingRecruiterPage() {
       <main>
         <div className="container">
           <h1>Careira Data Processing Addendum</h1>
-          <p className="updated">Last updated: 15 August 2026</p>
+          <p className="updated">Last updated: 10 September 2026</p>
 
           <section>
             <p>
-              This Data Processing Addendum (&ldquo;DPA&rdquo;) forms part of the Careira <a href="/terms">Terms of Service</a> and applies where a recruiter, employer or other organisation using Careira (&ldquo;Controller&rdquo;) provides Careira Ltd (&ldquo;Careira&rdquo; or &ldquo;Processor&rdquo;) with personal data relating to candidates that the Controller has sourced independently of Careira.
+              This Data Processing Addendum (&ldquo;DPA&rdquo;) forms part of the Careira <a href="/terms">Terms of Service</a> and applies where a recruiter, employer, educational institution or other organisation using Careira (&ldquo;Controller&rdquo;) provides Careira Ltd (&ldquo;Careira&rdquo; or &ldquo;Processor&rdquo;) with personal data relating to candidates that the Controller has sourced independently of Careira.
             </p>
             <p>
               For the purposes of this DPA, the terms personal data, processing, controller, processor and data subject have the meanings given to them under applicable data protection law.
@@ -46,13 +46,13 @@ export default function DataProcessingRecruiterPage() {
           <section>
             <h2>2. Details of processing</h2>
             <p>
-              <strong>Subject matter:</strong> Candidate data provided to Careira by the Controller for recruitment-related use of the Careira platform.
+              <strong>Subject matter:</strong> Candidate data provided to Careira by the Controller for use of the Careira platform.
             </p>
             <p>
               <strong>Duration:</strong> For the period during which the Controller uses Careira in relation to that candidate, unless the Controller instructs Careira to delete the data earlier.
             </p>
             <p>
-              <strong>Nature and purpose:</strong> Storage, parsing and structuring of candidate information; creation of candidate profiles; candidate-to-role matching and analysis; generation of match scores, recommendations and explanations; candidate search and resurfacing; and other processing necessary to provide the Careira recruitment service.
+              <strong>Nature and purpose:</strong> Storage, parsing and structuring of candidate information; creation of candidate profiles; candidate-to-role matching and analysis; generation of match scores, recommendations and explanations; candidate search and resurfacing; and other processing necessary to provide the Careira service.
             </p>
             <p>
               <strong>Data subjects:</strong> Candidates and prospective candidates whose information is supplied by the Controller.
