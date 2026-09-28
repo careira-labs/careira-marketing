@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <main>
         <div className="container">
           <h1>Privacy Policy</h1>
-          <p className="updated">Last Updated: 15th August 2026</p>
+          <p className="updated">Last Updated: 28th September 2026</p>
 
           <section>
             <h2>When this Privacy Policy applies</h2>
@@ -235,6 +235,11 @@ export default function PrivacyPage() {
                   <tr>
                     <td>Resend</td>
                     <td>Transactional email delivery</td>
+                    <td>United States</td>
+                  </tr>
+                  <tr>
+                    <td>Stripe</td>
+                    <td>Payment processing and billing</td>
                     <td>United States</td>
                   </tr>
                 </tbody>
