@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
 import ScoreBreakdown from '../components/proof/ScoreBreakdown';
@@ -8,14 +8,20 @@ const EVENT_ID = '1992593899994';
 const EVENT_URL = `https://www.eventbrite.com/e/${EVENT_ID}`;
 const RESERVE_TRIGGERS = ['eb-reserve-hero', 'eb-reserve-final'];
 
+// Eventbrite's widget script sets its own cookies, so it can't load until the
+// visitor consents (PECR) – gated behind this banner rather than a site-wide
+// cookie-consent platform, since it's the only non-essential script on the site.
+const EB_CONSENT_KEY = 'careira_eb_consent';
+type EbConsent = 'unknown' | 'accepted' | 'declined';
+
 const EVENT_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'Event',
   name: 'Careira Launch Event',
   description:
     'A founder-led introduction to Careira’s AI-native hiring platform, with a live product demo, early pilot findings and guest perspectives on the future of hiring.',
-  startDate: '2026-09-17T18:00:00+01:00',
-  endDate: '2026-09-17T19:00:00+01:00',
+  startDate: '2026-11-12T18:00:00+00:00',
+  endDate: '2026-11-12T19:00:00+00:00',
   eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
   eventStatus: 'https://schema.org/EventScheduled',
   location: {
@@ -93,8 +99,21 @@ const AGENDA = [
 
 export default function LaunchPage() {
   const widgetReady = useRef(false);
+  const [ebConsent, setEbConsent] = useState<EbConsent>('unknown');
+
+  // Read any prior decision once on mount (SSR has no localStorage).
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(EB_CONSENT_KEY);
+      if (stored === 'accepted' || stored === 'declined') setEbConsent(stored);
+    } catch {
+      // Storage unavailable – treat as undecided, banner stays up for this visit.
+    }
+  }, []);
 
   useEffect(() => {
+    if (ebConsent !== 'accepted') return;
+
     function initWidgets() {
       if (!window.EBWidgets) return;
       RESERVE_TRIGGERS.forEach((id) => {
@@ -121,10 +140,21 @@ export default function LaunchPage() {
     script.async = true;
     script.onload = initWidgets;
     document.body.appendChild(script);
-  }, []);
+  }, [ebConsent]);
 
-  // The Eventbrite widget binds its own click handler to open the modal.
-  // This only fires as a fallback if the widget script never loaded.
+  function acceptEbConsent() {
+    setEbConsent('accepted');
+    try { localStorage.setItem(EB_CONSENT_KEY, 'accepted'); } catch {}
+  }
+
+  function declineEbConsent() {
+    setEbConsent('declined');
+    try { localStorage.setItem(EB_CONSENT_KEY, 'declined'); } catch {}
+  }
+
+  // The Eventbrite widget binds its own click handler to open the modal once loaded.
+  // Until consent is given (or if it's declined), reserving falls back to Eventbrite's
+  // own event page in a new tab – Careira never loads their script without consent.
   function handleReserveFallback() {
     if (widgetReady.current) return;
     window.open(EVENT_URL, '_blank', 'noopener,noreferrer');
@@ -136,12 +166,12 @@ export default function LaunchPage() {
         <title>Careira Launch Event | Bringing context back into hiring</title>
         <meta
           name="description"
-          content="Join Careira&rsquo;s virtual launch event on Thursday 17 September. A founder-led introduction to Careira&rsquo;s AI-native hiring platform, with a live product demo, pilot findings and guest perspectives on the future of hiring."
+          content="Join Careira&rsquo;s virtual launch event on Thursday 12 November. A founder-led introduction to Careira&rsquo;s AI-native hiring platform, with a live product demo, pilot findings and guest perspectives on the future of hiring."
         />
         <meta property="og:title" content="Careira Launch Event" />
         <meta
           property="og:description"
-          content="A founder-led introduction to Careira&rsquo;s AI-native hiring platform. Thursday 17 September, 6–7pm UK time. Online."
+          content="A founder-led introduction to Careira&rsquo;s AI-native hiring platform. Thursday 12 November, 6–7pm UK time. Online."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.careira.com/launch" />
@@ -168,7 +198,7 @@ export default function LaunchPage() {
                   <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.3" />
                   <path d="M2 6h12M5.5 1.5v3M10.5 1.5v3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                 </svg>
-                Thursday 17 September
+                Thursday 12 November
               </span>
               <span className="meta-item">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -364,7 +394,7 @@ export default function LaunchPage() {
               market learning and the next stage of the business.
             </p>
             <div className="cta-meta">
-              <span className="cta-pill">Thursday 17 September</span>
+              <span className="cta-pill">Thursday 12 November</span>
               <span className="cta-pill">6&ndash;7pm UK &middot; 1&ndash;2pm Eastern</span>
               <span className="cta-pill">Online</span>
             </div>
@@ -390,6 +420,24 @@ export default function LaunchPage() {
           </p>
         </section>
       </main>
+
+      {ebConsent === 'unknown' && (
+        <div className="eb-consent" role="dialog" aria-label="Eventbrite cookie consent">
+          <p>
+            This page can embed Eventbrite to let you reserve your place without leaving the
+            page. Eventbrite sets its own cookies to do this. You can decline and register on
+            Eventbrite&rsquo;s site instead &ndash; either way, your place is reserved the same.
+          </p>
+          <div className="eb-consent-actions">
+            <button type="button" className="eb-btn eb-btn-decline" onClick={declineEbConsent}>
+              Decline
+            </button>
+            <button type="button" className="eb-btn eb-btn-accept" onClick={acceptEbConsent}>
+              Allow Eventbrite
+            </button>
+          </div>
+        </div>
+      )}
 
       <Footer />
 
@@ -808,6 +856,62 @@ export default function LaunchPage() {
         .disclaimer strong {
           color: rgba(255, 255, 255, 0.75);
           font-weight: 600;
+        }
+
+        /* ── Eventbrite cookie consent banner ── */
+        .eb-consent {
+          position: fixed;
+          left: 1rem;
+          right: 1rem;
+          bottom: 1rem;
+          z-index: 60;
+          max-width: 640px;
+          margin: 0 auto;
+          background: #2A2D3D;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 12px;
+          padding: 1.25rem 1.5rem;
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+        }
+        .eb-consent p {
+          font-size: 0.875rem;
+          line-height: 1.55;
+          color: rgba(255, 255, 255, 0.82);
+          margin: 0 0 1rem;
+        }
+        .eb-consent-actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 0.75rem;
+        }
+        .eb-btn {
+          padding: 0.55rem 1.1rem;
+          font-size: 0.875rem;
+          font-weight: 600;
+          font-family: var(--font);
+          border-radius: 8px;
+          cursor: pointer;
+          border: none;
+        }
+        .eb-btn-decline {
+          background: transparent;
+          color: rgba(255, 255, 255, 0.75);
+          border: 1px solid rgba(255, 255, 255, 0.22);
+        }
+        .eb-btn-decline:hover {
+          background: rgba(255, 255, 255, 0.06);
+        }
+        .eb-btn-accept {
+          background: #FF7A6F;
+          color: #FFFFFF;
+        }
+        .eb-btn-accept:hover {
+          background: #FF5C4D;
+        }
+        @media (max-width: 560px) {
+          .eb-consent { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; padding: 1rem 1.1rem; }
+          .eb-consent-actions { flex-direction: column-reverse; }
+          .eb-btn { width: 100%; text-align: center; }
         }
 
         /* ── Responsive ── */
