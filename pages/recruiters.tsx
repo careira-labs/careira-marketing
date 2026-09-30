@@ -793,8 +793,13 @@ export default function RecruitersPage() {
 
         .cta-inner {
           max-width: 560px;
-          margin: 0 auto;
-          text-align: center;
+          margin: 0;
+          text-align: left;
+        }
+
+        .cta-inner :global(.signup-form) {
+          margin-left: 0;
+          margin-right: 0;
         }
 
         .cta-sub {

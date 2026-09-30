@@ -1,7 +1,7 @@
 const CANDIDATES = [
   {
     initials: 'AO',
-    name: 'A. Okafor',
+    name: 'A. Oliver',
     sub: 'Lead Data Engineer, fintech scale-up',
     tags: [{ label: 'Built real-time pipelines at scale' }, { label: 'Led a team of 6' }],
     score: 94,
