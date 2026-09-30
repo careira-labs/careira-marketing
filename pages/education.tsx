@@ -652,9 +652,13 @@ export default function EducationPage() {
 
         .diagram {
           height: 150px;
-          display: flex;
-          align-items: center;
           margin-bottom: 1.5rem;
+        }
+
+        .diagram svg {
+          display: block;
+          width: 100%;
+          height: 100%;
         }
 
         .panel-title {
