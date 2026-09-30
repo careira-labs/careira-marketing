@@ -1,4 +1,24 @@
-const CANDIDATES = [
+interface Tag {
+  label: string;
+  highlight?: boolean;
+}
+
+interface Candidate {
+  initials: string;
+  name: string;
+  sub: string;
+  tags: Tag[];
+  score: number;
+}
+
+interface RoleMatchProfileProps {
+  roleTitle?: string;
+  poolLabel?: string;
+  shortlistLabel?: string;
+  candidates?: Candidate[];
+}
+
+const DEFAULT_CANDIDATES: Candidate[] = [
   {
     initials: 'AO',
     name: 'A. Oliver',
@@ -29,19 +49,24 @@ const CANDIDATES = [
   },
 ];
 
-export default function RoleMatchProfile() {
+export default function RoleMatchProfile({
+  roleTitle = 'Senior Data Engineer',
+  poolLabel = '412 candidates',
+  shortlistLabel = '4 shortlisted',
+  candidates = DEFAULT_CANDIDATES,
+}: RoleMatchProfileProps) {
   return (
     <div className="profile">
       <div className="profile-head">
         <div>
           <span className="eyebrow">Live role</span>
-          <h3>Senior Data Engineer</h3>
+          <h3>{roleTitle}</h3>
         </div>
-        <span className="tally">412 candidates <span className="arrow">&rarr;</span> <strong>4 shortlisted</strong></span>
+        <span className="tally">{poolLabel} <span className="arrow">&rarr;</span> <strong>{shortlistLabel}</strong></span>
       </div>
 
       <div className="rows">
-        {CANDIDATES.map((c, i) => (
+        {candidates.map((c, i) => (
           <div className="row" key={i}>
             <span className="avatar">{c.initials}</span>
             <div className="who">
