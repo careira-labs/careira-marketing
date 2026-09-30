@@ -578,10 +578,9 @@ export default function EducationPage() {
           font-size: 1.25rem;
           font-weight: 700;
           line-height: 1.5;
-          margin: 0;
-          text-align: center;
+          text-align: left;
           max-width: 820px;
-          margin: 0 auto;
+          margin: 0;
         }
 
         /* Compare (dark) */
@@ -710,8 +709,8 @@ export default function EducationPage() {
           font-size: 0.9375rem;
           font-style: italic;
           color: rgba(255, 255, 255, 0.6);
-          text-align: center;
-          margin: 2rem auto 0;
+          text-align: left;
+          margin: 2rem 0 0;
           max-width: 760px;
         }
 
@@ -814,7 +813,7 @@ export default function EducationPage() {
         }
 
         .flow-label {
-          font-size: 0.8125rem;
+          font-size: 1rem;
           color: #667085;
         }
 
@@ -894,7 +893,7 @@ export default function EducationPage() {
           padding: 2.5rem 2.25rem;
           max-width: 600px;
           margin: 0 auto;
-          text-align: center;
+          text-align: left;
           box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
         }
 
@@ -909,7 +908,7 @@ export default function EducationPage() {
           font-size: 1.0625rem;
           line-height: 1.6;
           color: #4C526A;
-          margin: 0 auto;
+          margin: 0;
           max-width: 480px;
         }
 
@@ -921,7 +920,7 @@ export default function EducationPage() {
         }
 
         .cta-form {
-          margin: 1.75rem auto 0;
+          margin: 1.75rem 0 0;
           max-width: 460px;
         }
 
@@ -997,13 +996,13 @@ export default function EducationPage() {
         }
 
         .cta-btn {
-          width: 100%;
+          display: inline-block;
           margin-top: 0.5rem;
           background: #FF7A6F;
           color: #fff;
           font-weight: 600;
           font-size: 1rem;
-          padding: 0.875rem 1.5rem;
+          padding: 0.875rem 2rem;
           border: none;
           border-radius: 8px;
           cursor: pointer;
@@ -1028,7 +1027,7 @@ export default function EducationPage() {
           background: #F0FDF4;
           border-radius: 10px;
           padding: 1.25rem;
-          margin: 1.75rem auto 0;
+          margin: 1.75rem 0 0;
           max-width: 460px;
         }
 
