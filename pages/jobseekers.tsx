@@ -133,7 +133,7 @@ export default function JobseekersPage() {
           <ProductProofSection headline="See what Careira sees" subheadline="Understand at a glance where you're a great fit for a role, and where there might be things to consider.">
             <WhyThisFits
               role="Financial Analyst"
-              candidate="James Okafor"
+              candidate="James Oliver"
               score={82}
               scoreLabel="Strong Fit"
               reasoning={[
@@ -180,9 +180,6 @@ export default function JobseekersPage() {
             <h2>Stop guessing. Start seeing where you fit</h2>
             <p className="cta-body">Upload your CV. See scored matches with clear reasoning. Decide where to invest your time.</p>
             <EmailSignupForm source="jobseekers" />
-            <p className="cta-pricing">
-              <a href="https://app.careira.com/pricing/jobseekers">Pricing</a>
-            </p>
           </div>
         </section>
 
@@ -318,22 +315,6 @@ export default function JobseekersPage() {
           color: rgba(255, 255, 255, 0.7);
           margin: 0 0 2rem;
           line-height: 1.6;
-        }
-
-        .cta-pricing {
-          margin: 1.5rem 0 0;
-        }
-
-        .cta-pricing a {
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.9375rem;
-          font-weight: 500;
-          text-decoration: underline;
-          transition: color 0.15s;
-        }
-
-        .cta-pricing a:hover {
-          color: white;
         }
 
         /* Responsive */

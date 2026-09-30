@@ -7,7 +7,7 @@ export default function RecruiterShortlist() {
       top: true,
     },
     {
-      name: 'James Okafor',
+      name: 'Sofia Torres',
       score: 76,
       rationale: 'Solid skills match, slight seniority gap, strong cultural indicators',
       top: false,

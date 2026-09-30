@@ -17,7 +17,7 @@ const OUTCOME_ITEMS = [
   },
   {
     title: 'Defensible decisions',
-    description: 'Every shortlist comes with clear reasoning you can present to hiring managers.',
+    description: 'Every shortlist comes with clear reasoning you can present to clients and hiring managers.',
   },
   {
     title: 'Less screening waste',
@@ -25,11 +25,11 @@ const OUTCOME_ITEMS = [
   },
   {
     title: 'Feedback that compounds',
-    description: 'Every hiring decision refines future shortlists. The system learns from rejections and feedback, not just selections.',
+    description: 'Every placement decision refines future shortlists. The system learns from rejections and feedback, not just selections.',
   },
 ];
 
-export default function HirersPage() {
+export default function RecruitersPage() {
   useScrollReveal();
   const { showStickyForm, alreadySignedUp, bottomFormVisible, bottomCtaRef, scrollToForm } =
     useStickySignup();
@@ -37,16 +37,16 @@ export default function HirersPage() {
   return (
     <>
       <Head>
-        <title>For Hirers – Careira</title>
+        <title>For Recruiters – Careira</title>
         <meta
           name="description"
-          content="Build shortlists you can defend. Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit, and shortlist candidates with confidence."
+          content="Present shortlists you can defend. Careira helps agency and independent recruiters focus on stronger-fit candidates, understand why they fit, and put forward candidates with confidence."
         />
-        <meta property="og:title" content="For Hirers – Careira" />
-        <meta property="og:description" content="Build shortlists you can defend. Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit, and shortlist candidates with confidence." />
+        <meta property="og:title" content="For Recruiters – Careira" />
+        <meta property="og:description" content="Present shortlists you can defend. Careira helps agency and independent recruiters focus on stronger-fit candidates, understand why they fit, and put forward candidates with confidence." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.careira.com/hirers" />
-        <link rel="canonical" href="https://www.careira.com/hirers" />
+        <meta property="og:url" content="https://www.careira.com/recruiters" />
+        <link rel="canonical" href="https://www.careira.com/recruiters" />
       </Head>
 
       <PublicNav theme="dark" />
@@ -55,10 +55,10 @@ export default function HirersPage() {
         {/* Hero */}
         <section className="hero">
           <div className="hero-container">
-            <h1>Build shortlists you can defend</h1>
+            <h1>Present shortlists you can defend</h1>
             <p className="hero-sub">
-              Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit,
-              and shortlist candidates with confidence.
+              Careira helps agency and independent recruiters focus on stronger-fit candidates, understand why they fit,
+              and put candidates forward with confidence.
             </p>
             <button className="cta-button" onClick={scrollToForm}>
               See stronger candidates
@@ -73,11 +73,11 @@ export default function HirersPage() {
             <ul className="problem-list">
               <li>Hundreds of applications with no reliable way to rank them</li>
               <li>Shortlists built on instinct and keyword overlap</li>
-              <li>Reasoning you can&apos;t fully articulate to hiring managers</li>
+              <li>Reasoning you can&apos;t fully articulate to your clients</li>
               <li>Hours spent screening candidates who were never going to fit</li>
             </ul>
             <p className="problem-close">
-              Careira gives you structured fit evaluation – screen less, shortlist better, move faster.
+              Careira gives you structured fit evaluation – screen less, shortlist better, place faster.
             </p>
           </div>
         </section>
@@ -85,13 +85,13 @@ export default function HirersPage() {
         {/* How It Works */}
         <div className="reveal">
           <HowItWorksSection
-            headline="How it works for hiring"
+            headline="How it works for recruiters"
             background="#F2F4F6"
             steps={[
               {
                 number: '01',
                 title: 'Define the role',
-                description: 'Careira builds a structured role profile from your description – function, seniority, domain, requirements, and constraints.',
+                description: 'Careira builds a structured role profile from your brief – function, seniority, domain, requirements, and constraints.',
               },
               {
                 number: '02',
@@ -141,7 +141,7 @@ export default function HirersPage() {
               <li>Fewer weak shortlists – candidates are scored before you see them</li>
               <li>Less manual explanation – every candidate comes with reasoning you can present</li>
               <li>Less wasted recruiter time – focus on candidates who clear fit thresholds</li>
-              <li>Shortlist candidates with confidence – structured fit breakdowns, not gut feel</li>
+              <li>Put candidates forward with confidence – structured fit breakdowns, not gut feel</li>
             </ul>
           </div>
         </section>

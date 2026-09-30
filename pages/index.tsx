@@ -203,16 +203,16 @@ export default function HomePage() {
               <div className="routing-col routing-col-hirers">
                 <h3 className="routing-label">For hirers</h3>
                 <div className="routing-cards">
-                  <Link href="/hirers" className="rcard-link">
+                  <Link href="/employers" className="rcard-link">
                     <div className="rcard">
-                      <h4>Hiring teams</h4>
-                      <p className="rcard-desc">Build shortlists you can defend. See scored candidates with reasoning before you present.</p>
+                      <h4>Employers</h4>
+                      <p className="rcard-desc">Hire for your own roles. See scored candidates with clear reasoning before you decide.</p>
                       <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
                     </div>
                   </Link>
-                  <Link href="/hirers" className="rcard-link">
+                  <Link href="/recruiters" className="rcard-link">
                     <div className="rcard">
-                      <h4>Agencies &amp; recruiters</h4>
+                      <h4>Recruiters</h4>
                       <p className="rcard-desc">Screen faster, present stronger. Structured fit evaluation for every candidate you put forward.</p>
                       <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
                     </div>

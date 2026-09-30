@@ -17,7 +17,7 @@ const OUTCOME_ITEMS = [
   },
   {
     title: 'Defensible decisions',
-    description: 'Every shortlist comes with clear reasoning you can present to hiring managers.',
+    description: 'Every shortlist comes with clear reasoning you can share with your hiring team and stakeholders.',
   },
   {
     title: 'Less screening waste',
@@ -29,7 +29,7 @@ const OUTCOME_ITEMS = [
   },
 ];
 
-export default function HirersPage() {
+export default function EmployersPage() {
   useScrollReveal();
   const { showStickyForm, alreadySignedUp, bottomFormVisible, bottomCtaRef, scrollToForm } =
     useStickySignup();
@@ -37,16 +37,16 @@ export default function HirersPage() {
   return (
     <>
       <Head>
-        <title>For Hirers – Careira</title>
+        <title>For Employers – Careira</title>
         <meta
           name="description"
-          content="Build shortlists you can defend. Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit, and shortlist candidates with confidence."
+          content="Hire the right person with confidence. Careira helps in-house hiring teams focus on stronger-fit candidates, understand why they fit, and make hiring decisions they can stand behind."
         />
-        <meta property="og:title" content="For Hirers – Careira" />
-        <meta property="og:description" content="Build shortlists you can defend. Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit, and shortlist candidates with confidence." />
+        <meta property="og:title" content="For Employers – Careira" />
+        <meta property="og:description" content="Hire the right person with confidence. Careira helps in-house hiring teams focus on stronger-fit candidates, understand why they fit, and make hiring decisions they can stand behind." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.careira.com/hirers" />
-        <link rel="canonical" href="https://www.careira.com/hirers" />
+        <meta property="og:url" content="https://www.careira.com/employers" />
+        <link rel="canonical" href="https://www.careira.com/employers" />
       </Head>
 
       <PublicNav theme="dark" />
@@ -55,10 +55,10 @@ export default function HirersPage() {
         {/* Hero */}
         <section className="hero">
           <div className="hero-container">
-            <h1>Build shortlists you can defend</h1>
+            <h1>Hire the right person, with confidence</h1>
             <p className="hero-sub">
-              Careira helps recruiters and hiring managers focus on stronger-fit candidates, understand why they fit,
-              and shortlist candidates with confidence.
+              Careira helps in-house hiring teams focus on stronger-fit candidates, understand why they fit,
+              and make hiring decisions they can stand behind.
             </p>
             <button className="cta-button" onClick={scrollToForm}>
               See stronger candidates
@@ -73,11 +73,11 @@ export default function HirersPage() {
             <ul className="problem-list">
               <li>Hundreds of applications with no reliable way to rank them</li>
               <li>Shortlists built on instinct and keyword overlap</li>
-              <li>Reasoning you can&apos;t fully articulate to hiring managers</li>
+              <li>Reasoning you can&apos;t fully articulate to your hiring managers</li>
               <li>Hours spent screening candidates who were never going to fit</li>
             </ul>
             <p className="problem-close">
-              Careira gives you structured fit evaluation – screen less, shortlist better, move faster.
+              Careira gives you structured fit evaluation – screen less, shortlist better, hire faster.
             </p>
           </div>
         </section>
@@ -85,7 +85,7 @@ export default function HirersPage() {
         {/* How It Works */}
         <div className="reveal">
           <HowItWorksSection
-            headline="How it works for hiring"
+            headline="How it works for hiring teams"
             background="#F2F4F6"
             steps={[
               {
@@ -139,9 +139,9 @@ export default function HirersPage() {
             <h2>Why this is better than your current workflow</h2>
             <ul className="commercial-list">
               <li>Fewer weak shortlists – candidates are scored before you see them</li>
-              <li>Less manual explanation – every candidate comes with reasoning you can present</li>
-              <li>Less wasted recruiter time – focus on candidates who clear fit thresholds</li>
-              <li>Shortlist candidates with confidence – structured fit breakdowns, not gut feel</li>
+              <li>Less manual explanation – every candidate comes with reasoning you can share</li>
+              <li>Less wasted hiring-team time – focus on candidates who clear fit thresholds</li>
+              <li>Make hiring decisions with confidence – structured fit breakdowns, not gut feel</li>
             </ul>
           </div>
         </section>
@@ -149,8 +149,8 @@ export default function HirersPage() {
         {/* Final CTA */}
         <section className="final-cta" ref={bottomCtaRef}>
           <div className="cta-container" id="email-signup">
-            <h2>Better shortlists start here</h2>
-            <p className="cta-body">Define your role. See scored candidates with reasoning. Present a shortlist you can defend.</p>
+            <h2>Better hires start here</h2>
+            <p className="cta-body">Define your role. See scored candidates with reasoning. Make a hiring decision you can stand behind.</p>
             <EmailSignupForm source="hirers" />
           </div>
         </section>

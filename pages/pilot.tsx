@@ -109,7 +109,7 @@ function ChooseView({ onSelect }: { onSelect: (v: View) => void }) {
             onKeyDown={(e) => e.key === 'Enter' && onSelect('recruiter')}>
             <h2>Recruiter Pilot</h2>
             <p>
-              For experienced finance and cyber recruiters who want better shortlists,
+              For experienced specialist recruiters who want better shortlists,
               less wasted screening, and clear reasoning behind every recommendation.
             </p>
             <ul>
@@ -610,7 +610,7 @@ function FormView({
                     ))}
                   </select>
                   {showSpecWarning && (
-                    <span className="soft-warning">This pilot focuses on finance and cyber recruitment.</span>
+                    <span className="soft-warning">This pilot focuses on specialist recruitment.</span>
                   )}
                   {errors.specialization && <span className="field-error">{errors.specialization}</span>}
                 </div>
