@@ -85,6 +85,16 @@ const STEPS = [
   { n: '3', title: 'Guide, target and track', body: 'See the matches students choose to share, post targeted opportunities and follow engagement.' },
 ];
 
+// Fixed "random" scatter for the Your students cell (deterministic → no hydration mismatch).
+// [cx, cy, r, opacity]
+const SCATTER: [number, number, number, number][] = [
+  [8, 12, 3, 0.55], [19, 30, 2.5, 0.45], [13, 41, 3, 0.6], [29, 16, 2, 0.4],
+  [37, 35, 3.5, 0.65], [25, 45, 2.5, 0.5], [45, 24, 3, 0.55], [53, 9, 2, 0.4],
+  [49, 41, 3, 0.6], [63, 31, 2.5, 0.5], [59, 17, 3, 0.55], [71, 43, 2, 0.45],
+  [80, 13, 3.5, 0.65], [75, 29, 2.5, 0.5], [88, 38, 3, 0.55], [96, 21, 2, 0.4],
+  [103, 35, 3, 0.6], [99, 11, 2.5, 0.5], [112, 27, 3, 0.55], [119, 43, 2, 0.45],
+];
+
 const PERSONAS = [
   { icon: <IconAdviser />, title: 'Careers adviser', body: 'You want personalised guidance for every student, without a bigger caseload.' },
   { icon: <IconLead />, title: 'Employability lead', body: 'You want the opportunities you secure to reach the students they suit.' },
@@ -303,8 +313,12 @@ export default function EducationPage() {
 
             <div className="flow">
               <div className="flow-cell">
-                <div className="dots dots-scatter">
-                  {Array.from({ length: 16 }).map((_, i) => <span key={i} />)}
+                <div className="dots">
+                  <svg className="scatter" viewBox="0 0 130 50" width="130" height="50" aria-hidden="true">
+                    {SCATTER.map((p, i) => (
+                      <circle key={i} cx={p[0]} cy={p[1]} r={p[2]} opacity={p[3]} />
+                    ))}
+                  </svg>
                 </div>
                 <span className="flow-label">Your students</span>
               </div>
@@ -773,16 +787,8 @@ export default function EducationPage() {
           border-radius: 50%;
         }
 
-        .dots-scatter {
-          flex-wrap: wrap;
-          gap: 5px;
-          max-width: 120px;
-        }
-
-        .dots-scatter span {
-          width: 6px;
-          height: 6px;
-          opacity: 0.6;
+        .scatter circle {
+          fill: #C3C8D0;
         }
 
         .dots-grid {
