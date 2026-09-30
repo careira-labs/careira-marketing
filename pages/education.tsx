@@ -1,8 +1,11 @@
 import Head from 'next/head';
+import { useState } from 'react';
 import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
 import StudentMatchProfile from '../components/proof/StudentMatchProfile';
 import { useScrollReveal } from '../lib/useScrollReveal';
+import { validateEmail } from '../lib/validation';
+import { submitEducationEnquiry } from '../lib/api';
 
 /* ── Icons (white glyphs, sit inside coral circles) ── */
 const IconClock = () => (
@@ -91,6 +94,54 @@ const PERSONAS = [
 export default function EducationPage() {
   useScrollReveal();
 
+  const [institution, setInstitution] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [website, setWebsite] = useState(''); // honeypot
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  function validate(): Record<string, string> {
+    const errs: Record<string, string> = {};
+    if (!institution.trim()) errs.institution = 'Institution is required.';
+    if (!name.trim()) errs.name = 'Name is required.';
+    const result = validateEmail(email);
+    if (!result.isValid) errs.email = result.error!;
+    return errs;
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const errs = validate();
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    setSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const result = await submitEducationEnquiry({
+        institution: institution.trim(),
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        message: message.trim() || undefined,
+        website,
+      });
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err: any) {
+      setSubmitError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <>
       <Head>
@@ -109,10 +160,10 @@ export default function EducationPage() {
       <PublicNav theme="dark" />
 
       <main>
-        {/* Hero */}
+        {/* Hero (dark) */}
         <section className="hero">
           <div className="wrap">
-            <span className="eyebrow">For careers services</span>
+            <span className="eyebrow eyebrow-dark">For careers services</span>
             <h1>Better guidance, better outcomes.</h1>
             <p className="lead">Transparent, skills-first job matching for students and careers teams</p>
             <p className="intro">
@@ -121,18 +172,18 @@ export default function EducationPage() {
               live roles and your own opportunities, and explains every recommendation. Students apply where they
               have a real chance, and your advisers can guide more of them.
             </p>
-            <a href="#education-pilot" className="cta-button">Join the Education Pilot</a>
+            <a href="#book-a-call" className="cta-button">Book a call</a>
           </div>
         </section>
 
-        {/* Student profile proof */}
+        {/* Student profile proof (grey) */}
         <section className="proof reveal">
           <div className="wrap wrap-center">
             <StudentMatchProfile />
           </div>
         </section>
 
-        {/* What changes for you */}
+        {/* What changes for you (white) */}
         <section className="changes reveal">
           <div className="wrap">
             <h2>What changes for you</h2>
@@ -150,7 +201,7 @@ export default function EducationPage() {
           </div>
         </section>
 
-        {/* Advisers banner */}
+        {/* Advisers banner (coral) */}
         <section className="banner reveal">
           <div className="wrap">
             <p>
@@ -160,10 +211,10 @@ export default function EducationPage() {
           </div>
         </section>
 
-        {/* Keywords vs context */}
+        {/* Keywords vs context (dark) */}
         <section className="compare reveal">
           <div className="wrap">
-            <h2>From job search to job matching</h2>
+            <h2 className="h2-dark">From job search to job matching</h2>
             <p className="section-sub">Careira replaces keyword search with contextual matching.</p>
 
             <div className="compare-grid">
@@ -236,7 +287,7 @@ export default function EducationPage() {
           </div>
         </section>
 
-        {/* How it works */}
+        {/* How it works (grey) */}
         <section className="how reveal">
           <div className="wrap">
             <h2>How it works</h2>
@@ -275,7 +326,7 @@ export default function EducationPage() {
           </div>
         </section>
 
-        {/* Personas */}
+        {/* Personas (white) */}
         <section className="personas reveal">
           <div className="wrap">
             <h2>Built for university careers services</h2>
@@ -293,19 +344,75 @@ export default function EducationPage() {
           </div>
         </section>
 
-        {/* Pilot CTA */}
-        <section className="pilot reveal" id="education-pilot">
+        {/* Book a call (dark) */}
+        <section className="cta reveal" id="book-a-call">
           <div className="wrap">
-            <div className="pilot-card">
-              <div className="pilot-copy">
-                <h2>Now selecting universities for our Education Pilot</h2>
-                <p>
-                  Give students and graduates looking for the right role a clearer route to opportunities worth
-                  pursuing, and help shape how Careira fits your careers service.
-                </p>
-                <p className="pilot-meta">consent-led onboarding · regular joint reviews · outcome tracking and reports</p>
-              </div>
-              <a href="mailto:info@careira.com?subject=Careira%20Education%20Pilot" className="pilot-btn">info@careira.com</a>
+            <div className="cta-card">
+              <h2 className="cta-title">Bring Careira to your careers service</h2>
+              <p className="cta-lead">
+                Give students and graduates looking for the right role a clearer route to opportunities worth
+                pursuing, and help shape how Careira fits your careers service.
+              </p>
+              <p className="cta-meta">consent-led onboarding · regular joint reviews · outcome tracking and reports</p>
+
+              {submitted ? (
+                <div className="cta-success">
+                  <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="10" fill="#16A34A" />
+                    <path d="M6 10l3 3 5-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <p>Thanks &ndash; we&apos;ve got your details and will be in touch to arrange a call.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} noValidate className="cta-form">
+                  {/* Honeypot */}
+                  <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                    <label htmlFor="edu-website">Website</label>
+                    <input id="edu-website" name="website" type="text" tabIndex={-1} autoComplete="off"
+                      value={website} onChange={(e) => setWebsite(e.target.value)} />
+                  </div>
+
+                  <div className="field">
+                    <label htmlFor="edu-institution">Institution</label>
+                    <input id="edu-institution" type="text" value={institution} placeholder="University or college"
+                      autoComplete="organization" maxLength={200}
+                      onChange={(e) => { setInstitution(e.target.value); setErrors((p) => { const { institution: _, ...r } = p; return r; }); }} />
+                    {errors.institution && <span className="field-error">{errors.institution}</span>}
+                  </div>
+
+                  <div className="field-row">
+                    <div className="field">
+                      <label htmlFor="edu-name">Your name</label>
+                      <input id="edu-name" type="text" value={name} placeholder="Your name"
+                        autoComplete="name" maxLength={100}
+                        onChange={(e) => { setName(e.target.value); setErrors((p) => { const { name: _, ...r } = p; return r; }); }} />
+                      {errors.name && <span className="field-error">{errors.name}</span>}
+                    </div>
+                    <div className="field">
+                      <label htmlFor="edu-email">Work email</label>
+                      <input id="edu-email" type="email" value={email} placeholder="you@university.ac.uk"
+                        autoComplete="email" maxLength={254}
+                        onChange={(e) => { setEmail(e.target.value); setErrors((p) => { const { email: _, ...r } = p; return r; }); }} />
+                      {errors.email && <span className="field-error">{errors.email}</span>}
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <label htmlFor="edu-message">Anything we should know? <span className="optional">(optional)</span></label>
+                    <textarea id="edu-message" value={message} rows={3} maxLength={5000}
+                      placeholder="Cohort size, timelines, what you'd like to cover"
+                      onChange={(e) => setMessage(e.target.value)} />
+                  </div>
+
+                  {submitError && <div className="cta-form-error">{submitError}</div>}
+
+                  <button type="submit" className="cta-btn" disabled={submitting}>
+                    {submitting ? 'Sending…' : 'Request a call'}
+                  </button>
+                </form>
+              )}
+
+              <p className="cta-alt">Prefer email? <a href="mailto:info@careira.com">info@careira.com</a></p>
             </div>
           </div>
         </section>
@@ -314,10 +421,6 @@ export default function EducationPage() {
       <Footer />
 
       <style jsx>{`
-        main {
-          background: #33374A;
-        }
-
         .wrap {
           max-width: 1000px;
           margin: 0 auto;
@@ -332,8 +435,12 @@ export default function EducationPage() {
         h2 {
           font-size: 2rem;
           font-weight: 700;
-          color: #fff;
+          color: #33374A;
           margin: 0 0 2rem;
+        }
+
+        .h2-dark {
+          color: #fff;
         }
 
         .eyebrow {
@@ -346,10 +453,11 @@ export default function EducationPage() {
           margin-bottom: 1.25rem;
         }
 
-        /* Hero */
+        /* Hero (dark) */
         .hero {
+          background: #33374A;
           background-image: radial-gradient(ellipse at 25% 40%, rgba(255, 122, 111, 0.06) 0%, transparent 55%);
-          padding: 5.5rem 0 3.5rem;
+          padding: 5.5rem 0 4rem;
         }
 
         .hero h1 {
@@ -392,14 +500,16 @@ export default function EducationPage() {
           background: #FF5C4D;
         }
 
-        /* Proof */
+        /* Proof (grey) */
         .proof {
-          padding: 1.5rem 0 4rem;
+          background: #F2F4F6;
+          padding: 4rem 0;
         }
 
-        /* What changes */
+        /* What changes (white) */
         .changes {
-          padding: 4rem 0;
+          background: #FFFFFF;
+          padding: 5rem 0;
         }
 
         .changes-grid {
@@ -411,10 +521,11 @@ export default function EducationPage() {
         .change-card {
           display: flex;
           gap: 1rem;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.07);
+          background: #FFFFFF;
+          border: 1px solid #EAECEF;
           border-radius: 12px;
           padding: 1.5rem;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
         }
 
         .wc-icon {
@@ -431,37 +542,38 @@ export default function EducationPage() {
         .change-card h3 {
           font-size: 1.0625rem;
           font-weight: 700;
-          color: #fff;
+          color: #33374A;
           margin: 0.25rem 0 0.5rem;
         }
 
         .change-card p {
           font-size: 0.9375rem;
           line-height: 1.6;
-          color: rgba(255, 255, 255, 0.65);
+          color: #4C526A;
           margin: 0;
         }
 
-        /* Banner */
+        /* Banner (coral) */
         .banner {
-          padding: 1rem 0 4rem;
+          background: #FF7A6F;
+          padding: 2.75rem 0;
         }
 
         .banner p {
-          background: #FF7A6F;
           color: #33374A;
-          font-size: 1.1875rem;
+          font-size: 1.25rem;
           font-weight: 700;
           line-height: 1.5;
           margin: 0;
-          padding: 1.75rem 2rem;
-          border-radius: 12px;
+          text-align: center;
+          max-width: 820px;
+          margin: 0 auto;
         }
 
-        /* Compare */
+        /* Compare (dark) */
         .compare {
-          padding: 4rem 0;
-          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          background: #33374A;
+          padding: 5rem 0;
         }
 
         .section-sub {
@@ -483,12 +595,12 @@ export default function EducationPage() {
 
         .panel-old {
           background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.07);
+          border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .panel-new {
-          background: rgba(255, 122, 111, 0.05);
-          border: 1px solid rgba(255, 122, 111, 0.4);
+          background: rgba(255, 122, 111, 0.06);
+          border: 1px solid rgba(255, 122, 111, 0.45);
         }
 
         .mock {
@@ -559,7 +671,7 @@ export default function EducationPage() {
           font-size: 0.9375rem;
           line-height: 1.5;
           padding: 0.375rem 0;
-          color: rgba(255, 255, 255, 0.8);
+          color: rgba(255, 255, 255, 0.85);
         }
 
         .li-old {
@@ -583,16 +695,16 @@ export default function EducationPage() {
         .compare-caption {
           font-size: 0.9375rem;
           font-style: italic;
-          color: rgba(255, 255, 255, 0.55);
+          color: rgba(255, 255, 255, 0.6);
           text-align: center;
           margin: 2rem auto 0;
           max-width: 760px;
         }
 
-        /* How it works */
+        /* How it works (grey) */
         .how {
-          padding: 4rem 0;
-          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          background: #F2F4F6;
+          padding: 5rem 0;
         }
 
         .steps {
@@ -619,14 +731,14 @@ export default function EducationPage() {
         .step h3 {
           font-size: 1.0625rem;
           font-weight: 700;
-          color: #fff;
+          color: #33374A;
           margin: 0 0 0.5rem;
         }
 
         .step p {
           font-size: 0.9375rem;
           line-height: 1.6;
-          color: rgba(255, 255, 255, 0.65);
+          color: #4C526A;
           margin: 0;
         }
 
@@ -634,10 +746,11 @@ export default function EducationPage() {
           display: flex;
           align-items: center;
           gap: 1rem;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.07);
+          background: #FFFFFF;
+          border: 1px solid #EAECEF;
           border-radius: 12px;
           padding: 1.5rem;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         .flow-cell {
@@ -656,7 +769,7 @@ export default function EducationPage() {
         }
 
         .dots span {
-          background: rgba(255, 255, 255, 0.3);
+          background: #C3C8D0;
           border-radius: 50%;
         }
 
@@ -669,7 +782,7 @@ export default function EducationPage() {
         .dots-scatter span {
           width: 6px;
           height: 6px;
-          opacity: 0.4;
+          opacity: 0.6;
         }
 
         .dots-grid {
@@ -681,7 +794,7 @@ export default function EducationPage() {
         .dots-grid span {
           width: 7px;
           height: 7px;
-          opacity: 0.6;
+          opacity: 0.85;
         }
 
         .dots-final {
@@ -696,7 +809,7 @@ export default function EducationPage() {
 
         .flow-label {
           font-size: 0.8125rem;
-          color: rgba(255, 255, 255, 0.55);
+          color: #667085;
         }
 
         .flow-label-strong {
@@ -710,10 +823,10 @@ export default function EducationPage() {
           font-weight: 700;
         }
 
-        /* Personas */
+        /* Personas (white) */
         .personas {
-          padding: 4rem 0;
-          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          background: #FFFFFF;
+          padding: 5rem 0;
         }
 
         .personas-grid {
@@ -723,10 +836,11 @@ export default function EducationPage() {
         }
 
         .persona {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.07);
+          background: #FFFFFF;
+          border: 1px solid #EAECEF;
           border-radius: 12px;
           padding: 1.5rem;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
         }
 
         .persona-head {
@@ -750,68 +864,190 @@ export default function EducationPage() {
         .persona h3 {
           font-size: 1rem;
           font-weight: 700;
-          color: #fff;
+          color: #33374A;
           margin: 0;
         }
 
         .persona p {
           font-size: 0.9375rem;
           line-height: 1.6;
-          color: rgba(255, 255, 255, 0.65);
+          color: #4C526A;
           margin: 0;
         }
 
-        /* Pilot */
-        .pilot {
-          padding: 2rem 0 5rem;
-        }
-
-        .pilot-card {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 2rem;
-          background: #FF7A6F;
-          border-radius: 14px;
-          padding: 2rem 2.25rem;
-        }
-
-        .pilot-copy h2 {
-          font-size: 1.5rem;
-          color: #33374A;
-          margin: 0 0 0.625rem;
-        }
-
-        .pilot-copy p {
-          font-size: 1rem;
-          line-height: 1.6;
-          color: #33374A;
-          margin: 0;
-          max-width: 620px;
-          opacity: 0.9;
-        }
-
-        .pilot-meta {
-          font-weight: 700;
-          margin-top: 0.75rem !important;
-          opacity: 1 !important;
-        }
-
-        .pilot-btn {
-          flex-shrink: 0;
+        /* Book a call (dark) */
+        .cta {
           background: #33374A;
+          background-image: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+          padding: 5rem 0;
+        }
+
+        .cta-card {
+          background: #FFFFFF;
+          border-radius: 16px;
+          padding: 2.5rem 2.25rem;
+          max-width: 600px;
+          margin: 0 auto;
+          text-align: center;
+          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+        }
+
+        .cta-title {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #33374A;
+          margin: 0 0 0.75rem;
+        }
+
+        .cta-lead {
+          font-size: 1.0625rem;
+          line-height: 1.6;
+          color: #4C526A;
+          margin: 0 auto;
+          max-width: 480px;
+        }
+
+        .cta-meta {
+          font-size: 0.9375rem;
+          font-weight: 700;
+          color: #33374A;
+          margin: 0.75rem 0 0;
+        }
+
+        .cta-form {
+          margin: 1.75rem auto 0;
+          max-width: 460px;
+        }
+
+        .field {
+          margin-bottom: 1rem;
+          text-align: left;
+        }
+
+        .field label {
+          display: block;
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: #33374A;
+          margin-bottom: 0.375rem;
+        }
+
+        .optional {
+          color: #667085;
+          font-weight: 400;
+        }
+
+        .field input,
+        .field textarea {
+          width: 100%;
+          padding: 0.75rem;
+          font-size: 0.9375rem;
+          font-family: var(--font);
+          color: #33374A;
+          background: #FFFFFF;
+          border: 1px solid #E5E7EB;
+          border-radius: 8px;
+          outline: none;
+          transition: border-color 0.15s, box-shadow 0.15s;
+          box-sizing: border-box;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+          border-color: #FF7A6F;
+          box-shadow: 0 0 0 3px rgba(255, 122, 111, 0.15);
+        }
+
+        .field textarea {
+          resize: vertical;
+          min-height: 84px;
+        }
+
+        .field-error {
+          display: block;
+          font-size: 0.8125rem;
+          color: #B42318;
+          margin-top: 0.25rem;
+        }
+
+        .field-row {
+          display: flex;
+          gap: 0.75rem;
+        }
+
+        .field-row .field {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .cta-form-error {
+          font-size: 0.875rem;
+          color: #B42318;
+          background: #FEF2F2;
+          border-radius: 8px;
+          padding: 0.75rem;
+          margin-bottom: 0.75rem;
+          text-align: left;
+        }
+
+        .cta-btn {
+          width: 100%;
+          margin-top: 0.5rem;
+          background: #FF7A6F;
           color: #fff;
           font-weight: 600;
           font-size: 1rem;
-          padding: 1rem 1.5rem;
+          padding: 0.875rem 1.5rem;
+          border: none;
           border-radius: 8px;
-          text-decoration: none;
+          cursor: pointer;
+          font-family: var(--font);
           transition: background 0.15s;
-          white-space: nowrap;
         }
 
-        .pilot-btn:hover {
-          background: #4C526A;
+        .cta-btn:hover:not(:disabled) {
+          background: #FF5C4D;
+        }
+
+        .cta-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+
+        .cta-success {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.75rem;
+          text-align: left;
+          background: #F0FDF4;
+          border-radius: 10px;
+          padding: 1.25rem;
+          margin: 1.75rem auto 0;
+          max-width: 460px;
+        }
+
+        .cta-success svg {
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        .cta-success p {
+          margin: 0;
+          color: #166534;
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        .cta-alt {
+          font-size: 0.875rem;
+          margin: 1.25rem 0 0;
+          color: #667085;
+        }
+
+        .cta-alt a {
+          color: #4C526A;
+          font-weight: 600;
+          text-decoration: underline;
         }
 
         /* Responsive */
@@ -843,10 +1079,12 @@ export default function EducationPage() {
           .hero {
             padding: 3.5rem 0 2.5rem;
           }
+          .proof,
           .changes,
           .compare,
           .how,
-          .personas {
+          .personas,
+          .cta {
             padding: 3rem 0;
           }
           .flow {
@@ -856,9 +1094,12 @@ export default function EducationPage() {
           .flow-arrow {
             transform: rotate(90deg);
           }
-          .pilot-card {
+          .cta-card {
+            padding: 2rem 1.5rem;
+          }
+          .field-row {
             flex-direction: column;
-            align-items: flex-start;
+            gap: 0;
           }
         }
       `}</style>

@@ -101,3 +101,36 @@ export async function applyForPilot(
 
   return res.json();
 }
+
+
+// ── Education enquiry ──
+
+export interface EducationEnquiryRequest {
+  institution: string;
+  name: string;
+  email: string;
+  message?: string;
+  website?: string; // honeypot
+}
+
+export interface EducationEnquiryResponse {
+  success: boolean;
+  message: string;
+}
+
+export async function submitEducationEnquiry(
+  data: EducationEnquiryRequest,
+): Promise<EducationEnquiryResponse> {
+  const res = await fetch(`${API_BASE}/education/enquiry`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({ detail: 'Failed to send enquiry' }));
+    throw new Error(detailToMessage(error.detail, 'Failed to send enquiry'));
+  }
+
+  return res.json();
+}

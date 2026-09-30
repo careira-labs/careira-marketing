@@ -93,13 +93,13 @@ export default function StudentMatchProfile() {
 
       <style jsx>{`
         .profile {
-          background: #2A2D3D;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 16px;
+          background: #FFFFFF;
+          border-top: 2px solid #FF7A6F;
+          border-radius: 14px;
           padding: 1.5rem;
           width: 100%;
           max-width: 720px;
-          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .profile-head {
@@ -114,23 +114,23 @@ export default function StudentMatchProfile() {
           display: block;
           font-size: 0.6875rem;
           font-weight: 600;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.45);
+          color: #667085;
           margin-bottom: 0.375rem;
         }
 
         .profile-head h3 {
           font-size: 1.125rem;
           font-weight: 700;
-          color: #fff;
+          color: #33374A;
           margin: 0;
           line-height: 1.3;
         }
 
         .tally {
           font-size: 0.8125rem;
-          color: rgba(255, 255, 255, 0.55);
+          color: #667085;
           white-space: nowrap;
         }
 
@@ -153,7 +153,7 @@ export default function StudentMatchProfile() {
           display: flex;
           align-items: center;
           gap: 0.875rem;
-          background: rgba(255, 255, 255, 0.04);
+          background: #F2F4F6;
           border-radius: 10px;
           padding: 0.75rem 0.875rem;
         }
@@ -179,7 +179,7 @@ export default function StudentMatchProfile() {
         .role-title {
           font-size: 0.875rem;
           font-weight: 600;
-          color: #fff;
+          color: #33374A;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -187,7 +187,7 @@ export default function StudentMatchProfile() {
 
         .role-loc {
           font-size: 0.75rem;
-          color: rgba(255, 255, 255, 0.5);
+          color: #667085;
           margin-top: 0.125rem;
         }
 
@@ -201,17 +201,17 @@ export default function StudentMatchProfile() {
 
         .tag {
           font-size: 0.75rem;
-          color: rgba(255, 255, 255, 0.7);
-          background: rgba(255, 255, 255, 0.07);
-          border: 1px solid rgba(255, 255, 255, 0.06);
+          color: #4C526A;
+          background: #FFFFFF;
+          border: 1px solid #E5E7EB;
           border-radius: 999px;
           padding: 0.25rem 0.75rem;
           white-space: nowrap;
         }
 
         .tag-highlight {
-          color: #FF9A91;
-          background: transparent;
+          color: #FF7A6F;
+          background: rgba(255, 122, 111, 0.06);
           border: 1px solid rgba(255, 122, 111, 0.55);
         }
 
@@ -226,7 +226,7 @@ export default function StudentMatchProfile() {
           justify-content: center;
           font-size: 0.875rem;
           font-weight: 700;
-          color: #fff;
+          color: #33374A;
         }
 
         .profile-foot {
@@ -234,10 +234,10 @@ export default function StudentMatchProfile() {
           justify-content: space-between;
           margin-top: 1rem;
           padding-top: 0.875rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          border-top: 1px solid #E5E7EB;
           font-size: 0.75rem;
           font-style: italic;
-          color: rgba(255, 255, 255, 0.4);
+          color: #667085;
         }
 
         @media (max-width: 720px) {

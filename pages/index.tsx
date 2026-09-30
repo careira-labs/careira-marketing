@@ -201,7 +201,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="routing-col routing-col-hirers" id="for-hirers">
-                <h3 className="routing-label">For hirers</h3>
+                <h3 className="routing-label">For organisations</h3>
                 <div className="routing-cards">
                   <Link href="/employers" className="rcard-link">
                     <div className="rcard">
@@ -214,6 +214,13 @@ export default function HomePage() {
                     <div className="rcard">
                       <h4>Recruiters</h4>
                       <p className="rcard-desc">Screen faster, present stronger. Structured fit evaluation for every candidate you put forward.</p>
+                      <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
+                    </div>
+                  </Link>
+                  <Link href="/education" className="rcard-link">
+                    <div className="rcard">
+                      <h4>Education</h4>
+                      <p className="rcard-desc">Universities and careers services. Give students explained, skills-first matches and guide more of them.</p>
                       <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
                     </div>
                   </Link>

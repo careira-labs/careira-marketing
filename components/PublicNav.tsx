@@ -15,15 +15,26 @@ const SEGMENTS = [
   { href: '/stepping-up', label: 'Stepping up', subtitle: 'Experienced professionals' },
 ];
 
+const ORG_SEGMENTS = [
+  { href: '/employers', label: 'Employers', subtitle: 'Hiring for your own roles' },
+  { href: '/recruiters', label: 'Recruiters', subtitle: 'Agencies & independent recruiters' },
+  { href: '/education', label: 'Education', subtitle: 'Universities & careers services' },
+];
+const ORG_PATHS = ORG_SEGMENTS.map((s) => s.href);
+
 export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [orgDropdownOpen, setOrgDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
+  const orgDropdownRef = useRef<HTMLDivElement>(null);
+  const orgTriggerRef = useRef<HTMLDivElement>(null);
 
   const isJobseekerActive = JOBSEEKER_PATHS.includes(router.pathname);
+  const isOrgActive = ORG_PATHS.includes(router.pathname);
 
   // Track scroll for backdrop blur
   useEffect(() => {
@@ -36,6 +47,7 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
   useEffect(() => {
     setMenuOpen(false);
     setDropdownOpen(false);
+    setOrgDropdownOpen(false);
   }, [router.pathname]);
 
   // Prevent body scroll when menu is open
@@ -77,6 +89,37 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
     if (e.key === 'Escape') {
       setDropdownOpen(false);
       triggerRef.current?.querySelector<HTMLElement>('.nav-link')?.focus();
+    }
+  }, []);
+
+  // Close org dropdown on outside click
+  useEffect(() => {
+    if (!orgDropdownOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      if (
+        orgTriggerRef.current && !orgTriggerRef.current.contains(e.target as Node) &&
+        orgDropdownRef.current && !orgDropdownRef.current.contains(e.target as Node)
+      ) {
+        setOrgDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [orgDropdownOpen]);
+
+  const handleOrgTriggerKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setOrgDropdownOpen((prev) => !prev);
+    } else if (e.key === 'Escape') {
+      setOrgDropdownOpen(false);
+    }
+  }, []);
+
+  const handleOrgDropdownKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setOrgDropdownOpen(false);
+      orgTriggerRef.current?.querySelector<HTMLElement>('.nav-link')?.focus();
     }
   }, []);
 
@@ -136,19 +179,44 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
               )}
             </div>
 
-            <Link
-              href="/employers"
-              className={`nav-link ${router.pathname === '/employers' ? 'active' : ''}`}
+            <div
+              className="dropdown-trigger"
+              ref={orgTriggerRef}
+              onMouseEnter={() => setOrgDropdownOpen(true)}
+              onMouseLeave={() => setOrgDropdownOpen(false)}
             >
-              For employers
-            </Link>
+              <button
+                type="button"
+                className={`nav-link ${isOrgActive ? 'active' : ''}`}
+                aria-haspopup="true"
+                aria-expanded={orgDropdownOpen}
+                onClick={() => setOrgDropdownOpen((prev) => !prev)}
+                onKeyDown={handleOrgTriggerKeyDown}
+              >
+                For organisations
+              </button>
 
-            <Link
-              href="/recruiters"
-              className={`nav-link ${router.pathname === '/recruiters' ? 'active' : ''}`}
-            >
-              For recruiters
-            </Link>
+              {orgDropdownOpen && (
+                <div
+                  className="dropdown"
+                  ref={orgDropdownRef}
+                  role="menu"
+                  onKeyDown={handleOrgDropdownKeyDown}
+                >
+                  {ORG_SEGMENTS.map((seg) => (
+                    <Link
+                      key={seg.href}
+                      href={seg.href}
+                      className="dropdown-item"
+                      role="menuitem"
+                    >
+                      <span className="dropdown-label">{seg.label}</span>
+                      <span className="dropdown-subtitle">{seg.subtitle}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Hamburger button (mobile only) */}
@@ -185,20 +253,18 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
                 <span className="mobile-sub-subtitle">{seg.subtitle}</span>
               </Link>
             ))}
-            <Link
-              href="/employers"
-              className={`mobile-link ${router.pathname === '/employers' ? 'mobile-active' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              For employers
-            </Link>
-            <Link
-              href="/recruiters"
-              className={`mobile-link ${router.pathname === '/recruiters' ? 'mobile-active' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              For recruiters
-            </Link>
+            <span className="mobile-group">For organisations</span>
+            {ORG_SEGMENTS.map((seg) => (
+              <Link
+                key={seg.href}
+                href={seg.href}
+                className={`mobile-sub-link ${router.pathname === seg.href ? 'mobile-active' : ''}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="mobile-sub-label">{seg.label}</span>
+                <span className="mobile-sub-subtitle">{seg.subtitle}</span>
+              </Link>
+            ))}
           </div>
         )}
       </nav>
@@ -376,6 +442,15 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           font-size: 1.0625rem;
           font-weight: 500;
           font-family: var(--font);
+          border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : '#F2F4F6'};
+        }
+
+        .mobile-group {
+          display: block;
+          padding: 0.875rem 0;
+          color: ${theme === 'dark' ? 'rgba(255, 255, 255, 0.9)' : '#33374A'};
+          font-size: 1.0625rem;
+          font-weight: 500;
           border-bottom: 1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : '#F2F4F6'};
         }
 
