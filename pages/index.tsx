@@ -148,9 +148,9 @@ export default function HomePage() {
                 <Link href="/jobseekers">
                   <span className="cta-primary">I&apos;m looking for work</span>
                 </Link>
-                <Link href="/hirers">
+                <a href="#for-hirers">
                   <span className="cta-secondary">I&apos;m hiring</span>
-                </Link>
+                </a>
               </div>
             </div>
             <div className="hero-artifact">
@@ -200,7 +200,7 @@ export default function HomePage() {
                   ))}
                 </div>
               </div>
-              <div className="routing-col routing-col-hirers">
+              <div className="routing-col routing-col-hirers" id="for-hirers">
                 <h3 className="routing-label">For hirers</h3>
                 <div className="routing-cards">
                   <Link href="/employers" className="rcard-link">
@@ -303,9 +303,9 @@ export default function HomePage() {
               <Link href="/jobseekers">
                 <span className="cta-route-primary">I&apos;m looking for work</span>
               </Link>
-              <Link href="/hirers">
+              <a href="#for-hirers">
                 <span className="cta-route-secondary">I&apos;m hiring</span>
-              </Link>
+              </a>
             </div>
           </div>
         </section>

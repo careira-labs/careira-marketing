@@ -21,7 +21,7 @@ const OUTCOME_ITEMS = [
   },
   {
     title: 'Less screening waste',
-    description: 'Focus on candidates who clear fit thresholds – not just keyword filters. Less volume, better signal.',
+    description: 'Focus on candidates who clear the relevance threshold – not just keyword filters. Less volume, better signal.',
   },
   {
     title: 'Feedback that compounds',
@@ -140,7 +140,7 @@ export default function EmployersPage() {
             <ul className="commercial-list">
               <li>Fewer weak shortlists – candidates are scored before you see them</li>
               <li>Less manual explanation – every candidate comes with reasoning you can share</li>
-              <li>Less wasted hiring-team time – focus on candidates who clear fit thresholds</li>
+              <li>Less wasted hiring-team time – focus on candidates who clear the relevance threshold</li>
               <li>Make hiring decisions with confidence – structured fit breakdowns, not gut feel</li>
             </ul>
           </div>

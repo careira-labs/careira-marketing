@@ -137,10 +137,17 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
             </div>
 
             <Link
-              href="/hirers"
-              className={`nav-link ${router.pathname === '/hirers' ? 'active' : ''}`}
+              href="/employers"
+              className={`nav-link ${router.pathname === '/employers' ? 'active' : ''}`}
             >
-              For hirers
+              For employers
+            </Link>
+
+            <Link
+              href="/recruiters"
+              className={`nav-link ${router.pathname === '/recruiters' ? 'active' : ''}`}
+            >
+              For recruiters
             </Link>
           </div>
 
@@ -179,11 +186,18 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
               </Link>
             ))}
             <Link
-              href="/hirers"
-              className={`mobile-link ${router.pathname === '/hirers' ? 'mobile-active' : ''}`}
+              href="/employers"
+              className={`mobile-link ${router.pathname === '/employers' ? 'mobile-active' : ''}`}
               onClick={() => setMenuOpen(false)}
             >
-              For hirers
+              For employers
+            </Link>
+            <Link
+              href="/recruiters"
+              className={`mobile-link ${router.pathname === '/recruiters' ? 'mobile-active' : ''}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              For recruiters
             </Link>
           </div>
         )}

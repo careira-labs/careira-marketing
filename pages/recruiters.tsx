@@ -21,7 +21,7 @@ const OUTCOME_ITEMS = [
   },
   {
     title: 'Less screening waste',
-    description: 'Focus on candidates who clear fit thresholds – not just keyword filters. Less volume, better signal.',
+    description: 'Focus on candidates who clear the relevance threshold – not just keyword filters. Less volume, better signal.',
   },
   {
     title: 'Feedback that compounds',
@@ -55,7 +55,7 @@ export default function RecruitersPage() {
         {/* Hero */}
         <section className="hero">
           <div className="hero-container">
-            <h1>Present shortlists you can defend</h1>
+            <h1>Shortlists you can defend – faster</h1>
             <p className="hero-sub">
               Careira helps agency and independent recruiters focus on stronger-fit candidates, understand why they fit,
               and put candidates forward with confidence.
@@ -140,7 +140,7 @@ export default function RecruitersPage() {
             <ul className="commercial-list">
               <li>Fewer weak shortlists – candidates are scored before you see them</li>
               <li>Less manual explanation – every candidate comes with reasoning you can present</li>
-              <li>Less wasted recruiter time – focus on candidates who clear fit thresholds</li>
+              <li>Less wasted recruiter time – focus on candidates who clear the relevance threshold</li>
               <li>Put candidates forward with confidence – structured fit breakdowns, not gut feel</li>
             </ul>
           </div>
