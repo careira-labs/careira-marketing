@@ -249,7 +249,7 @@ export default function EducationPage() {
 
               <div className="panel panel-new">
                 <div className="diagram">
-                  <svg viewBox="0 0 380 190" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Student attributes mapped to a role">
+                  <svg viewBox="-10 0 400 190" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Student attributes mapped to a role">
                     <g stroke="rgba(255,122,111,0.55)" strokeWidth="1.5">
                       <line x1="170" y1="100" x2="72" y2="46" />
                       <line x1="170" y1="100" x2="232" y2="46" />
@@ -271,8 +271,8 @@ export default function EducationPage() {
                       <path d="M162 110c1.5-4 5-6 8-6s6.5 2 8 6" />
                     </g>
                     <rect x="298" y="84" width="66" height="32" rx="7" fill="rgba(255,122,111,0.14)" stroke="#FF7A6F" strokeWidth="1.5" />
-                    <text x="331" y="104" textAnchor="middle" fill="#FF9A91" fontSize="12" fontWeight="700" letterSpacing="0.05em">ROLE</text>
-                    <g fill="rgba(255,255,255,0.7)" fontSize="11">
+                    <text x="331" y="105" textAnchor="middle" fill="#FF9A91" fontSize="13" fontWeight="700" letterSpacing="0.05em">ROLE</text>
+                    <g fill="rgba(255,255,255,0.7)" fontSize="14">
                       <text x="72" y="32" textAnchor="middle">Placements</text>
                       <text x="232" y="32" textAnchor="middle">Projects</text>
                       <text x="40" y="106" textAnchor="end">Skills</text>
@@ -623,7 +623,7 @@ export default function EducationPage() {
           background: rgba(255, 255, 255, 0.03);
           border-radius: 10px;
           padding: 1.25rem;
-          height: 150px;
+          height: 190px;
           margin-bottom: 1.5rem;
         }
 
@@ -651,7 +651,7 @@ export default function EducationPage() {
         }
 
         .diagram {
-          height: 150px;
+          height: 190px;
           margin-bottom: 1.5rem;
         }
 
