@@ -9,12 +9,6 @@ interface PublicNavProps {
 const SEGMENT_PAGES = ['/starting-out', '/starting-again', '/stepping-up'];
 const JOBSEEKER_PATHS = ['/jobseekers', ...SEGMENT_PAGES];
 
-const SEGMENTS = [
-  { href: '/starting-out', label: 'Starting out', subtitle: 'Early career & graduates' },
-  { href: '/starting-again', label: 'Starting again', subtitle: 'Returning to the market' },
-  { href: '/stepping-up', label: 'Stepping up', subtitle: 'Experienced professionals' },
-];
-
 const ORG_SEGMENTS = [
   { href: '/employers', label: 'Employers', subtitle: 'Hiring for your own roles' },
   { href: '/recruiters', label: 'Recruiters', subtitle: 'Agencies & independent recruiters' },
@@ -25,11 +19,8 @@ const ORG_PATHS = ORG_SEGMENTS.map((s) => s.href);
 export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [orgDropdownOpen, setOrgDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
   const orgDropdownRef = useRef<HTMLDivElement>(null);
   const orgTriggerRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +37,6 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
   // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
-    setDropdownOpen(false);
     setOrgDropdownOpen(false);
   }, [router.pathname]);
 
@@ -59,38 +49,6 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
     }
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    if (!dropdownOpen) return;
-    const handleClick = (e: MouseEvent) => {
-      if (
-        triggerRef.current && !triggerRef.current.contains(e.target as Node) &&
-        dropdownRef.current && !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [dropdownOpen]);
-
-  // Keyboard handling for dropdown
-  const handleTriggerKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      setDropdownOpen((prev) => !prev);
-    } else if (e.key === 'Escape') {
-      setDropdownOpen(false);
-    }
-  }, []);
-
-  const handleDropdownKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      setDropdownOpen(false);
-      triggerRef.current?.querySelector<HTMLElement>('.nav-link')?.focus();
-    }
-  }, []);
 
   // Close org dropdown on outside click
   useEffect(() => {
@@ -141,43 +99,12 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
 
           {/* Desktop nav links */}
           <div className="nav-links desktop-links">
-            <div
-              className="dropdown-trigger"
-              ref={triggerRef}
-              onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
+            <Link
+              href="/jobseekers"
+              className={`nav-link ${isJobseekerActive ? 'active' : ''}`}
             >
-              <Link
-                href="/jobseekers"
-                className={`nav-link ${isJobseekerActive ? 'active' : ''}`}
-                aria-haspopup="true"
-                aria-expanded={dropdownOpen}
-                onKeyDown={handleTriggerKeyDown}
-              >
-                For jobseekers
-              </Link>
-
-              {dropdownOpen && (
-                <div
-                  className="dropdown"
-                  ref={dropdownRef}
-                  role="menu"
-                  onKeyDown={handleDropdownKeyDown}
-                >
-                  {SEGMENTS.map((seg) => (
-                    <Link
-                      key={seg.href}
-                      href={seg.href}
-                      className="dropdown-item"
-                      role="menuitem"
-                    >
-                      <span className="dropdown-label">{seg.label}</span>
-                      <span className="dropdown-subtitle">{seg.subtitle}</span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+              For jobseekers
+            </Link>
 
             <div
               className="dropdown-trigger"
@@ -237,22 +164,11 @@ export default function PublicNav({ theme = 'dark' }: PublicNavProps) {
           <div className="mobile-menu">
             <Link
               href="/jobseekers"
-              className={`mobile-link ${router.pathname === '/jobseekers' ? 'mobile-active' : ''}`}
+              className={`mobile-link ${isJobseekerActive ? 'mobile-active' : ''}`}
               onClick={() => setMenuOpen(false)}
             >
               For jobseekers
             </Link>
-            {SEGMENTS.map((seg) => (
-              <Link
-                key={seg.href}
-                href={seg.href}
-                className={`mobile-sub-link ${router.pathname === seg.href ? 'mobile-active' : ''}`}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span className="mobile-sub-label">{seg.label}</span>
-                <span className="mobile-sub-subtitle">{seg.subtitle}</span>
-              </Link>
-            ))}
             <span className="mobile-group">For organisations</span>
             {ORG_SEGMENTS.map((seg) => (
               <Link
