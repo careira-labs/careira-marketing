@@ -49,6 +49,7 @@ interface CareerMatchProfileProps {
   title?: string;
   poolLabel?: string;
   shortlistLabel?: string;
+  showTally?: boolean;
   footerNote?: string;
   items?: MatchItem[];
 }
@@ -93,6 +94,7 @@ export default function CareerMatchProfile({
   title = 'Sophie Clarke, 3rd year Computer Science',
   poolLabel = '100k+ live roles',
   shortlistLabel = '4 strong fits',
+  showTally = true,
   footerNote = 'Every match explains the fit and the gaps',
   items = DEFAULT_ITEMS,
 }: CareerMatchProfileProps) {
@@ -103,7 +105,9 @@ export default function CareerMatchProfile({
           <span className="eyebrow">{eyebrow}</span>
           <h3>{title}</h3>
         </div>
-        <span className="tally">{poolLabel} <span className="arrow">&rarr;</span> <strong>{shortlistLabel}</strong></span>
+        {showTally && (
+          <span className="tally">{poolLabel} <span className="arrow">&rarr;</span> <strong>{shortlistLabel}</strong></span>
+        )}
       </div>
 
       <div className="rows">

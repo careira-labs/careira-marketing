@@ -69,7 +69,7 @@ const MATCHES = [
     iconBg: '#3B6FD4',
     primary: 'Lead Data Engineer',
     secondary: 'Fintech scale-up · London, hybrid',
-    tags: [{ label: 'Your real-time pipelines at scale' }, { label: 'Step up to lead' }],
+    tags: [{ label: 'Step up to lead' }, { label: 'Uses your pipeline experience' }],
     score: 94,
   },
   {
@@ -77,7 +77,7 @@ const MATCHES = [
     iconBg: '#E0922F',
     primary: 'Analytics Platform Engineer',
     secondary: 'Retail group · Remote, UK',
-    tags: [{ label: 'Adjacent: analytics → platform' }, { label: 'Your SQL and dbt' }],
+    tags: [{ label: 'Adjacent: analytics → platform' }, { label: 'Builds on your SQL and dbt' }],
     score: 89,
   },
   {
@@ -85,7 +85,7 @@ const MATCHES = [
     iconBg: '#0E8A8A',
     primary: 'Data Infrastructure Engineer',
     secondary: 'Logistics tech · Manchester',
-    tags: [{ label: 'New today · matched to you first', highlight: true }, { label: 'Cloud migration fit' }],
+    tags: [{ label: 'New today · matched first', highlight: true }, { label: 'Draws on your cloud-migration work' }],
     score: 86,
   },
   {
@@ -93,7 +93,7 @@ const MATCHES = [
     iconBg: '#1F9D6B',
     primary: 'Data Platform Engineer',
     secondary: 'Public sector · Leeds, hybrid',
-    tags: [{ label: 'Values your governance work' }, { label: 'Python, Spark' }],
+    tags: [{ label: 'Values your governance work' }, { label: 'Python, Spark in your stack' }],
     score: 83,
   },
 ];
@@ -182,10 +182,9 @@ export default function JobseekersPage() {
         <section className="proof reveal">
           <div className="wrap wrap-center">
             <CareerMatchProfile
-              eyebrow="Career profile"
+              eyebrow="Your best matches"
               title="Senior Data Engineer"
-              poolLabel="1,948 live roles"
-              shortlistLabel="4 worth your time"
+              showTally={false}
               footerNote="Every match shows the reasoning behind it"
               items={MATCHES}
             />
