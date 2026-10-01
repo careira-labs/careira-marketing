@@ -25,7 +25,7 @@ export default function WhyThisFits({
   role = 'Senior Product Manager',
   candidate = 'Sarah Chen',
   score = 84,
-  scoreLabel = 'Strong Fit',
+  scoreLabel = 'Strong Match',
   reasoning = DEFAULT_REASONING,
   considerations,
 }: WhyThisFitsProps) {
@@ -45,7 +45,6 @@ export default function WhyThisFits({
       </div>
 
       <div className="score-bar">
-        <div className="score-label">Overall Fit</div>
         <div className="score-track">
           <div className="score-fill" style={{ width: `${score}%`, background: fitColor }} />
         </div>
@@ -116,13 +115,6 @@ export default function WhyThisFits({
 
         .score-bar {
           margin-bottom: 1.25rem;
-        }
-
-        .score-label {
-          font-size: 0.75rem;
-          font-weight: 500;
-          color: #667085;
-          margin-bottom: 0.375rem;
         }
 
         .score-track {

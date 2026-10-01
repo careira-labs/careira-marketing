@@ -345,7 +345,7 @@ export default function JobseekersPage() {
               role="Financial Analyst"
               candidate="James Oliver"
               score={82}
-              scoreLabel="Strong Fit"
+              scoreLabel="Strong Match"
               reasoning={[
                 'Quantitative finance background with 3 years of financial modelling experience directly relevant',
                 'Advanced Excel and SQL skills match core technical requirements',

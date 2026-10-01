@@ -6,6 +6,7 @@ import OutcomesSection from '../components/OutcomesSection';
 import CredibilitySection from '../components/CredibilitySection';
 import EmailSignupForm from '../components/EmailSignupForm';
 import WhyThisFits from '../components/proof/WhyThisFits';
+import CareerMatchProfile from '../components/proof/CareerMatchProfile';
 import StrengthsGapsRisks from '../components/proof/StrengthsGapsRisks';
 import PreferenceConflicts from '../components/proof/PreferenceConflicts';
 import ScoreBreakdown from '../components/proof/ScoreBreakdown';
@@ -31,6 +32,41 @@ const AUDIENCE_CARDS = [
     label: 'Stepping up',
     subtitle: 'Experienced professionals',
     description: 'Be selective. Find better fit. Make a stronger move.',
+  },
+];
+
+const HOME_MATCHES = [
+  {
+    iconKey: 'bars' as const,
+    iconBg: '#3B6FD4',
+    primary: 'Lead Product Manager',
+    secondary: 'Fintech scale-up · London, hybrid',
+    tags: [{ label: 'Step up to lead' }, { label: 'Uses your B2B SaaS background' }],
+    score: 93,
+  },
+  {
+    iconKey: 'cursor' as const,
+    iconBg: '#E0922F',
+    primary: 'Group Product Manager',
+    secondary: 'Health tech · Remote, UK',
+    tags: [{ label: 'Adjacent: PM → group PM' }, { label: 'Builds on your platform work' }],
+    score: 88,
+  },
+  {
+    iconKey: 'layers' as const,
+    iconBg: '#0E8A8A',
+    primary: 'Principal PM, Payments',
+    secondary: 'Logistics tech · Manchester',
+    tags: [{ label: 'New today · matched first', highlight: true }, { label: 'Draws on your payments experience' }],
+    score: 85,
+  },
+  {
+    iconKey: 'pin' as const,
+    iconBg: '#1F9D6B',
+    primary: 'Senior PM, Growth',
+    secondary: 'Consumer app · Leeds, hybrid',
+    tags: [{ label: 'Values your experimentation work' }, { label: 'Analytics in your stack' }],
+    score: 82,
   },
 ];
 
@@ -134,24 +170,17 @@ export default function HomePage() {
       <PublicNav theme="dark" />
 
       <main>
-        {/* 1. Hero (dark) — split layout */}
+        {/* 1. Hero (dark) – split layout */}
         <section className="hero">
           <div className="hero-grid">
             <div className="hero-text">
               <h1>Careers are too important for keyword matching</h1>
-              <p className="brand-line">Work that fits, found faster</p>
+              <p className="brand-line">Finally, hiring that just works – for everyone</p>
               <p className="hero-sub">
-                Careira turns your experience into a clear professional profile, shows where you fit
-                best, and explains why – so you can make better career moves with confidence.
+                Careira is an AI-native hiring platform. It helps people find roles that genuinely
+                fit them, and helps organisations make better hiring decisions – faster, and with far
+                greater clarity.
               </p>
-              <div className="hero-cta">
-                <Link href="/jobseekers">
-                  <span className="cta-primary">I&apos;m looking for work</span>
-                </Link>
-                <a href="#for-hirers">
-                  <span className="cta-secondary">I&apos;m hiring</span>
-                </a>
-              </div>
             </div>
             <div className="hero-artifact">
               <div className="artifact-stack">
@@ -165,7 +194,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 2. Problem (white) — narrow, editorial, left-aligned */}
+        {/* 2. Problem (white) – narrow, editorial, left-aligned */}
         <section className="problem reveal">
           <div className="problem-container">
             <h2>You already know the problem</h2>
@@ -177,10 +206,21 @@ export default function HomePage() {
             <p className="problem-close">
               Most hiring platforms generate activity. Careira is built to reduce it.
             </p>
+
+            <div className="problem-proof">
+              <span className="proof-bridge">What that looks like instead</span>
+              <CareerMatchProfile
+                eyebrow="Your best matches"
+                title="Senior Product Manager"
+                showTally={false}
+                footerNote="Every match shows the reasoning behind it"
+                items={HOME_MATCHES}
+              />
+            </div>
           </div>
         </section>
 
-        {/* 3. Audience Routing (grey) — two-column */}
+        {/* 3. Audience Routing (grey) – two-column */}
         <section className="routing reveal">
           <div className="routing-container">
             <h2 className="routing-headline">Find your path through Careira</h2>
@@ -213,7 +253,7 @@ export default function HomePage() {
                   <Link href="/recruiters" className="rcard-link">
                     <div className="rcard">
                       <h4>Recruiters</h4>
-                      <p className="rcard-desc">Screen faster, present stronger. Structured fit evaluation for every candidate you put forward.</p>
+                      <p className="rcard-desc">Screen faster, present stronger. Shortlists you can defend, with clear reasoning for every candidate you put forward.</p>
                       <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
                     </div>
                   </Link>
@@ -230,12 +270,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 4. Product Proof (dark) — carousel */}
+        {/* 4. Product Proof (dark) – carousel */}
         <section className="proof-carousel reveal" ref={carouselRef}>
           <div className="proof-carousel-container">
             <h2 className="proof-headline">Not just smarter matching &ndash; better judgment</h2>
             <p className="proof-subheadline">
-              Careira evaluates fit across multiple dimensions and shows you the reasoning &ndash; strengths, gaps, risks, and preference conflicts &ndash; before you invest time.
+              Careira evaluates relevance across multiple dimensions and shows you the reasoning &ndash; strengths, gaps, risks, and preference conflicts &ndash; before you invest time.
             </p>
             <div className="proof-stage">
               <div className={`proof-slide ${proofSlide === 0 ? 'active' : ''}`}>
@@ -263,7 +303,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="proof-dots">
-              {['Score breakdown', 'Fit reasoning', 'Strengths & gaps', 'Preference conflicts'].map((label, i) => (
+              {['Score breakdown', 'Match reasoning', 'Strengths & gaps', 'Preference conflicts'].map((label, i) => (
                 <button
                   key={i}
                   className={`proof-dot ${proofSlide === i ? 'active' : ''}`}
@@ -295,7 +335,7 @@ export default function HomePage() {
                   That doesn&apos;t improve outcomes. It just creates noise.
                 </p>
                 <p>
-                  Careira is built on a different premise: better decisions come from understanding fit before time is spent.
+                  Careira is built on a different premise: better decisions come from understanding the match before time is spent.
                 </p>
               </>
             }
@@ -326,7 +366,7 @@ export default function HomePage() {
       <Footer />
 
       <style jsx>{`
-        /* Hero — split layout */
+        /* Hero – split layout */
         .hero {
           background: #33374A;
           background-image: radial-gradient(ellipse at 30% 50%, rgba(255, 122, 111, 0.04) 0%, transparent 60%);
@@ -416,7 +456,7 @@ export default function HomePage() {
           border-color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Hero artifact — layered depth treatment */
+        /* Hero artifact – layered depth treatment */
         .hero-artifact {
           display: flex;
           justify-content: center;
@@ -490,7 +530,7 @@ export default function HomePage() {
           to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Problem — narrow editorial, left-aligned */
+        /* Problem – narrow editorial, left-aligned */
         .problem {
           background: #FFFFFF;
           padding: 5rem 0;
@@ -498,10 +538,24 @@ export default function HomePage() {
         }
 
         .problem-container {
-          max-width: 680px;
+          max-width: 720px;
           margin: 0 auto;
           padding: 0 2rem;
           text-align: left;
+        }
+
+        .problem-proof {
+          margin-top: 2.75rem;
+        }
+
+        .proof-bridge {
+          display: block;
+          font-size: 0.75rem;
+          font-weight: 600;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: #FF7A6F;
+          margin-bottom: 1rem;
         }
 
         .problem h2 {
@@ -544,7 +598,7 @@ export default function HomePage() {
           margin: 0;
         }
 
-        /* Audience Routing — two-column */
+        /* Audience Routing – two-column */
         .routing {
           background: #F2F4F6;
           padding: 6rem 0;
