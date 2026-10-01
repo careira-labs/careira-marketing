@@ -1,80 +1,118 @@
+import { ReactNode } from 'react';
+
 const LayersIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" />
   </svg>
 );
-
 const BarIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
   </svg>
 );
-
 const CursorIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
   </svg>
 );
-
 const PinIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
   </svg>
 );
 
-const ROLES = [
+const ICONS: Record<string, ReactNode> = {
+  layers: <LayersIcon />,
+  bars: <BarIcon />,
+  cursor: <CursorIcon />,
+  pin: <PinIcon />,
+};
+
+type IconKey = 'layers' | 'bars' | 'cursor' | 'pin';
+
+interface Tag {
+  label: string;
+  highlight?: boolean;
+}
+
+interface MatchItem {
+  iconKey: IconKey;
+  iconBg: string;
+  primary: string;
+  secondary: string;
+  tags: Tag[];
+  score: number;
+}
+
+interface CareerMatchProfileProps {
+  eyebrow?: string;
+  title?: string;
+  poolLabel?: string;
+  shortlistLabel?: string;
+  footerNote?: string;
+  items?: MatchItem[];
+}
+
+const DEFAULT_ITEMS: MatchItem[] = [
   {
-    icon: <LayersIcon />,
+    iconKey: 'layers',
     iconBg: '#0E8A8A',
-    title: 'Graduate Software Engineer',
-    location: 'Northbank, Leeds',
+    primary: 'Graduate Software Engineer',
+    secondary: 'Northbank, Leeds',
     tags: [{ label: 'Open Source experience' }, { label: 'Python, SQL, React' }],
     score: 85,
   },
   {
-    icon: <BarIcon />,
+    iconKey: 'bars',
     iconBg: '#3B6FD4',
-    title: 'Data Analyst Graduate Scheme',
-    location: 'Caldane Group, Manchester',
+    primary: 'Data Analyst Graduate Scheme',
+    secondary: 'Caldane Group, Manchester',
     tags: [{ label: 'Adjacent: engineering → data' }, { label: 'ML dissertation' }],
     score: 81,
   },
   {
-    icon: <CursorIcon />,
+    iconKey: 'cursor',
     iconBg: '#E0922F',
-    title: 'Graduate Product Analyst',
-    location: 'Wren Technologies, Bristol',
+    primary: 'Graduate Product Analyst',
+    secondary: 'Wren Technologies, Bristol',
     tags: [{ label: 'From your careers team · closes 14 Nov', highlight: true }, { label: 'Team leadership' }],
     score: 78,
   },
   {
-    icon: <PinIcon />,
+    iconKey: 'pin',
     iconBg: '#1F9D6B',
-    title: 'Digital Services Developer',
-    location: 'Public sector, Birmingham',
+    primary: 'Digital Services Developer',
+    secondary: 'Public sector, Birmingham',
     tags: [{ label: 'App used by 1,200 students' }, { label: 'Agile teams' }],
     score: 76,
   },
 ];
 
-export default function StudentMatchProfile() {
+export default function CareerMatchProfile({
+  eyebrow = 'Student profile',
+  title = 'Sophie Clarke, 3rd year Computer Science',
+  poolLabel = '100k+ live roles',
+  shortlistLabel = '4 strong fits',
+  footerNote = 'Every match explains the fit and the gaps',
+  items = DEFAULT_ITEMS,
+}: CareerMatchProfileProps) {
   return (
     <div className="profile">
       <div className="profile-head">
         <div>
-          <span className="eyebrow">Student profile</span>
-          <h3>Sophie Clarke, 3rd year Computer Science</h3>
+          <span className="eyebrow">{eyebrow}</span>
+          <h3>{title}</h3>
         </div>
-        <span className="tally">100k+ live roles <span className="arrow">&rarr;</span> <strong>4 strong fits</strong></span>
+        <span className="tally">{poolLabel} <span className="arrow">&rarr;</span> <strong>{shortlistLabel}</strong></span>
       </div>
 
       <div className="rows">
-        {ROLES.map((r, i) => (
+        {items.map((r, i) => (
           <div className="row" key={i}>
-            <span className="icon-tile" style={{ background: r.iconBg }}>{r.icon}</span>
+            <span className="icon-tile" style={{ background: r.iconBg }}>{ICONS[r.iconKey]}</span>
             <div className="role">
-              <span className="role-title">{r.title}</span>
-              <span className="role-loc">{r.location}</span>
+              <span className="role-title">{r.primary}</span>
+              <span className="role-loc">{r.secondary}</span>
             </div>
             <div className="tags">
               {r.tags.map((t, j) => (
@@ -87,7 +125,7 @@ export default function StudentMatchProfile() {
       </div>
 
       <div className="profile-foot">
-        <span>Every match explains the fit and the gaps</span>
+        <span>{footerNote}</span>
         <span>Illustrative example</span>
       </div>
 

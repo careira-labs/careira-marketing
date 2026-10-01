@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
-import StudentMatchProfile from '../components/proof/StudentMatchProfile';
+import CareerMatchProfile from '../components/proof/CareerMatchProfile';
 import { useScrollReveal } from '../lib/useScrollReveal';
 import { validateEmail } from '../lib/validation';
 import { submitEducationEnquiry } from '../lib/api';
@@ -189,7 +189,7 @@ export default function EducationPage() {
         {/* Student profile proof (grey) */}
         <section className="proof reveal">
           <div className="wrap wrap-center">
-            <StudentMatchProfile />
+            <CareerMatchProfile />
           </div>
         </section>
 
