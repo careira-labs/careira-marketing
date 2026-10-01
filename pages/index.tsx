@@ -228,16 +228,21 @@ export default function HomePage() {
               <div className="routing-col">
                 <h3 className="routing-label">For jobseekers</h3>
                 <div className="routing-cards">
-                  {AUDIENCE_CARDS.map((card) => (
-                    <Link key={card.slug} href={`/${card.slug}`} className="rcard-link">
-                      <div className="rcard">
-                        <h4>{card.label}</h4>
-                        <p className="rcard-subtitle">{card.subtitle}</p>
-                        <p className="rcard-desc">{card.description}</p>
-                        <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
-                      </div>
-                    </Link>
-                  ))}
+                  <Link href="/jobseekers" className="rcard-link rcard-link-feature">
+                    <div className="rcard rcard-feature">
+                      <h4>Find where you fit</h4>
+                      <p className="rcard-desc">Turn your experience into a clear profile and see the roles genuinely worth your time &ndash; wherever you are in your career.</p>
+                      <ul className="rcard-journeys">
+                        {AUDIENCE_CARDS.map((card) => (
+                          <li key={card.slug}>
+                            <span className="journey-label">{card.label}</span>
+                            <span className="journey-sub">{card.subtitle}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <span className="rcard-cta">Explore Careira for jobseekers <span className="rcard-arrow">&rarr;</span></span>
+                    </div>
+                  </Link>
                 </div>
               </div>
               <div className="routing-col routing-col-hirers" id="for-hirers">
@@ -622,7 +627,12 @@ export default function HomePage() {
           display: grid;
           grid-template-columns: 1fr 0.8fr;
           gap: 2.5rem;
-          align-items: start;
+          align-items: stretch;
+        }
+
+        .routing-col {
+          display: flex;
+          flex-direction: column;
         }
 
         .routing-label {
@@ -636,11 +646,17 @@ export default function HomePage() {
           display: flex;
           flex-direction: column;
           gap: 1rem;
+          flex: 1;
         }
 
         :global(a.rcard-link) {
           text-decoration: none;
           color: inherit;
+        }
+
+        :global(a.rcard-link-feature) {
+          display: flex;
+          flex: 1;
         }
 
         .rcard {
@@ -681,6 +697,54 @@ export default function HomePage() {
           line-height: 1.6;
           margin: 0;
           flex: 1;
+        }
+
+        .rcard-feature {
+          width: 100%;
+        }
+
+        .rcard-feature .rcard-desc {
+          flex: 0 0 auto;
+        }
+
+        .rcard-journeys {
+          list-style: none;
+          padding: 0;
+          margin: 1.5rem 0 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.875rem;
+          flex: 1;
+        }
+
+        .rcard-journeys li {
+          position: relative;
+          padding-left: 1.125rem;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .rcard-journeys li::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0.4rem;
+          width: 7px;
+          height: 7px;
+          border-radius: 2px;
+          background: #FF7A6F;
+        }
+
+        .journey-label {
+          font-size: 0.9375rem;
+          font-weight: 600;
+          color: #33374A;
+        }
+
+        .journey-sub {
+          font-size: 0.8125rem;
+          color: #667085;
+          margin-top: 0.125rem;
         }
 
         .rcard-cta {
