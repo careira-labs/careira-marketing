@@ -70,22 +70,6 @@ const HOME_MATCHES = [
   },
 ];
 
-// Deterministic scatter for the jobseeker card visual (fixed coords -> no hydration mismatch).
-// Faint grey role dots [cx, cy, r, opacity] with a few coral match dots [cx, cy, r].
-const ROLE_DOTS: [number, number, number, number][] = [
-  [14, 20, 3, 0.5], [34, 12, 2.5, 0.4], [28, 34, 3, 0.55], [48, 26, 2, 0.4],
-  [44, 48, 3, 0.5], [62, 16, 2.5, 0.45], [68, 38, 3, 0.55], [58, 60, 2, 0.4],
-  [84, 24, 3, 0.5], [92, 46, 2.5, 0.45], [80, 68, 3, 0.5], [104, 14, 2, 0.4],
-  [112, 36, 3, 0.55], [120, 58, 2.5, 0.45], [100, 90, 3, 0.5], [134, 26, 2, 0.4],
-  [146, 48, 3, 0.55], [138, 72, 2.5, 0.45], [160, 18, 3, 0.5], [168, 40, 2, 0.4],
-  [156, 64, 3, 0.55], [182, 30, 2.5, 0.45], [190, 56, 3, 0.5], [176, 86, 2, 0.4],
-  [206, 20, 3, 0.5], [214, 44, 2.5, 0.45], [202, 70, 3, 0.55], [230, 32, 2, 0.4],
-  [240, 58, 3, 0.5], [226, 88, 2.5, 0.45], [258, 24, 3, 0.5], [266, 50, 2, 0.4],
-];
-const MATCH_DOTS: [number, number, number][] = [
-  [72, 104, 5], [128, 118, 5], [188, 108, 5], [244, 122, 5],
-];
-
 const TargetIcon = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
@@ -281,75 +265,61 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 3. Audience Routing (grey) – two-column */}
+        {/* 3. Audience Routing (grey) – stacked bands */}
         <section className="routing reveal">
           <div className="routing-container">
             <h2 className="routing-headline">Find your path through Careira</h2>
-            <div className="routing-grid">
-              <div className="routing-col">
-                <h3 className="routing-label">For jobseekers</h3>
-                <div className="routing-cards">
-                  <Link href="/jobseekers" className="rcard-link rcard-link-feature">
-                    <div className="rcard rcard-feature">
-                      <span className="rcard-icon"><RouteIcon /></span>
-                      <h4>Find where you fit</h4>
-                      <p className="rcard-desc">Turn your experience into a clear profile and see the roles genuinely worth your time &ndash; wherever you are in your career.</p>
-                      <ul className="rcard-journeys">
-                        {AUDIENCE_CARDS.map((card) => (
-                          <li key={card.slug}>
-                            <span className="journey-icon">{JOURNEY_ICONS[card.slug]}</span>
-                            <span className="journey-text">
-                              <span className="journey-label">{card.label}</span>
-                              <span className="journey-sub">{card.subtitle}</span>
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="rcard-visual">
-                        <svg viewBox="0 0 300 150" width="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
-                          {ROLE_DOTS.map((p, i) => (
-                            <circle key={`r${i}`} className="role-dot" cx={p[0]} cy={p[1]} r={p[2]} opacity={p[3]} />
-                          ))}
-                          {MATCH_DOTS.map((p, i) => (
-                            <circle key={`m${i}`} className="match-dot" cx={p[0]} cy={p[1]} r={p[2]} />
-                          ))}
-                        </svg>
-                        <span className="rcard-visual-caption">From many roles to the few that fit you</span>
+
+            <div className="routing-band">
+              <h3 className="routing-label">For jobseekers</h3>
+              <Link href="/jobseekers" className="rcard-link">
+                <div className="js-feature">
+                  <div className="js-lead">
+                    <span className="rcard-icon" aria-hidden="true"><RouteIcon /></span>
+                    <h4>Find where you fit</h4>
+                    <p className="rcard-desc">Turn your experience into a clear profile and see the roles genuinely worth your time &ndash; wherever you are in your career.</p>
+                    <span className="rcard-cta">Explore Careira for jobseekers <span className="rcard-arrow">&rarr;</span></span>
+                  </div>
+                  <div className="js-journeys">
+                    {AUDIENCE_CARDS.map((card) => (
+                      <div className="journey" key={card.slug}>
+                        <span className="journey-icon" aria-hidden="true">{JOURNEY_ICONS[card.slug]}</span>
+                        <span className="journey-label">{card.label}</span>
+                        <span className="journey-sub">{card.subtitle}</span>
                       </div>
-                      <span className="journey-kicker">Pick your path on the next page</span>
-                      <span className="rcard-cta">Explore Careira for jobseekers <span className="rcard-arrow">&rarr;</span></span>
-                    </div>
-                  </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="routing-col routing-col-hirers" id="for-hirers">
-                <h3 className="routing-label">For organisations</h3>
-                <div className="routing-cards">
-                  <Link href="/employers" className="rcard-link">
-                    <div className="rcard">
-                      <span className="rcard-icon"><BriefcaseIcon /></span>
-                      <h4>Employers</h4>
-                      <p className="rcard-desc">Hire for your own roles. See scored candidates with clear reasoning before you decide.</p>
-                      <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
-                    </div>
-                  </Link>
-                  <Link href="/recruiters" className="rcard-link">
-                    <div className="rcard">
-                      <span className="rcard-icon"><UsersIcon /></span>
-                      <h4>Recruiters</h4>
-                      <p className="rcard-desc">Screen faster, present stronger. Shortlists you can defend, with clear reasoning for every candidate you put forward.</p>
-                      <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
-                    </div>
-                  </Link>
-                  <Link href="/education" className="rcard-link">
-                    <div className="rcard">
-                      <span className="rcard-icon"><GradCapIcon /></span>
-                      <h4>Education</h4>
-                      <p className="rcard-desc">Universities and careers services. Give students explained, skills-first matches and guide more of them.</p>
-                      <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
-                    </div>
-                  </Link>
-                </div>
+              </Link>
+            </div>
+
+            <div className="routing-band" id="for-hirers">
+              <h3 className="routing-label">For organisations</h3>
+              <div className="org-trio">
+                <Link href="/employers" className="rcard-link">
+                  <div className="rcard">
+                    <span className="rcard-icon" aria-hidden="true"><BriefcaseIcon /></span>
+                    <h4>Employers</h4>
+                    <p className="rcard-desc">Hire for your own roles. See scored candidates with clear reasoning before you decide.</p>
+                    <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
+                  </div>
+                </Link>
+                <Link href="/recruiters" className="rcard-link">
+                  <div className="rcard">
+                    <span className="rcard-icon" aria-hidden="true"><UsersIcon /></span>
+                    <h4>Recruiters</h4>
+                    <p className="rcard-desc">Screen faster, present stronger. Shortlists you can defend, with clear reasoning for every candidate you put forward.</p>
+                    <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
+                  </div>
+                </Link>
+                <Link href="/education" className="rcard-link">
+                  <div className="rcard">
+                    <span className="rcard-icon" aria-hidden="true"><GradCapIcon /></span>
+                    <h4>Education</h4>
+                    <p className="rcard-desc">Universities and careers services. Give students explained, skills-first matches and guide more of them.</p>
+                    <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -703,18 +673,6 @@ export default function HomePage() {
           margin: 0 0 3rem;
         }
 
-        .routing-grid {
-          display: grid;
-          grid-template-columns: 1fr 0.8fr;
-          gap: 2.5rem;
-          align-items: stretch;
-        }
-
-        .routing-col {
-          display: flex;
-          flex-direction: column;
-        }
-
         .routing-label {
           font-size: 1.125rem;
           font-weight: 700;
@@ -722,32 +680,89 @@ export default function HomePage() {
           margin: 0 0 1.25rem;
         }
 
-        .routing-cards {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          flex: 1;
+        .routing-band + .routing-band {
+          margin-top: 2.75rem;
         }
 
         :global(a.rcard-link) {
           text-decoration: none;
           color: inherit;
+          display: block;
         }
 
-        :global(a.rcard-link-feature) {
+        :global(a.rcard-link:focus-visible) {
+          outline: none;
+        }
+
+        :global(a.rcard-link:focus-visible) .rcard,
+        :global(a.rcard-link:focus-visible) .js-feature {
+          outline: 2px solid #FF7A6F;
+          outline-offset: 3px;
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09), 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Jobseeker feature banner */
+        .js-feature {
+          background: #FFFFFF;
+          border-radius: 12px;
+          border-left: 3px solid #FF7A6F;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.03);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          padding: 2rem 2.25rem;
           display: flex;
+          align-items: center;
+          gap: 2.5rem;
+        }
+
+        .js-feature:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09), 0 4px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .js-lead {
+          flex: 0 0 38%;
+          max-width: 38%;
+        }
+
+        .js-lead h4 {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #33374A;
+          margin: 0 0 0.4rem;
+        }
+
+        .js-journeys {
           flex: 1;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.25rem;
+          border-left: 1px solid #EDEFF2;
+          padding-left: 2.25rem;
+        }
+
+        .journey {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* Organisations trio */
+        .org-trio {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.25rem;
         }
 
         .rcard {
           background: #FFFFFF;
           border-radius: 12px;
-          padding: 2rem 1.75rem;
+          padding: 1.75rem 1.6rem;
           border-left: 3px solid #FF7A6F;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.03);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
           display: flex;
           flex-direction: column;
+          height: 100%;
         }
 
         .rcard:hover {
@@ -768,15 +783,6 @@ export default function HomePage() {
           margin: 0 0 0.25rem;
         }
 
-        .rcard-subtitle {
-          font-size: 0.8125rem;
-          color: #667085;
-          margin: 0 0 0.75rem;
-          font-weight: 500;
-          text-transform: uppercase;
-          letter-spacing: 0.02em;
-        }
-
         .rcard-desc {
           font-size: 1.05rem;
           color: #4C526A;
@@ -785,97 +791,25 @@ export default function HomePage() {
           flex: 1;
         }
 
-        .rcard-feature {
-          width: 100%;
-        }
-
-        .rcard-feature .rcard-desc {
-          flex: 0 0 auto;
-        }
-
-        .rcard-journeys {
-          list-style: none;
-          padding: 0;
-          margin: 1.5rem 0 0;
-          display: flex;
-          flex-direction: column;
-          gap: 0.875rem;
-        }
-
-        .rcard-visual {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: flex-start;
-          gap: 0.75rem;
-          min-height: 150px;
-          margin-top: 1.5rem;
-        }
-
-        .rcard-visual svg {
-          max-width: 300px;
-          pointer-events: none;
-        }
-
-        .role-dot {
-          fill: #B8BFCB;
-        }
-
-        .match-dot {
-          fill: #FF7A6F;
-        }
-
-        .rcard-visual-caption {
-          font-size: 0.8125rem;
-          color: #4C526A;
-          line-height: 1.4;
-        }
-
-        .rcard-journeys li {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 0.75rem;
-        }
-
         .journey-icon {
-          flex-shrink: 0;
-          width: 20px;
-          height: 20px;
           display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.15s ease;
-        }
-
-        .rcard-feature:hover .journey-icon {
-          transform: translateX(2px);
-        }
-
-        .journey-text {
-          display: flex;
-          flex-direction: column;
-          min-width: 0;
+          margin-bottom: 0.5rem;
+          line-height: 0;
         }
 
         .journey-label {
+          display: block;
           font-size: 0.9375rem;
           font-weight: 600;
           color: #33374A;
         }
 
         .journey-sub {
-          font-size: 0.8125rem;
-          color: #667085;
-          margin-top: 0.125rem;
-        }
-
-        .journey-kicker {
           display: block;
           font-size: 0.8125rem;
           color: #667085;
-          margin: 1.5rem 0 1rem;
+          margin-top: 0.15rem;
+          line-height: 1.4;
         }
 
         .rcard-cta {
@@ -888,17 +822,59 @@ export default function HomePage() {
           color: #FF7A6F;
         }
 
+        .js-lead .rcard-cta {
+          margin-top: 1.1rem;
+        }
+
         .rcard-arrow {
           display: inline-block;
           transition: transform 0.15s ease;
         }
 
-        .rcard:hover .rcard-arrow {
+        .rcard:hover .rcard-arrow,
+        .js-feature:hover .rcard-arrow {
           transform: translateX(4px);
         }
 
-        .routing-col-hirers .routing-cards {
-          flex: 1;
+        @media (max-width: 820px) {
+          .js-feature {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.5rem;
+            padding: 1.75rem 1.6rem;
+          }
+
+          .js-lead {
+            flex: none;
+            max-width: none;
+          }
+
+          .js-journeys {
+            border-left: none;
+            padding-left: 0;
+            border-top: 1px solid #EDEFF2;
+            padding-top: 1.5rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .org-trio {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .js-journeys {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem 1rem;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .js-journeys {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
         }
 
         /* Proof Carousel */
@@ -1155,11 +1131,6 @@ export default function HomePage() {
             margin: 0 0 2rem;
           }
 
-          .routing-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-
           .rcard {
             padding: 1.75rem 1.5rem;
           }
@@ -1210,15 +1181,6 @@ export default function HomePage() {
         }
 
         @media (max-width: 640px) {
-          .rcard-visual {
-            min-height: 0;
-            margin-top: 1.25rem;
-          }
-
-          .rcard-visual svg {
-            max-width: 220px;
-          }
-
           .hero-cta {
             gap: 0.5rem;
           }
