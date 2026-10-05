@@ -70,6 +70,22 @@ const HOME_MATCHES = [
   },
 ];
 
+// Deterministic scatter for the jobseeker card visual (fixed coords -> no hydration mismatch).
+// Faint grey role dots [cx, cy, r, opacity] with a few coral match dots [cx, cy, r].
+const ROLE_DOTS: [number, number, number, number][] = [
+  [14, 20, 3, 0.5], [34, 12, 2.5, 0.4], [28, 34, 3, 0.55], [48, 26, 2, 0.4],
+  [44, 48, 3, 0.5], [62, 16, 2.5, 0.45], [68, 38, 3, 0.55], [58, 60, 2, 0.4],
+  [84, 24, 3, 0.5], [92, 46, 2.5, 0.45], [80, 68, 3, 0.5], [104, 14, 2, 0.4],
+  [112, 36, 3, 0.55], [120, 58, 2.5, 0.45], [100, 90, 3, 0.5], [134, 26, 2, 0.4],
+  [146, 48, 3, 0.55], [138, 72, 2.5, 0.45], [160, 18, 3, 0.5], [168, 40, 2, 0.4],
+  [156, 64, 3, 0.55], [182, 30, 2.5, 0.45], [190, 56, 3, 0.5], [176, 86, 2, 0.4],
+  [206, 20, 3, 0.5], [214, 44, 2.5, 0.45], [202, 70, 3, 0.55], [230, 32, 2, 0.4],
+  [240, 58, 3, 0.5], [226, 88, 2.5, 0.45], [258, 24, 3, 0.5], [266, 50, 2, 0.4],
+];
+const MATCH_DOTS: [number, number, number][] = [
+  [72, 104, 5], [128, 118, 5], [188, 108, 5], [244, 122, 5],
+];
+
 const TargetIcon = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
@@ -289,6 +305,17 @@ export default function HomePage() {
                           </li>
                         ))}
                       </ul>
+                      <div className="rcard-visual">
+                        <svg viewBox="0 0 300 150" width="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+                          {ROLE_DOTS.map((p, i) => (
+                            <circle key={`r${i}`} className="role-dot" cx={p[0]} cy={p[1]} r={p[2]} opacity={p[3]} />
+                          ))}
+                          {MATCH_DOTS.map((p, i) => (
+                            <circle key={`m${i}`} className="match-dot" cx={p[0]} cy={p[1]} r={p[2]} />
+                          ))}
+                        </svg>
+                        <span className="rcard-visual-caption">From many roles to the few that fit you</span>
+                      </div>
                       <span className="journey-kicker">Pick your path on the next page</span>
                       <span className="rcard-cta">Explore Careira for jobseekers <span className="rcard-arrow">&rarr;</span></span>
                     </div>
@@ -773,7 +800,36 @@ export default function HomePage() {
           display: flex;
           flex-direction: column;
           gap: 0.875rem;
+        }
+
+        .rcard-visual {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 0.75rem;
+          min-height: 150px;
+          margin-top: 1.5rem;
+        }
+
+        .rcard-visual svg {
+          max-width: 300px;
+          pointer-events: none;
+        }
+
+        .role-dot {
+          fill: #B8BFCB;
+        }
+
+        .match-dot {
+          fill: #FF7A6F;
+        }
+
+        .rcard-visual-caption {
+          font-size: 0.8125rem;
+          color: #4C526A;
+          line-height: 1.4;
         }
 
         .rcard-journeys li {
@@ -1154,6 +1210,15 @@ export default function HomePage() {
         }
 
         @media (max-width: 640px) {
+          .rcard-visual {
+            min-height: 0;
+            margin-top: 1.25rem;
+          }
+
+          .rcard-visual svg {
+            max-width: 220px;
+          }
+
           .hero-cta {
             gap: 0.5rem;
           }
