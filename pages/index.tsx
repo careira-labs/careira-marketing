@@ -94,6 +94,51 @@ const NoEntryIcon = () => (
   </svg>
 );
 
+/* Card header icons (26px, coral line) */
+const RouteIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="6" cy="19" r="3" /><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" /><circle cx="18" cy="5" r="3" />
+  </svg>
+);
+const BriefcaseIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+  </svg>
+);
+const UsersIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
+const GradCapIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" />
+  </svg>
+);
+
+/* Journey row icons (20px, coral line) */
+const SunriseIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 18a5 5 0 0 0-10 0" /><line x1="12" y1="2" x2="12" y2="9" /><line x1="4.22" y1="10.22" x2="5.64" y2="11.64" /><line x1="1" y1="18" x2="3" y2="18" /><line x1="21" y1="18" x2="23" y2="18" /><line x1="18.36" y1="11.64" x2="19.78" y2="10.22" /><line x1="23" y1="22" x2="1" y2="22" /><polyline points="8 6 12 2 16 6" />
+  </svg>
+);
+const RefreshIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+  </svg>
+);
+const StepUpIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7A6F" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="23 6 13.5 16.5 8.5 11.5 1 19" /><polyline points="17 6 23 6 23 12" />
+  </svg>
+);
+
+const JOURNEY_ICONS: Record<string, JSX.Element> = {
+  'starting-out': <SunriseIcon />,
+  'starting-again': <RefreshIcon />,
+  'stepping-up': <StepUpIcon />,
+};
+
 const OUTCOME_ITEMS = [
   {
     icon: <TargetIcon />,
@@ -230,16 +275,21 @@ export default function HomePage() {
                 <div className="routing-cards">
                   <Link href="/jobseekers" className="rcard-link rcard-link-feature">
                     <div className="rcard rcard-feature">
+                      <span className="rcard-icon"><RouteIcon /></span>
                       <h4>Find where you fit</h4>
                       <p className="rcard-desc">Turn your experience into a clear profile and see the roles genuinely worth your time &ndash; wherever you are in your career.</p>
                       <ul className="rcard-journeys">
                         {AUDIENCE_CARDS.map((card) => (
                           <li key={card.slug}>
-                            <span className="journey-label">{card.label}</span>
-                            <span className="journey-sub">{card.subtitle}</span>
+                            <span className="journey-icon">{JOURNEY_ICONS[card.slug]}</span>
+                            <span className="journey-text">
+                              <span className="journey-label">{card.label}</span>
+                              <span className="journey-sub">{card.subtitle}</span>
+                            </span>
                           </li>
                         ))}
                       </ul>
+                      <span className="journey-kicker">Pick your path on the next page</span>
                       <span className="rcard-cta">Explore Careira for jobseekers <span className="rcard-arrow">&rarr;</span></span>
                     </div>
                   </Link>
@@ -250,6 +300,7 @@ export default function HomePage() {
                 <div className="routing-cards">
                   <Link href="/employers" className="rcard-link">
                     <div className="rcard">
+                      <span className="rcard-icon"><BriefcaseIcon /></span>
                       <h4>Employers</h4>
                       <p className="rcard-desc">Hire for your own roles. See scored candidates with clear reasoning before you decide.</p>
                       <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
@@ -257,6 +308,7 @@ export default function HomePage() {
                   </Link>
                   <Link href="/recruiters" className="rcard-link">
                     <div className="rcard">
+                      <span className="rcard-icon"><UsersIcon /></span>
                       <h4>Recruiters</h4>
                       <p className="rcard-desc">Screen faster, present stronger. Shortlists you can defend, with clear reasoning for every candidate you put forward.</p>
                       <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
@@ -264,6 +316,7 @@ export default function HomePage() {
                   </Link>
                   <Link href="/education" className="rcard-link">
                     <div className="rcard">
+                      <span className="rcard-icon"><GradCapIcon /></span>
                       <h4>Education</h4>
                       <p className="rcard-desc">Universities and careers services. Give students explained, skills-first matches and guide more of them.</p>
                       <span className="rcard-cta">Learn more <span className="rcard-arrow">&rarr;</span></span>
@@ -675,6 +728,12 @@ export default function HomePage() {
           box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09), 0 4px 10px rgba(0, 0, 0, 0.04);
         }
 
+        .rcard-icon {
+          display: inline-flex;
+          margin-bottom: 0.875rem;
+          line-height: 0;
+        }
+
         .rcard h4 {
           font-size: 1.125rem;
           font-weight: 700;
@@ -718,21 +777,30 @@ export default function HomePage() {
         }
 
         .rcard-journeys li {
-          position: relative;
-          padding-left: 1.125rem;
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.75rem;
         }
 
-        .rcard-journeys li::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0.4rem;
-          width: 7px;
-          height: 7px;
-          border-radius: 2px;
-          background: #FF7A6F;
+        .journey-icon {
+          flex-shrink: 0;
+          width: 20px;
+          height: 20px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.15s ease;
+        }
+
+        .rcard-feature:hover .journey-icon {
+          transform: translateX(2px);
+        }
+
+        .journey-text {
+          display: flex;
+          flex-direction: column;
+          min-width: 0;
         }
 
         .journey-label {
@@ -745,6 +813,13 @@ export default function HomePage() {
           font-size: 0.8125rem;
           color: #667085;
           margin-top: 0.125rem;
+        }
+
+        .journey-kicker {
+          display: block;
+          font-size: 0.8125rem;
+          color: #667085;
+          margin: 1.5rem 0 1rem;
         }
 
         .rcard-cta {
