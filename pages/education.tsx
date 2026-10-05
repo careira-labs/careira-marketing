@@ -189,7 +189,12 @@ export default function EducationPage() {
         {/* Student profile proof (grey) */}
         <section className="proof reveal">
           <div className="wrap wrap-center">
-            <CareerMatchProfile />
+            <CareerMatchProfile
+              eyebrow="Top matches"
+              poolLabel="2,460 matches"
+              shortlistLabel="4 strong matches"
+              footerNote="Careira explains every match – how the student fits the role, and any gaps"
+            />
           </div>
         </section>
 
