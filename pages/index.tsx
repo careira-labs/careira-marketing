@@ -57,7 +57,7 @@ const HOME_MATCHES = [
     iconBg: '#0E8A8A',
     primary: 'Principal PM, Payments',
     secondary: 'Logistics tech · Manchester',
-    tags: [{ label: 'New today · matched first', highlight: true }, { label: 'Draws on your payments experience' }],
+    tags: [{ label: 'New today', highlight: true }, { label: 'Draws on your payments experience' }],
     score: 85,
   },
   {
@@ -253,7 +253,7 @@ export default function HomePage() {
             </p>
 
             <div className="problem-proof">
-              <span className="proof-bridge">What that looks like instead</span>
+              <span className="proof-bridge">What Careira shows you instead</span>
               <CareerMatchProfile
                 eyebrow="Your best matches"
                 title="Senior Product Manager"
@@ -605,12 +605,11 @@ export default function HomePage() {
 
         .proof-bridge {
           display: block;
-          font-size: 0.75rem;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
+          font-size: 2rem;
+          font-weight: 700;
           color: #FF7A6F;
-          margin-bottom: 1rem;
+          margin: 0 0 1.5rem;
+          line-height: 1.2;
         }
 
         .problem h2 {
@@ -1115,6 +1114,10 @@ export default function HomePage() {
           }
 
           .problem h2 {
+            font-size: 1.5rem;
+          }
+
+          .proof-bridge {
             font-size: 1.5rem;
           }
 

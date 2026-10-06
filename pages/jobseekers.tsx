@@ -85,7 +85,7 @@ const MATCHES = [
     iconBg: '#0E8A8A',
     primary: 'Data Infrastructure Engineer',
     secondary: 'Logistics tech · Manchester',
-    tags: [{ label: 'New today · matched first', highlight: true }, { label: 'Draws on your cloud-migration work' }],
+    tags: [{ label: 'New today', highlight: true }, { label: 'Draws on your cloud-migration work' }],
     score: 86,
   },
   {
