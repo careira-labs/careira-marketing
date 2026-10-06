@@ -11,6 +11,15 @@ const nextConfig = {
   compiler: {
     styledJsx: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/data-processing-recruiter',
+        destination: '/data-processing-addendum',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

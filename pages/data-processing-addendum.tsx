@@ -2,7 +2,7 @@ import Head from 'next/head';
 import PublicNav from '../components/PublicNav';
 import Footer from '../components/Footer';
 
-export default function DataProcessingRecruiterPage() {
+export default function DataProcessingAddendumPage() {
   return (
     <>
       <Head>
@@ -11,7 +11,7 @@ export default function DataProcessingRecruiterPage() {
           name="description"
           content="Data Processing Addendum for recruiters and employers using the Careira platform."
         />
-        <link rel="canonical" href="https://www.careira.com/data-processing-recruiter" />
+        <link rel="canonical" href="https://www.careira.com/data-processing-addendum" />
       </Head>
 
       <PublicNav theme="light" />
