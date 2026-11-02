@@ -42,6 +42,9 @@ export default function PrivacyPage() {
             <p>
               That processing is governed by our <a href="/data-processing-addendum">Data Processing Addendum</a>, and the recruiter&rsquo;s or employer&rsquo;s own privacy notice will explain the lawful basis on which it uses candidate data.
             </p>
+            <p>
+              For our full security and compliance posture, including international transfers, AI governance and the documents available to a data-protection office, see our <a href="/trust">Trust &amp; Compliance</a> page.
+            </p>
             <p>This policy explains:</p>
             <ul>
               <li>What information we collect and why</li>

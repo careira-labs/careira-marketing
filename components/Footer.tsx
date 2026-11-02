@@ -6,6 +6,9 @@ export default function Footer() {
           © 2026 Careira Ltd. Registered in England and Wales with company number 16937993.
         </span>
         <div className="footer-links">
+          <a href="/trust" className="footer-item link">
+            Trust &amp; Compliance
+          </a>
           <a href="/privacy" className="footer-item link">
             Privacy Policy
           </a>
