@@ -23,18 +23,20 @@ export default function TrustPage() {
 
       <main>
         <div className="container">
-          <h1>Trust &amp; Compliance</h1>
-          <p className="updated">How we protect personal data &middot; Last updated: 2 November 2026</p>
+          <header className="head">
+            <h1>Trust &amp; Compliance</h1>
+            <p className="updated">How we protect personal data &middot; Last updated: 2 November 2026</p>
 
-          <div className="badges">
-            <span className="badge">ICO registered &middot; ZC110377</span>
-            <span className="badge">UK GDPR</span>
-            <span className="badge">Signed sub-processor DPAs</span>
-            <span className="badge">Transfer Risk Assessments</span>
-            <span className="badge">Human-in-the-loop AI</span>
-          </div>
+            <div className="badges">
+              <span className="badge">ICO registered &middot; ZC110377</span>
+              <span className="badge">UK GDPR</span>
+              <span className="badge">Signed sub-processor DPAs</span>
+              <span className="badge">Transfer Risk Assessments</span>
+              <span className="badge">Human-in-the-loop AI</span>
+            </div>
+          </header>
 
-          <section>
+          <section className="panel glance-panel">
             <h2>At a glance</h2>
             <ul className="glance">
               <li>Personal data is encrypted in transit (TLS, HSTS) and at rest (AES-256).</li>
@@ -56,23 +58,32 @@ export default function TrustPage() {
             </ul>
           </section>
 
-          <section>
+          <section className="docs">
             <h2>Published documents</h2>
             <p>Available now to read:</p>
-            <ul className="doc-list">
-              <li><a href="/privacy">Privacy Policy</a></li>
-              <li><a href="/terms">Terms of Service</a></li>
-              <li><a href="/data-processing-addendum">Data Processing Addendum</a></li>
-            </ul>
+            <div className="doc-cards">
+              <a className="doc-card" href="/privacy">
+                <span>Privacy Policy</span>
+                <span className="arrow" aria-hidden="true">&rarr;</span>
+              </a>
+              <a className="doc-card" href="/terms">
+                <span>Terms of Service</span>
+                <span className="arrow" aria-hidden="true">&rarr;</span>
+              </a>
+              <a className="doc-card" href="/data-processing-addendum">
+                <span>Data Processing Addendum</span>
+                <span className="arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
           </section>
 
-          <section>
+          <section className="panel request-panel">
             <h2>Available on request</h2>
             <p>
               Plain-English summaries we share with customers and partners &ndash; ask and we
               will send them:
             </p>
-            <ul className="doc-list muted">
+            <ul className="doc-list">
               <li>Data Handling Summary (for education institutions)</li>
               <li>Data Protection Impact Assessment &ndash; summary</li>
               <li>Service Level Summary</li>
@@ -82,7 +93,7 @@ export default function TrustPage() {
               The full supporting documents are available to a customer or partner&rsquo;s
               data-protection office on request, under NDA:
             </p>
-            <ul className="doc-list muted">
+            <ul className="doc-list">
               <li>Full Data Protection Impact Assessment and AI Act technical file</li>
               <li>Record of Processing Activities</li>
               <li>Transfer Risk Assessments</li>
@@ -91,7 +102,7 @@ export default function TrustPage() {
             </ul>
           </section>
 
-          <section>
+          <section className="panel cta-panel">
             <h2>Request the pack</h2>
             <p>
               For any of the documents above, or to start a security and data-protection
@@ -110,13 +121,18 @@ export default function TrustPage() {
         main {
           min-height: 100vh;
           padding: 6rem 0 4rem;
+          background: #FFFFFF;
         }
 
         .container {
-          max-width: 960px;
+          max-width: 860px;
           margin: 0 auto;
           padding: 0 2rem;
           color: #33374A;
+        }
+
+        .head {
+          margin-bottom: 2.5rem;
         }
 
         h1 {
@@ -129,28 +145,27 @@ export default function TrustPage() {
         .updated {
           font-size: 0.9rem;
           color: #4C526A;
-          margin-bottom: 2rem;
+          margin-bottom: 1.75rem;
         }
 
         .badges {
           display: flex;
           flex-wrap: wrap;
           gap: 0.6rem;
-          margin-bottom: 3rem;
         }
 
         .badge {
           font-size: 0.82rem;
           font-weight: 600;
           color: #33374A;
-          background: #FFFFFF;
-          border: 1px solid #E3E6EC;
+          background: #FFF3F0;
+          border: 1px solid #F6CFC6;
           border-radius: 100px;
-          padding: 0.4rem 0.85rem;
+          padding: 0.4rem 0.9rem;
         }
 
         section {
-          margin-bottom: 2.75rem;
+          margin-bottom: 1.75rem;
         }
 
         h2 {
@@ -171,6 +186,17 @@ export default function TrustPage() {
           margin-top: 1.5rem;
         }
 
+        /* panels add colour blocks between the plain document band */
+        .panel {
+          border-radius: 16px;
+          padding: 1.9rem 2rem;
+        }
+
+        .glance-panel {
+          background: #FFF3F0;
+          border-left: 4px solid #FF7A6F;
+        }
+
         .glance {
           list-style: none;
           padding-left: 0;
@@ -179,22 +205,69 @@ export default function TrustPage() {
 
         .glance li {
           position: relative;
-          padding-left: 1.5rem;
-          margin-bottom: 0.75rem;
+          padding-left: 1.6rem;
+          margin-bottom: 0.8rem;
           font-size: 1rem;
           line-height: 1.7;
           color: #4C526A;
+        }
+
+        .glance li:last-child {
+          margin-bottom: 0;
         }
 
         .glance li::before {
           content: '';
           position: absolute;
           left: 0;
-          top: 0.65rem;
-          width: 7px;
-          height: 7px;
+          top: 0.62rem;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
-          background: #E4694F;
+          background: #FF7A6F;
+        }
+
+        .docs {
+          padding: 0 0.25rem;
+        }
+
+        .doc-cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 0.85rem;
+          margin-top: 0.75rem;
+        }
+
+        .doc-card {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+          background: #FFFFFF;
+          border: 1px solid #E3E6EC;
+          border-radius: 12px;
+          padding: 1rem 1.25rem;
+          color: #33374A;
+          font-size: 1rem;
+          font-weight: 600;
+          text-decoration: none;
+          transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+        }
+
+        .doc-card:hover {
+          border-color: #FF7A6F;
+          box-shadow: 0 6px 18px rgba(255, 122, 111, 0.18);
+          transform: translateY(-1px);
+          color: #33374A;
+        }
+
+        .arrow {
+          color: #FF7A6F;
+          font-size: 1.1rem;
+        }
+
+        .request-panel {
+          background: #F2F4F6;
         }
 
         .doc-list {
@@ -203,29 +276,56 @@ export default function TrustPage() {
           margin: 0.5rem 0 0;
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.55rem;
         }
 
         .doc-list li {
           font-size: 1rem;
           line-height: 1.6;
-          color: #33374A;
-        }
-
-        .doc-list.muted li {
           color: #4C526A;
-          padding-left: 1.5rem;
           position: relative;
+          padding-left: 1.5rem;
         }
 
-        .doc-list.muted li::before {
+        .doc-list li::before {
           content: '';
           position: absolute;
           left: 0;
-          top: 0.6rem;
+          top: 0.62rem;
           width: 10px;
           height: 2px;
-          background: #B9C0CC;
+          background: #FF7A6F;
+        }
+
+        .cta-panel {
+          background: #2A2D3D;
+        }
+
+        .cta-panel h2 {
+          color: #FFFFFF;
+        }
+
+        .cta-panel p {
+          color: rgba(255, 255, 255, 0.78);
+        }
+
+        .cta {
+          display: inline-block;
+          align-self: flex-start;
+          margin-top: 0.5rem;
+          padding: 0.75rem 1.5rem;
+          background: #FF7A6F;
+          color: #2A2D3D;
+          font-size: 0.95rem;
+          font-weight: 700;
+          border-radius: 10px;
+          text-decoration: none;
+          transition: background 0.15s ease;
+        }
+
+        .cta:hover {
+          background: #FF9084;
+          color: #2A2D3D;
         }
 
         a {
@@ -233,26 +333,9 @@ export default function TrustPage() {
           text-decoration: underline;
         }
 
-        a:hover {
-          color: #4C526A;
-        }
-
+        .doc-card,
         .cta {
-          display: inline-block;
-          align-self: flex-start;
-          margin-top: 0.5rem;
-          padding: 0.7rem 1.4rem;
-          background: #E4694F;
-          color: #FFFFFF;
-          font-size: 0.95rem;
-          font-weight: 600;
-          border-radius: 8px;
           text-decoration: none;
-        }
-
-        .cta:hover {
-          background: #C9513A;
-          color: #FFFFFF;
         }
 
         @media (max-width: 768px) {
@@ -270,6 +353,10 @@ export default function TrustPage() {
 
           h2 {
             font-size: 1.2rem;
+          }
+
+          .panel {
+            padding: 1.5rem 1.25rem;
           }
         }
       `}</style>
