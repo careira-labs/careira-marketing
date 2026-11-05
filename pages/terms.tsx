@@ -19,7 +19,7 @@ export default function TermsPage() {
       <main>
         <div className="container">
           <h1>Terms of Service</h1>
-          <p className="updated">Last Updated: 15th August 2026</p>
+          <p className="updated">Last Updated: 5th November 2026</p>
 
           <section>
             <h2>1. About these terms</h2>
@@ -123,6 +123,9 @@ export default function TermsPage() {
             <h2>7. Third-party job listings</h2>
             <p>
               The Service may display job listings sourced from third-party job boards, company career pages, and recruiter postings. We do not control, verify, or endorse these listings. We are not responsible for the accuracy, completeness, or legality of third-party job postings, and we are not a party to any employment relationship that may result from your use of the Service.
+            </p>
+            <p>
+              Some listings are sourced from public sector bodies. Where we display vacancy information from <a href="https://www.civilservicejobs.service.gov.uk" rel="noopener noreferrer" target="_blank">UK Civil Service Jobs</a>, that information is Crown copyright and is reused under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="noopener noreferrer" target="_blank">Open Government Licence v3.0</a>. Such listings contain public sector information licensed under the Open Government Licence v3.0. We only ingest publicly advertised vacancies; we do not access or display roles restricted to internal or across-government applicants.
             </p>
           </section>
 
